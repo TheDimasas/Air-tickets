@@ -3,7 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { AirportsService } from './airports.service';
 import { AirportsController } from './airports.controller';
-import { Airport, AirportSchema } from './schemas/airport.schema';
+import { Airport, AirportSchema } from './entities/airport.entity';
 
 @Module({
   imports: [

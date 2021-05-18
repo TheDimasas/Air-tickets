@@ -1,19 +1,33 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsString, IsUppercase, Length } from 'class-validator';
+import {
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  IsUppercase,
+  Length,
+} from 'class-validator';
 
 export class CreateAirportDto {
   @IsNotEmpty()
   @IsString()
-  @ApiProperty({ example: 'Жуляни', description: 'Local airport name' })
-  readonly airportNameLocal: string;
+  @ApiProperty({ example: 'Жуляни', description: 'Ukranian airport name' })
+  readonly airportNameUa: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   @ApiProperty({
     example: 'Zhulyani',
     description: 'English airport name',
   })
-  readonly airportNameEng: string;
+  readonly airportNameEng?: string;
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty({
+    example: 'Жуляны',
+    description: 'Russian airport name',
+  })
+  readonly airportNameRu?: string;
 
   @IsNotEmpty()
   @IsString()
@@ -26,31 +40,47 @@ export class CreateAirportDto {
   @IsString()
   @ApiProperty({
     example: 'Україна',
-    description: 'The Local name of the country of the airport',
+    description: 'The Ukranian name of the country of the airport',
   })
-  readonly airportCountryLocal: string;
+  readonly airportCountryUa: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   @ApiProperty({
     example: 'Ukraine',
     description: 'The English name of the country of the airport',
   })
-  readonly airportCountryEng: string;
+  readonly airportCountryEng?: string;
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty({
+    example: 'Украина',
+    description: 'The Russian name of the country of the airport',
+  })
+  readonly airportCountryRu?: string;
 
   @IsNotEmpty()
   @IsString()
   @ApiProperty({
     example: 'Київ',
-    description: 'The Local name of the airport town',
+    description: 'The Ukranian name of the airport town',
   })
-  readonly airportTownLocal: string;
+  readonly airportTownUa: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   @ApiProperty({
     example: 'Kiev',
     description: 'The English name of the airport town',
   })
-  readonly airportTownEng: string;
+  readonly airportTownEng?: string;
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty({
+    example: 'Киев',
+    description: 'The Russian name of the airport town',
+  })
+  readonly airportTownRu?: string;
 }

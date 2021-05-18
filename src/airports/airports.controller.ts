@@ -13,7 +13,7 @@ import { ObjectId } from 'mongoose';
 import { AirportsService } from './airports.service';
 import { CreateAirportDto } from './dto/create-airport.dto';
 import { UpdateAirportDto } from './dto/update-airport.dto';
-import { Airport } from './schemas/airport.schema';
+import { Airport } from './entities/airport.entity';
 
 @ApiTags('Airports')
 @Controller('airports')

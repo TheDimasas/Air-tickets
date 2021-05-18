@@ -6,16 +6,20 @@ export type AirportDocument = Airport & Document;
 
 @Schema()
 export class Airport {
-  @ApiProperty({ example: 'Жуляни', description: 'Local airport name' })
+  @ApiProperty({ example: 'Жуляни', description: 'Ukranian airport name' })
   @Prop({ required: true, unique: true, trim: true })
-  airportNameLocal: string;
+  airportNameUa: string;
 
   @ApiProperty({
     example: 'Zhulyani',
     description: 'English airport name',
   })
-  @Prop({ required: true, unique: true, trim: true })
-  airportNameEng: string;
+  @Prop({ unique: true, trim: true })
+  airportNameEng?: string;
+
+  @ApiProperty({ example: 'Жуляны', description: 'Russian airport name' })
+  @Prop({ unique: true, trim: true })
+  airportNameRu?: string;
 
   @ApiProperty({ example: 'IEV', description: 'IATA' })
   @Prop({ required: true, unique: true, trim: true })
@@ -23,30 +27,44 @@ export class Airport {
 
   @ApiProperty({
     example: 'Україна',
-    description: 'The Local name of the country of the airport',
+    description: 'The Ukranian name of the country of the airport',
   })
   @Prop({ required: true, trim: true })
-  airportCountryLocal: string;
+  airportCountryUa: string;
 
   @ApiProperty({
     example: 'Ukraine',
     description: 'The English name of the country of the airport',
   })
-  @Prop({ required: true, trim: true })
-  airportCountryEng: string;
+  @Prop({ trim: true })
+  airportCountryEng?: string;
+
+  @ApiProperty({
+    example: 'Украина',
+    description: 'The Russian name of the country of the airport',
+  })
+  @Prop({ trim: true })
+  airportCountryRu?: string;
 
   @ApiProperty({
     example: 'Київ',
-    description: 'The Local name of the airport town',
+    description: 'The Ukranian name of the airport town',
   })
   @Prop({ required: true, trim: true })
-  airportTownLocal: string;
+  airportTownUa: string;
 
   @ApiProperty({
     example: 'Kiev',
     description: 'The English name of the airport town',
   })
-  @Prop({ required: true, trim: true })
-  airportTownEng: string;
+  @Prop({ trim: true })
+  airportTownEng?: string;
+
+  @ApiProperty({
+    example: 'Киев',
+    description: 'The Russian name of the airport town',
+  })
+  @Prop({ trim: true })
+  airportTownRu?: string;
 }
 export const AirportSchema = SchemaFactory.createForClass(Airport);
