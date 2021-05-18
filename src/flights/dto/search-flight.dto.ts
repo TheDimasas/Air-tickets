@@ -1,27 +1,29 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
-import { IsMongoId, IsNotEmpty } from 'class-validator';
-import { ObjectId } from 'mongoose';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 import { CreateFlightDto } from './create-flight.dto';
 
 export class SearchFlightDto extends PartialType(CreateFlightDto) {
   @IsNotEmpty()
-  @IsMongoId()
+  @IsString()
   @ApiProperty({
-    example: '????????Zhulyani',
-    description: 'Departure airport',
+    example: 'Zhulyani/Жуляни/IEV',
+    description: 'Departure',
   })
-  readonly departureAirport: ObjectId;
+  readonly departure: string;
 
   @IsNotEmpty()
-  @ApiProperty({ example: '????????', description: 'Departure time' })
-  readonly departureTime: string;
+  @ApiProperty({
+    example: '2021-05-16T15:35:00.000Z',
+    description: 'Departure time',
+  })
+  readonly depTime: string;
 
   @IsNotEmpty()
-  @IsMongoId()
+  @IsString()
   @ApiProperty({
-    example: '????????Sheremetyevo',
-    description: 'Arrival airport',
+    example: 'Sheremetyevo/Шереметьево/SVO',
+    description: 'Arrival',
   })
-  readonly arrivalAirport: ObjectId;
+  readonly arrival: string;
 }

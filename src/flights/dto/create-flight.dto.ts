@@ -1,5 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsMongoId, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import {
+  IsBoolean,
+  IsMongoId,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import { ObjectId } from 'mongoose';
 
 export class CreateFlightDto {
@@ -11,50 +18,71 @@ export class CreateFlightDto {
   @IsNotEmpty()
   @IsMongoId()
   @ApiProperty({
-    example: '????????UIA (Ukraine International Airlines)',
+    example: 'UIA (Ukraine International Airlines)',
     description: 'Airline name',
   })
   readonly airline: ObjectId;
 
+  @IsMongoId()
+  @IsNotEmpty()
+  @ApiProperty({
+    example: 'Aerospatiale/Alenia ATR 72',
+    description: 'Airplane name',
+  })
+  readonly airplane: ObjectId;
+
   @IsNotEmpty()
   @IsMongoId()
   @ApiProperty({
-    example: '????????Zhulyani',
+    example: 'Zhulyani/Жуляни/IEV',
     description: 'Departure airport',
   })
   readonly departureAirport: ObjectId;
 
   @IsNotEmpty()
-  @ApiProperty({ example: '????????', description: 'Departure time' })
+  @ApiProperty({
+    example: '2021-05-16T15:35:00.000Z',
+    description: 'Departure time',
+  })
   readonly departureTime: string;
 
   @IsNotEmpty()
   @IsMongoId()
   @ApiProperty({
-    example: '????????Sheremetyevo',
+    example: 'Sheremetyevo/Шереметьево/SVO',
     description: 'Arrival airport',
   })
   readonly arrivalAirport: ObjectId;
 
   @IsNotEmpty()
-  @ApiProperty({ example: '????????', description: 'Arrival time' })
+  @ApiProperty({
+    example: '2021-05-21T09:15:00.000Z',
+    description: 'Arrival time',
+  })
   readonly arrivalTime: string;
 
-  @IsNotEmpty()
   @IsNumber()
-  @ApiProperty({ example: '90', description: 'Amount of seats' })
-  readonly amountOfSeat: number;
+  @IsNotEmpty()
+  @ApiProperty({ example: '200', description: 'Ticket taxa' })
+  readonly taxa: number;
 
   @IsNotEmpty()
-  @IsNumber()
-  @ApiProperty({ example: '1700', description: 'Ticket price' })
-  readonly price: number;
-
-  @IsNotEmpty()
-  @IsString()
   @ApiProperty({
-    example: 'Without baggage',
+    example: '23',
     description: 'Baggage properties',
   })
-  readonly property: string;
+  readonly baggage: number | null;
+
+  @IsBoolean()
+  @IsNotEmpty()
+  @ApiProperty({ example: 'true', description: 'Hand luggage' })
+  readonly carryOnBaggage: boolean;
+
+  @IsOptional()
+  @ApiProperty({ example: '0.7', description: 'Ticket exchange' })
+  readonly exchange?: number | null;
+
+  @IsOptional()
+  @ApiProperty({ example: '0.5', description: 'Ticket return' })
+  readonly refund?: number | null;
 }

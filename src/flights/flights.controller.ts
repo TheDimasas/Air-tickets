@@ -14,7 +14,7 @@ import { FlightsService } from './flights.service';
 import { CreateFlightDto } from './dto/create-flight.dto';
 import { UpdateFlightDto } from './dto/update-flight.dto';
 import { SearchFlightDto } from './dto/search-flight.dto';
-import { Flight } from './schemas/flights.schema';
+import { Flight } from './entities/flights.entity';
 
 @ApiTags('Flights')
 @Controller('flights')
@@ -28,12 +28,12 @@ export class FlightsController {
     return this.flightsService.createFlight(flightDto);
   }
 
-  // @ApiOperation({ summary: 'Search Flights' })
-  // @ApiResponse({ status: 200, type: [Flight] })
-  // @Post()
-  // search(@Body() flightDto: SearchFlightDto) {
-  //   return this.flightsService.searchFlights(flightDto);
-  // }
+  @ApiOperation({ summary: 'Search Flights' })
+  @ApiResponse({ status: 200, type: [Flight] })
+  @Post('search')
+  search(@Body() flightDto: SearchFlightDto) {
+    return this.flightsService.searchFlights(flightDto);
+  }
 
   @ApiOperation({ summary: 'Get data all Flights' })
   @ApiResponse({ status: 200, type: [Flight] })
@@ -42,7 +42,7 @@ export class FlightsController {
     return this.flightsService.getAllFlights();
   }
 
-  @ApiOperation({ summary: 'Get Flights data' })
+  @ApiOperation({ summary: 'Get Flight data' })
   @ApiResponse({ status: 200, type: Flight })
   @Get(':id')
   findOne(@Param('id') id: ObjectId) {

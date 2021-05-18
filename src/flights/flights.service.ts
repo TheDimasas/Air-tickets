@@ -1,33 +1,50 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  HttpException,
+  HttpStatus,
+  Injectable,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, ObjectId } from 'mongoose';
+import Fuse from 'fuse.js';
 
 import { CreateFlightDto } from './dto/create-flight.dto';
 import { SearchFlightDto } from './dto/search-flight.dto';
 import { UpdateFlightDto } from './dto/update-flight.dto';
-import { Flight, FlightsDocument } from './schemas/flights.schema';
+import { Flight, FlightDocument } from './entities/flights.entity';
 
 @Injectable()
 export class FlightsService {
   constructor(
-    @InjectModel(Flight.name) private flightModel: Model<FlightsDocument>,
+    @InjectModel(Flight.name) private flightModel: Model<FlightDocument>,
   ) {}
 
   public async createFlight(flightDto: CreateFlightDto): Promise<Flight> {
-    const candidate = await this.flightModel
+    let flight = await this.flightModel
       .findOne({
         flightName: flightDto.flightName,
       })
       .exec();
-    if (candidate) {
-      throw new HttpException(
-        'Flight with this data already exists',
-        HttpStatus.BAD_REQUEST,
-      );
+    if (flight) {
+      throw new BadRequestException('Flight with this name already exists');
     }
 
     try {
-      const flight = await this.flightModel.create({ ...flightDto });
+      flight = await this.flightModel.create({ ...flightDto });
+      flight = await this.flightModel
+        .findOne({
+          flightName: flightDto.flightName,
+        })
+        .select({ __v: false })
+        .populate({ path: 'airplane', select: '-__v' })
+        .populate({
+          path: 'airplane',
+          select: '-__v',
+          populate: { path: 'sections', select: '-__v' },
+        })
+        .populate({ path: 'departureAirport', select: '-__v' })
+        .populate({ path: 'arrivalAirport', select: '-__v' })
+        .exec();
       return flight;
     } catch (err) {
       throw new HttpException(err, HttpStatus.BAD_REQUEST);
@@ -38,9 +55,14 @@ export class FlightsService {
     const flights = await this.flightModel
       .find()
       .select({ __v: false })
-      // .populate({ path: 'airline', select: '-__v' })
-      // .populate({ path: 'departureAirport', select: '-__v' })
-      // .populate({ path: 'arrivalAirport', select: '-__v' })
+      .populate({
+        path: 'airplane',
+        select: '-__v',
+        populate: { path: 'sections', select: '-__v' },
+      })
+      .populate({ path: 'airline', select: '-__v' })
+      .populate({ path: 'departureAirport', select: '-__v' })
+      .populate({ path: 'arrivalAirport', select: '-__v' })
       .exec();
     return flights;
   }
@@ -49,62 +71,141 @@ export class FlightsService {
     const flight = await this.flightModel
       .findById(flightId)
       .select({ __v: false })
-      .populate({ path: 'airline', select: '-__v' })
+      .populate({ path: 'airplane', select: '-__v' })
+      .populate({
+        path: 'airplane',
+        select: '-__v',
+        populate: { path: 'sections', select: '-__v' },
+      })
       .populate({ path: 'departureAirport', select: '-__v' })
       .populate({ path: 'arrivalAirport', select: '-__v' })
       .exec();
     return flight;
   }
 
-  //does not work
   public async updateFlightData(
     flightId: ObjectId,
     flightDto: UpdateFlightDto,
   ): Promise<Flight> {
-    const candidate = await this.flightModel
-      .findOne({
-        flightName: flightDto.flightName,
-      })
-      .exec();
-    if (candidate) {
-      throw new HttpException(
-        'Flight with this name already exists',
-        HttpStatus.BAD_REQUEST,
-      );
+    let flight = await this.flightModel.findById(flightId).exec();
+    if (!flight) {
+      throw new BadRequestException('Flight with this name not found');
     }
-    const flight = await this.flightModel.findByIdAndUpdate(
-      flightId,
-      {
-        flightName: flightDto.flightName,
-        // airline: flightDto.airline,
-        // departureAirport: flightDto.departureAirport,
-        departureTime: flightDto.departureTime,
-        // arrivalAirport: flightDto.arrivalAirport,
-        arrivalTime: flightDto.arrivalTime,
-        amountOfSeat: flightDto.amountOfSeat,
-        price: flightDto.price,
-        property: flightDto.property,
-      },
-      {
-        new: true,
-      },
-    );
+
+    // if (flightDto.airline) {
+    //   flight.airline = flightDto.airline.toString();
+    // }
+    // if (flightDto.airplane) {
+    //   flight.airplane = flightDto.airplane.toString();
+    // }
+    // if (flightDto.arrivalAirport) {
+    //   flight.arrivalAirport = flightDto.arrivalAirport.toString();
+    // }
+    if (flightDto.arrivalTime) {
+      flight.arrivalTime = flightDto.arrivalTime;
+    }
+    if (flightDto.baggage) {
+      flight.baggage = flightDto.baggage;
+    }
+    if (flightDto.carryOnBaggage) {
+      flight.carryOnBaggage = flightDto.carryOnBaggage;
+    }
+    // if (flightDto.departureAirport) {
+    //   flight.departureAirport = flightDto.departureAirport.toString();
+    // }
+    if (flightDto.departureTime) {
+      flight.departureTime = flightDto.departureTime;
+    }
+    if (flightDto.exchange) {
+      flight.exchange = flightDto.exchange;
+    }
+    if (flightDto.flightName) {
+      flight.flightName = flightDto.flightName;
+    }
+    if (flightDto.refund) {
+      flight.refund = flightDto.refund;
+    }
+    if (flightDto.taxa) {
+      flight.taxa = flightDto.taxa;
+    }
+    await flight.save();
+
+    flight = await this.flightModel
+      .findById(flightId)
+      .select({ __v: false })
+      .populate({ path: 'airplane', select: '-__v' })
+      .populate({
+        path: 'airplane',
+        select: '-__v',
+        populate: { path: 'sections', select: '-__v' },
+      })
+      .populate({ path: 'departureAirport', select: '-__v' })
+      .populate({ path: 'arrivalAirport', select: '-__v' })
+      .exec();
     return flight;
   }
 
   public async deleteFlight(flightId: ObjectId): Promise<Flight> {
-    const flight = await this.flightModel.findByIdAndDelete(flightId).exec();
+    const flight = await this.flightModel
+      .findByIdAndDelete(flightId)
+      .select({ __v: false })
+      .populate({ path: 'airplane', select: '-__v' })
+      .populate({
+        path: 'airplane',
+        select: '-__v',
+        populate: { path: 'sections', select: '-__v' },
+      })
+      .populate({ path: 'departureAirport', select: '-__v' })
+      .populate({ path: 'arrivalAirport', select: '-__v' })
+      .exec();
     return flight;
   }
 
-  // public async searchFlights(flightDto: SearchFlightDto): Promise<Flight> {
-  //   const flight = await this.flightModel
-  //     .find({ departureAirport: flightDto.departureAirport })
-  //     .select({ __v: false })
-  //     .populate({ path: 'airline', select: '-__v' })
-  //     .populate({ path: 'departureAirport', select: '-__v' })
-  //     .populate({ path: 'arrivalAirport', select: '-__v' })
-  //     .exec();
-  //   return flight;
-  // }
+  public async searchFlights(flightDto: SearchFlightDto): Promise<Flight[]> {
+    const initialFlights = await this.flightModel
+      .find({ departureTime: { $gte: flightDto.depTime.toString() } })
+      .select({ __v: false })
+      .populate({ path: 'airline', select: '-__v' })
+      .populate({
+        path: 'airplane',
+        select: '-__v',
+        match: { amountOfSeat: { $gte: 1 } },
+        populate: { path: 'sections', select: '-__v' },
+      })
+      .populate({ path: 'departureAirport', select: '-__v' })
+      .populate({ path: 'arrivalAirport', select: '-__v' })
+      .exec();
+
+    const optionsForDeparture = {
+      includeScore: true,
+      keys: [
+        'departureAirport.airportNameUa',
+        'departureAirport.airportNameEng',
+        'departureAirport.airportNameRu',
+        'departureAirport.IATA',
+        'departureAirport.airportTownUa',
+        'departureAirport.airportTownEng',
+        'departureAirport.airportTownRu',
+      ],
+    };
+
+    let fuse = new Fuse(initialFlights, optionsForDeparture);
+    let result = fuse.search(flightDto.departure).map((r) => r.item);
+    const optionsForArrival = {
+      includeScore: true,
+      keys: [
+        'arrivalAirport.airportNameUa',
+        'arrivalAirport.airportNameEng',
+        'arrivalAirport.airportNameRu',
+        'arrivalAirport.IATA',
+        'arrivalAirport.airportTownUa',
+        'arrivalAirport.airportTownEng',
+        'arrivalAirport.airportTownRu',
+      ],
+    };
+
+    fuse = new Fuse(result, optionsForArrival);
+    result = fuse.search(flightDto.arrival).map((r) => r.item);
+    return result;
+  }
 }
