@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -11,7 +11,7 @@ import { AuthController } from './auth.controller';
 
 @Module({
   imports: [
-    UsersModule,
+    forwardRef(() => UsersModule),
     PassportModule,
     ConfigModule.forRoot({
       envFilePath: `.${process.env.NODE_ENV}.env`,
