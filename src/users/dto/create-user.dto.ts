@@ -1,11 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
-  IsAlphanumeric,
   IsEmail,
   IsNotEmpty,
   IsPhoneNumber,
   IsString,
-  MinLength,
+  Matches,
 } from 'class-validator';
 
 export class CreateUserDto {
@@ -26,13 +25,12 @@ export class CreateUserDto {
 
   @IsNotEmpty()
   @IsEmail()
-  @ApiProperty({ example: 'dimochka.efremov@gmail.com', description: 'E-mail' })
+  @ApiProperty({ example: 'test@gmail.com', description: 'E-mail' })
   readonly email: string;
 
-  @MinLength(6)
   @IsNotEmpty()
   @IsString()
-  @IsAlphanumeric()
-  @ApiProperty({ example: '1q2w3e4r5t6y', description: 'Password' })
+  @Matches('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,12}$')
+  @ApiProperty({ example: 'A1b2@c3d!', description: 'Password' })
   readonly password: string;
 }
