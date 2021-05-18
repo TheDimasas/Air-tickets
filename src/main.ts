@@ -1,10 +1,11 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import * as cookieParser from 'cookie-parser';
-import * as mongoose from 'mongoose';
-import * as csurf from 'csurf';
-import * as helmet from 'helmet';
+import cookieParser from 'cookie-parser';
+import mongoose from 'mongoose';
+import compression from 'compression';
+import csurf from 'csurf';
+import helmet from 'helmet';
 
 import { AppModule } from './app.module';
 
@@ -22,11 +23,13 @@ async function bootstrap() {
 
   app.use(helmet());
   app.enableCors({
-    origin: [`http://localhost:${process.env.PORT}`],
+    origin: [`http://localhost:${process.env.PORT_CLIENT}`],
     credentials: true,
   });
+  app.setGlobalPrefix('api/v1');
   app.use(cookieParser());
-  app.use(csurf());
+  app.use(compression());
+  // app.use(csurf({ cookie: true }));
   app.useGlobalPipes(
     new ValidationPipe({
       transform: true,
