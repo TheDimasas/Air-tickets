@@ -1,38 +1,5 @@
-import { ApiProperty, PartialType } from '@nestjs/swagger';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { PartialType } from '@nestjs/swagger';
 
 import { CreateAirlineDto } from './create-airline.dto';
 
-export class UpdateAirlineDto extends PartialType(CreateAirlineDto) {
-  @IsString()
-  @IsNotEmpty()
-  @ApiProperty({
-    example: 'МАУ (Міжнародні Авіалінії України)',
-    description: 'Local name of the airline',
-  })
-  readonly airlineNameLocal: string;
-
-  @IsString()
-  @IsNotEmpty()
-  @ApiProperty({
-    example: 'UIA (Ukraine International Airlines)',
-    description: 'English name of the airline',
-  })
-  readonly airlineNameEng: string;
-
-  @IsString()
-  @ApiProperty({
-    example:
-      'Міжнародні Авіалінії України працюють з 1 жовтня 1992 року і є флагманської авіакомпанією України',
-    description: 'Local description of the airline',
-  })
-  readonly descriptionLocal: string;
-
-  @IsString()
-  @ApiProperty({
-    example:
-      'Ukraine International Airlines has been operating since October 1, 1992 and is the flagship airline of Ukraine',
-    description: 'English description of the airline',
-  })
-  readonly descriptionEng: string;
-}
+export class UpdateAirlineDto extends PartialType(CreateAirlineDto) {}

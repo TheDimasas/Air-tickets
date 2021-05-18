@@ -1,55 +1,61 @@
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { Document } from 'mongoose';
 
-export class CreateAirlineDto {
-  @IsString()
-  @IsNotEmpty()
+export type AirlineDocument = Airline & Document;
+
+@Schema()
+export class Airline {
   @ApiProperty({
     example: 'МАУ (Міжнародні Авіалінії України)',
     description: 'Ukrainian name of the airline',
   })
-  readonly airlineNameUa: string;
+  @Prop({ required: true, unique: true, trim: true })
+  airlineNameUa: string;
 
-  @IsOptional()
-  @IsString()
   @ApiProperty({
     example: 'UIA (Ukraine International Airlines)',
     description: 'English name of the airline',
   })
-  readonly airlineNameEng?: string;
+  @Prop({ unique: true, trim: true })
+  airlineNameEng?: string;
 
-  @IsOptional()
-  @IsString()
   @ApiProperty({
     example: 'МАУ (Международные Авиалинии Украины)',
     description: 'Russian name of the airline',
   })
-  readonly airlineNameRu?: string;
+  @Prop({ unique: true, trim: true })
+  airlineNameRu?: string;
 
-  @IsNotEmpty()
-  @IsString()
   @ApiProperty({
     example:
       'Міжнародні Авіалінії України працюють з 1 жовтня 1992 року і є флагманської авіакомпанією України',
     description: 'Ukrainian description of the airline',
   })
-  readonly descriptionUa: string;
+  @Prop({ required: true, trim: true })
+  descriptionUa: string;
 
-  @IsOptional()
-  @IsString()
   @ApiProperty({
     example:
       'Ukraine International Airlines has been operating since October 1, 1992 and is the flagship airline of Ukraine',
     description: 'English description of the airline',
   })
-  readonly descriptionEng?: string;
+  @Prop({ trim: true })
+  descriptionEng?: string;
 
-  @IsOptional()
-  @IsString()
   @ApiProperty({
     example:
       'Международные авиалинии Украины работают с 1 октября 1992 года и являются флагманской авиакомпанией Украины.',
     description: 'Russian description of the airline',
   })
-  readonly descriptionRu?: string;
+  @Prop({ trim: true })
+  descriptionRu?: string;
+
+  @ApiProperty({
+    example: 'Лого',
+    description: 'Airline logo',
+  })
+  @Prop({ required: true, trim: true })
+  logo: string;
 }
+export const AirlineSchema = SchemaFactory.createForClass(Airline);

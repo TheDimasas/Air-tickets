@@ -1,24 +1,28 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, ObjectId } from 'mongoose';
-
+import { FilesService, Folder } from '../files/files.service';
 import { CreateAirlineDto } from './dto/create-airline.dto';
 import { UpdateAirlineDto } from './dto/update-airline.dto';
-import { Airline, AirlineDocument } from './schemas/airlines.schema';
+import { Airline, AirlineDocument } from './entities/airlines.entity';
 
 @Injectable()
 export class AirlinesService {
   constructor(
     @InjectModel(Airline.name) private airlineModel: Model<AirlineDocument>,
+    private filesService: FilesService,
   ) {}
 
-  public async createAirline(airlineDto: CreateAirlineDto): Promise<Airline> {
-    const candidate = await this.airlineModel
+  public async createAirline(
+    airlineDto: CreateAirlineDto,
+    logo,
+  ): Promise<Airline> {
+    let airline = await this.airlineModel
       .findOne({
-        airlineNameLocal: airlineDto.airlineNameLocal,
+        airlineNameUa: airlineDto.airlineNameUa,
       })
       .exec();
-    if (candidate) {
+    if (airline) {
       throw new HttpException(
         'Airline with this name already exists',
         HttpStatus.BAD_REQUEST,
@@ -26,7 +30,16 @@ export class AirlinesService {
     }
 
     try {
-      const airline = await this.airlineModel.create({ ...airlineDto });
+      const fileName = await this.filesService.createFile(Folder.Airline, logo);
+      airline = await this.airlineModel.create({
+        ...airlineDto,
+        logo: fileName,
+      });
+
+      airline = await this.airlineModel
+        .findOne({ airlineNameUa: airlineDto.airlineNameUa })
+        .select({ __v: false })
+        .exec();
       return airline;
     } catch (err) {
       throw new HttpException(err, HttpStatus.BAD_REQUEST);
@@ -46,6 +59,12 @@ export class AirlinesService {
       .findById(airlineId)
       .select({ __v: false })
       .exec();
+    if (!airline) {
+      throw new HttpException(
+        'Airline with this id not found',
+        HttpStatus.NOT_FOUND,
+      );
+    }
     return airline;
   }
 
@@ -53,34 +72,52 @@ export class AirlinesService {
     airlineId: ObjectId,
     airlineDto: UpdateAirlineDto,
   ): Promise<Airline> {
-    const candidate = await this.airlineModel
-      .findOne({
-        airlineNameLocal: airlineDto.airlineNameLocal,
-      })
-      .exec();
-    if (candidate) {
+    let airline = await this.airlineModel.findById(airlineId).exec();
+    if (!airline) {
       throw new HttpException(
-        'Airline with this name already exists',
-        HttpStatus.BAD_REQUEST,
+        'Airline with this id not found',
+        HttpStatus.NOT_FOUND,
       );
     }
-    const airline = await this.airlineModel.findByIdAndUpdate(
-      airlineId,
-      {
-        airlineNameLocal: airlineDto.airlineNameLocal,
-        airlineNameEng: airlineDto.airlineNameEng,
-        descriptionEng: airlineDto.descriptionEng,
-        descriptionLocal: airlineDto.descriptionLocal,
-      },
-      {
-        new: true,
-      },
-    );
+
+    if (airlineDto.airlineNameEng) {
+      airline.airlineNameEng = airlineDto.airlineNameEng;
+    }
+    if (airlineDto.airlineNameRu) {
+      airline.airlineNameRu = airlineDto.airlineNameRu;
+    }
+    if (airlineDto.airlineNameUa) {
+      airline.airlineNameUa = airlineDto.airlineNameUa;
+    }
+    if (airlineDto.descriptionEng) {
+      airline.descriptionEng = airlineDto.descriptionEng;
+    }
+    if (airlineDto.descriptionRu) {
+      airline.descriptionRu = airlineDto.descriptionRu;
+    }
+    if (airlineDto.descriptionUa) {
+      airline.descriptionUa = airlineDto.descriptionUa;
+    }
+    await airline.save();
+
+    airline = await this.airlineModel
+      .findById(airlineId)
+      .select({ __v: false })
+      .exec();
     return airline;
   }
 
   public async deleteAirline(airlineId: ObjectId): Promise<Airline> {
-    const airline = await this.airlineModel.findByIdAndDelete(airlineId).exec();
+    const airline = await this.airlineModel
+      .findByIdAndDelete(airlineId)
+      .select({ __v: false })
+      .exec();
+    if (!airline) {
+      throw new HttpException(
+        'Airline with this id not found',
+        HttpStatus.NOT_FOUND,
+      );
+    }
     return airline;
   }
 }
