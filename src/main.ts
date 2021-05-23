@@ -30,7 +30,7 @@ async function bootstrap() {
     origin: [`http://localhost:${process.env.PORT_CLIENT}`],
     credentials: true,
   });
-  app.useStaticAssets(join(__dirname, '..', 'public'));
+  // app.useStaticAssets(join(__dirname, 'static'));
   app.setGlobalPrefix('api/v1');
   app.use(compression());
   app.use(cookieParser());
