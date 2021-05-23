@@ -13,8 +13,15 @@ export class SeatsController {
 
   @ApiOperation({ summary: 'Update Seat data' })
   @ApiResponse({ status: 200, type: Seat })
-  @Patch(':id')
+  @Patch(':id/update')
   update(@Param('id') id: ObjectId, @Body() seatDto: UpdateSeatDto) {
     return this.seatsService.updateSeatData(id, seatDto);
   }
+
+  // @ApiOperation({ summary: 'Update Seat data' })
+  // @ApiResponse({ status: 200, type: Seat })
+  // @Patch(':id/select')
+  // select(@Param('id') id: ObjectId, @Body() seatDto: SelectSeatDto) {
+  //   return this.seatsService.selectSeat(id, seatDto);
+  // }
 }
