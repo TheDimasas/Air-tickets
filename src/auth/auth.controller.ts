@@ -24,8 +24,11 @@ export class AuthController {
   @Post('signIn')
   async signIn(@Request() req, @Res({ passthrough: true }) res: Response) {
     const [resBody, jwt] = await this.authService.signIn(req.user);
-    // Add secure flag
-    res.cookie('access_token', jwt, { httpOnly: true, sameSite: 'lax' });
+    res.cookie('access_token', jwt, {
+      httpOnly: true,
+      sameSite: 'none',
+      secure: true,
+    });
     return resBody;
   }
 
@@ -39,8 +42,11 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   @Post('logOut')
   async logOut(@Res({ passthrough: true }) res: Response) {
-    // Add secure flag
-    res.cookie('access_token', '', { httpOnly: true, sameSite: 'lax' });
+    res.cookie('access_token', '', {
+      httpOnly: true,
+      sameSite: 'none',
+      secure: true,
+    });
     return;
   }
 }
