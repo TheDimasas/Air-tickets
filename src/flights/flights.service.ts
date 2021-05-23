@@ -7,6 +7,7 @@ import {
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, ObjectId } from 'mongoose';
 import Fuse from 'fuse.js';
+import moment from 'moment';
 
 import { CreateFlightDto } from './dto/create-flight.dto';
 import { SearchFlightDto } from './dto/search-flight.dto';
@@ -163,7 +164,20 @@ export class FlightsService {
 
   public async searchFlights(flightDto: SearchFlightDto): Promise<Flight[]> {
     const initialFlights = await this.flightModel
-      .find({ departureTime: { $gte: flightDto.depTime.toString() } })
+      .find({
+        departureTime: {
+          $gte: moment(flightDto.depTime)
+            .startOf('day')
+            .add(3, 'hours')
+            .toISOString()
+            .toString(),
+          $lte: moment(flightDto.depTime)
+            .endOf('day')
+            .add(3, 'hours')
+            .toISOString()
+            .toString(),
+        },
+      })
       .select({ __v: false })
       .populate({ path: 'airline', select: '-__v' })
       .populate({
