@@ -15,7 +15,6 @@ import { UpdateUserDataDto } from './dto/update-user-data.dto';
 import { ChangeUserPasswordDto } from './dto/change-user-password.dto';
 import { User } from './entities/users.entity';
 import { Roles } from 'src/auth/decorators/roles-auth.decorator';
-import { RolesGuard } from 'src/auth/guards/roles.guard';
 
 @ApiTags('Users')
 @Controller('users')
@@ -26,7 +25,6 @@ export class UsersController {
   @ApiResponse({ status: 200, type: [User] })
   @Get()
   @Roles('admin')
-  @UseGuards(RolesGuard)
   findAll() {
     return this.usersService.getAllUsers();
   }
@@ -34,6 +32,7 @@ export class UsersController {
   @ApiOperation({ summary: 'Get User data' })
   @ApiResponse({ status: 200, type: User })
   @Get(':id')
+  @Roles('admin')
   findOne(@Param('id') id: ObjectId) {
     return this.usersService.getUserById(id);
   }
