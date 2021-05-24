@@ -11,7 +11,7 @@ export class CreateSectionDto {
 
   @IsNotEmpty()
   @IsIn([Class.Business, Class.Economy])
-  @ApiProperty({ example: 'free', description: 'Class' })
+  @ApiProperty({ example: 'economy', description: 'Class' })
   readonly class: Class;
 
   @IsNumber()

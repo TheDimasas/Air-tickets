@@ -1,8 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, ObjectId } from 'mongoose';
-import { UpdateSeatDto } from './dto/update-seat.dto';
 
+import { UpdateSeatDto } from './dto/update-seat.dto';
 import { Seat, SeatDocument } from './entities/seat.entity';
 
 @Injectable()
@@ -20,9 +20,11 @@ export class SeatsService {
         HttpStatus.NOT_FOUND,
       );
     }
+
     if (seatDto.status) {
       seat.status = seatDto.status;
     }
+
     await seat.save();
     seat = await this.seatModel.findById(seatId).select({ __v: false }).exec();
     return seat;

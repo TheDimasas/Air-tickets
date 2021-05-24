@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
+import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 
 import { AppController } from './app.controller';
@@ -14,7 +15,6 @@ import { AirlinesModule } from './airlines/airlines.module';
 import { FlightsModule } from './flights/flights.module';
 import { TicketsModule } from './tickets/tickets.module';
 import { FilesModule } from './files/files.module';
-import { ServeStaticModule } from '@nestjs/serve-static';
 import { AirplanesModule } from './airplanes/airplanes.module';
 import { SeatsModule } from './seats/seats.module';
 import { SectionsModule } from './sections/sections.module';
@@ -41,9 +41,9 @@ import { RolesGuard } from './auth/guards/roles.guard';
         limit: config.get<number>('THROTTLE_LIMIT'),
       }),
     }),
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, 'static'),
-    }),
+    // ServeStaticModule.forRoot({
+    //   rootPath: join(__dirname, 'static'),
+    // }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({

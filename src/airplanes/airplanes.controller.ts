@@ -7,8 +7,17 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiNotFoundResponse,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 import { ObjectId } from 'mongoose';
+import { Roles } from 'src/auth/decorators/roles-auth.decorator';
 
 import { AirplanesService } from './airplanes.service';
 import { CreateAirplaneDto } from './dto/create-airplane.dto';
@@ -22,6 +31,10 @@ export class AirplanesController {
 
   @ApiOperation({ summary: 'Create a Airplane' })
   @ApiResponse({ status: 200, type: Airplane })
+  @ApiBadRequestResponse({ description: 'BadRequest' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiBody({ type: CreateAirplaneDto })
+  @Roles('admin')
   @Post()
   create(@Body() airplaneDto: CreateAirplaneDto) {
     return this.airplanesService.createAirplane(airplaneDto);
@@ -36,6 +49,7 @@ export class AirplanesController {
 
   @ApiOperation({ summary: 'Get Airplane data' })
   @ApiResponse({ status: 200, type: Airplane })
+  @ApiNotFoundResponse({ description: 'Airplane NotFound' })
   @Get(':id')
   findOne(@Param('id') id: ObjectId) {
     return this.airplanesService.getAirplaneById(id);
@@ -43,6 +57,10 @@ export class AirplanesController {
 
   @ApiOperation({ summary: 'Update Airplane data' })
   @ApiResponse({ status: 200, type: Airplane })
+  @ApiNotFoundResponse({ description: 'Airplane NotFound' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiBody({ type: UpdateAirplaneDto })
+  @Roles('admin')
   @Patch(':id')
   update(@Param('id') id: ObjectId, @Body() airplaneDto: UpdateAirplaneDto) {
     return this.airplanesService.updateAirplaneData(id, airplaneDto);
@@ -50,6 +68,9 @@ export class AirplanesController {
 
   @ApiOperation({ summary: 'Delete Airplane' })
   @ApiResponse({ status: 200, type: Airplane })
+  @ApiNotFoundResponse({ description: 'Airplane NotFound' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @Roles('admin')
   @Delete(':id')
   delete(@Param('id') id: ObjectId) {
     return this.airplanesService.deleteAirplane(id);

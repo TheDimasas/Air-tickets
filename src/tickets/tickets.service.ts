@@ -82,17 +82,25 @@ export class TicketsService {
     return tickets;
   }
 
-  public async getTicketById(ticketId: ObjectId): Promise<Ticket> {
+  public async getTicketById(
+    userId: ObjectId,
+    ticketId: ObjectId,
+  ): Promise<Ticket> {
     const ticket = await this.ticketModel
       .findById(ticketId)
+      .findOne({ user: userId.toString() })
       .select({ __v: false })
       .populate({ path: 'flight', select: '-__v' })
       .populate({ path: 'user', select: '-__v' })
       .exec();
+    if (!ticket) {
+      throw new BadRequestException('Ticket with this id not found');
+    }
     return ticket;
   }
 
   public async updateTicketData(
+    userId: ObjectId,
     ticketId: ObjectId,
     ticketDto: UpdateTicketDto,
   ): Promise<Ticket> {
@@ -105,7 +113,7 @@ export class TicketsService {
     }
 
     const user = await this.userModel
-      .findById(ticketDto.user)
+      .findById(userId)
       .select({ password: false, __v: false })
       .exec();
     if (!user) {
@@ -115,7 +123,10 @@ export class TicketsService {
     return ticket;
   }
 
-  public async returnTicket(ticketId: ObjectId): Promise<Ticket> {
+  public async returnTicket(
+    userId: ObjectId,
+    ticketId: ObjectId,
+  ): Promise<Ticket> {
     let ticket = await this.ticketModel.findById(ticketId).exec();
     const flight = await this.flightModel.findById(ticket.flight).exec();
     if (!flight) {
@@ -125,6 +136,7 @@ export class TicketsService {
     ticket = await this.ticketModel.findByIdAndDelete(ticketId).exec();
     const airplane = await this.airplaneModel
       .findById(flight.airplane)
+      .findOne({ user: userId.toString() })
       .populate({ path: 'sections', select: '-__v' })
       .select({ __v: false })
       .exec();

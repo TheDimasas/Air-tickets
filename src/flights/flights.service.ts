@@ -12,6 +12,7 @@ import moment from 'moment';
 import { CreateFlightDto } from './dto/create-flight.dto';
 import { SearchFlightDto } from './dto/search-flight.dto';
 import { UpdateFlightDto } from './dto/update-flight.dto';
+import { SearchFlightByRangeDto } from './dto/search-flight-by-range.dto';
 import { Flight, FlightDocument } from './entities/flights.entity';
 
 @Injectable()
@@ -37,7 +38,7 @@ export class FlightsService {
           flightName: flightDto.flightName,
         })
         .select({ __v: false })
-        .populate({ path: 'airplane', select: '-__v' })
+        .populate({ path: 'airline', select: '-__v' })
         .populate({
           path: 'airplane',
           select: '-__v',
@@ -81,6 +82,9 @@ export class FlightsService {
       .populate({ path: 'departureAirport', select: '-__v' })
       .populate({ path: 'arrivalAirport', select: '-__v' })
       .exec();
+    if (!flight) {
+      throw new BadRequestException('Flight with this name not found');
+    }
     return flight;
   }
 
@@ -159,6 +163,9 @@ export class FlightsService {
       .populate({ path: 'departureAirport', select: '-__v' })
       .populate({ path: 'arrivalAirport', select: '-__v' })
       .exec();
+    if (!flight) {
+      throw new BadRequestException('Flight with this name not found');
+    }
     return flight;
   }
 
@@ -172,6 +179,69 @@ export class FlightsService {
             .toISOString()
             .toString(),
           $lte: moment(flightDto.depTime)
+            .endOf('day')
+            .add(3, 'hours')
+            .toISOString()
+            .toString(),
+        },
+      })
+      .select({ __v: false })
+      .populate({ path: 'airline', select: '-__v' })
+      .populate({
+        path: 'airplane',
+        select: '-__v',
+        match: { amountOfSeat: { $gte: 1 } },
+        populate: { path: 'sections', select: '-__v' },
+      })
+      .populate({ path: 'departureAirport', select: '-__v' })
+      .populate({ path: 'arrivalAirport', select: '-__v' })
+      .exec();
+
+    const optionsForDeparture = {
+      includeScore: true,
+      keys: [
+        'departureAirport.airportNameUa',
+        'departureAirport.airportNameEng',
+        'departureAirport.airportNameRu',
+        'departureAirport.IATA',
+        'departureAirport.airportTownUa',
+        'departureAirport.airportTownEng',
+        'departureAirport.airportTownRu',
+      ],
+    };
+
+    let fuse = new Fuse(initialFlights, optionsForDeparture);
+    let result = fuse.search(flightDto.departure).map((r) => r.item);
+    const optionsForArrival = {
+      includeScore: true,
+      keys: [
+        'arrivalAirport.airportNameUa',
+        'arrivalAirport.airportNameEng',
+        'arrivalAirport.airportNameRu',
+        'arrivalAirport.IATA',
+        'arrivalAirport.airportTownUa',
+        'arrivalAirport.airportTownEng',
+        'arrivalAirport.airportTownRu',
+      ],
+    };
+
+    fuse = new Fuse(result, optionsForArrival);
+    result = fuse.search(flightDto.arrival).map((r) => r.item);
+    return result;
+  }
+
+  public async searchFlightsByRange(
+    flightDto: SearchFlightByRangeDto,
+  ): Promise<Flight[]> {
+    const initialFlights = await this.flightModel
+      .find({
+        departureTime: {
+          $gte: moment(flightDto.firstDepTime)
+            .startOf('day')
+            .add(3, 'hours')
+            .toISOString()
+            .toString(),
+          $lte: moment(flightDto.secondDepTime)
             .endOf('day')
             .add(3, 'hours')
             .toISOString()
