@@ -42,7 +42,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li>CreateSectionDto</li>
+  <li>SearchFlightByRangeDto</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -60,7 +60,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/sections/dto/create-section.dto.ts</code>
+            <code>src/flights/dto/search-flight-by-range.dto.ts</code>
         </p>
 
 
@@ -81,15 +81,19 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#class">class</a>
+                                <a href="#arrival">arrival</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#price">price</a>
+                                <a href="#departure">departure</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#seats">seats</a>
+                                <a href="#firstDepTime">firstDepTime</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#secondDepTime">secondDepTime</a>
                             </li>
                         </ul>
                     </td>
@@ -114,18 +118,18 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="class"></a>
+                        <a name="arrival"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Readonly</span>
-                            class</b>
-                            <a href="#class"><span class="icon ion-ios-link"></span></a>
+                            arrival</b>
+                            <a href="#arrival"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#Class" target="_self" >Class</a></code>
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                         </td>
                     </tr>
@@ -134,13 +138,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @IsNotEmpty()<br />@IsIn(undefined)<br />@ApiProperty({example: &#x27;economy&#x27;, description: &#x27;Class&#x27;})<br />
+                                @IsNotEmpty()<br />@IsString()<br />@ApiProperty({example: &#x27;Sheremetyevo/Шереметьево/SVO&#x27;, description: &#x27;Arrival&#x27;})<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/sections/dto/create-section.dto.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/flights/dto/search-flight-by-range.dto.ts:35</a></div>
                             </td>
                         </tr>
 
@@ -151,18 +155,18 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="price"></a>
+                        <a name="departure"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Readonly</span>
-                            price</b>
-                            <a href="#price"><span class="icon ion-ios-link"></span></a>
+                            departure</b>
+                            <a href="#departure"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                         </td>
                     </tr>
@@ -171,13 +175,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @IsNumber()<br />@IsNotEmpty()<br />@ApiProperty({example: &#x27;1700&#x27;, description: &#x27;Section Price&#x27;})<br />
+                                @IsNotEmpty()<br />@IsString()<br />@ApiProperty({example: &#x27;Zhulyani/Жуляни/IEV&#x27;, description: &#x27;Departure&#x27;})<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/sections/dto/create-section.dto.ts:10</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/flights/dto/search-flight-by-range.dto.ts:13</a></div>
                             </td>
                         </tr>
 
@@ -188,18 +192,18 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="seats"></a>
+                        <a name="firstDepTime"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Readonly</span>
-                            seats</b>
-                            <a href="#seats"><span class="icon ion-ios-link"></span></a>
+                            firstDepTime</b>
+                            <a href="#firstDepTime"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                         </td>
                     </tr>
@@ -208,13 +212,50 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @IsNumber()<br />@IsNotEmpty()<br />@ApiProperty({example: &#x27;90&#x27;, description: &#x27;Seats&#x27;})<br />
+                                @IsNotEmpty()<br />@ApiProperty({example: &#x27;2021-05-15T15:35:00.000Z&#x27;, description: &#x27;First range departure time&#x27;})<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/sections/dto/create-section.dto.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/flights/dto/search-flight-by-range.dto.ts:20</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="secondDepTime"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Readonly</span>
+                            secondDepTime</b>
+                            <a href="#secondDepTime"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @IsNotEmpty()<br />@ApiProperty({example: &#x27;2021-05-18T15:35:00.000Z&#x27;, description: &#x27;Second range departure time&#x27;})<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/flights/dto/search-flight-by-range.dto.ts:27</a></div>
                             </td>
                         </tr>
 
@@ -233,29 +274,41 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &#x27;@nestjs/swagger&#x27;;
-import { IsIn, IsNotEmpty, IsNumber } from &#x27;class-validator&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty, PartialType } from &#x27;@nestjs/swagger&#x27;;
+import { IsNotEmpty, IsString } from &#x27;class-validator&#x27;;
 
-import { Class } from &#x27;../entities/section.entity&#x27;;
+import { CreateFlightDto } from &#x27;./create-flight.dto&#x27;;
 
-export class CreateSectionDto {
-  @IsNumber()
+export class SearchFlightByRangeDto extends PartialType(CreateFlightDto) {
   @IsNotEmpty()
-  @ApiProperty({ example: &#x27;1700&#x27;, description: &#x27;Section Price&#x27; })
-  readonly price: number;
+  @IsString()
+  @ApiProperty({
+    example: &#x27;Zhulyani/Жуляни/IEV&#x27;,
+    description: &#x27;Departure&#x27;,
+  })
+  readonly departure: string;
 
-  @IsNotEmpty()
-  @IsIn([Class.Business, Class.Economy])
-  @ApiProperty({ example: &#x27;economy&#x27;, description: &#x27;Class&#x27; })
-  readonly class: Class;
-
-  @IsNumber()
   @IsNotEmpty()
   @ApiProperty({
-    example: &#x27;90&#x27;,
-    description: &#x27;Seats&#x27;,
+    example: &#x27;2021-05-15T15:35:00.000Z&#x27;,
+    description: &#x27;First range departure time&#x27;,
   })
-  readonly seats: number;
+  readonly firstDepTime: string;
+
+  @IsNotEmpty()
+  @ApiProperty({
+    example: &#x27;2021-05-18T15:35:00.000Z&#x27;,
+    description: &#x27;Second range departure time&#x27;,
+  })
+  readonly secondDepTime: string;
+
+  @IsNotEmpty()
+  @IsString()
+  @ApiProperty({
+    example: &#x27;Sheremetyevo/Шереметьево/SVO&#x27;,
+    description: &#x27;Arrival&#x27;,
+  })
+  readonly arrival: string;
 }
 </code></pre>
     </div>
@@ -285,7 +338,7 @@ export class CreateSectionDto {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
-            var COMPODOC_CURRENT_PAGE_URL = 'CreateSectionDto.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'SearchFlightByRangeDto.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 

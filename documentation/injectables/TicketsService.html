@@ -335,7 +335,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getTicketById(ticketId: ObjectId)</code>
+                    <code>getTicketById(userId: ObjectId, ticketId: ObjectId)</code>
                 </td>
             </tr>
 
@@ -362,6 +362,18 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                            <code>ObjectId</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
                                 <tr>
                                     <td>ticketId</td>
                                     <td>
@@ -408,15 +420,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>returnTicket(ticketId: ObjectId)</code>
+                    <code>returnTicket(userId: ObjectId, ticketId: ObjectId)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="118"
-                            class="link-to-prism">src/tickets/tickets.service.ts:118</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="126"
+                            class="link-to-prism">src/tickets/tickets.service.ts:126</a></div>
                 </td>
             </tr>
 
@@ -435,6 +447,18 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                            <code>ObjectId</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
                                 <tr>
                                     <td>ticketId</td>
                                     <td>
@@ -481,15 +505,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>updateTicketData(ticketId: ObjectId, ticketDto: <a href="../classes/UpdateTicketDto.html">UpdateTicketDto</a>)</code>
+                    <code>updateTicketData(userId: ObjectId, ticketId: ObjectId, ticketDto: <a href="../classes/UpdateTicketDto.html">UpdateTicketDto</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="95"
-                            class="link-to-prism">src/tickets/tickets.service.ts:95</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="102"
+                            class="link-to-prism">src/tickets/tickets.service.ts:102</a></div>
                 </td>
             </tr>
 
@@ -508,6 +532,18 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr>
+                                    <td>userId</td>
+                                    <td>
+                                            <code>ObjectId</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
                                 <tr>
                                     <td>ticketId</td>
                                     <td>
@@ -638,17 +674,25 @@ export class TicketsService {
     return tickets;
   }
 
-  public async getTicketById(ticketId: ObjectId): Promise&lt;Ticket&gt; {
+  public async getTicketById(
+    userId: ObjectId,
+    ticketId: ObjectId,
+  ): Promise&lt;Ticket&gt; {
     const ticket &#x3D; await this.ticketModel
       .findById(ticketId)
+      .findOne({ user: userId.toString() })
       .select({ __v: false })
       .populate({ path: &#x27;flight&#x27;, select: &#x27;-__v&#x27; })
       .populate({ path: &#x27;user&#x27;, select: &#x27;-__v&#x27; })
       .exec();
+    if (!ticket) {
+      throw new BadRequestException(&#x27;Ticket with this id not found&#x27;);
+    }
     return ticket;
   }
 
   public async updateTicketData(
+    userId: ObjectId,
     ticketId: ObjectId,
     ticketDto: UpdateTicketDto,
   ): Promise&lt;Ticket&gt; {
@@ -661,7 +705,7 @@ export class TicketsService {
     }
 
     const user &#x3D; await this.userModel
-      .findById(ticketDto.user)
+      .findById(userId)
       .select({ password: false, __v: false })
       .exec();
     if (!user) {
@@ -671,7 +715,10 @@ export class TicketsService {
     return ticket;
   }
 
-  public async returnTicket(ticketId: ObjectId): Promise&lt;Ticket&gt; {
+  public async returnTicket(
+    userId: ObjectId,
+    ticketId: ObjectId,
+  ): Promise&lt;Ticket&gt; {
     let ticket &#x3D; await this.ticketModel.findById(ticketId).exec();
     const flight &#x3D; await this.flightModel.findById(ticket.flight).exec();
     if (!flight) {
@@ -681,6 +728,7 @@ export class TicketsService {
     ticket &#x3D; await this.ticketModel.findByIdAndDelete(ticketId).exec();
     const airplane &#x3D; await this.airplaneModel
       .findById(flight.airplane)
+      .findOne({ user: userId.toString() })
       .populate({ path: &#x27;sections&#x27;, select: &#x27;-__v&#x27; })
       .select({ __v: false })
       .exec();

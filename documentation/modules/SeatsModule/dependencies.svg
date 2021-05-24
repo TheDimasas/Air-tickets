@@ -24,13 +24,13 @@
 <title>cluster_SeatsModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="172,-70 172,-268 324,-268 324,-70 172,-70"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_SeatsModule_exports</title>
-<polygon fill="none" stroke="black" points="194,-208 194,-260 302,-260 302,-208 194,-208"/>
-</g>
 <g id="clust6" class="cluster">
 <title>cluster_SeatsModule_providers</title>
 <polygon fill="none" stroke="black" points="180,-78 180,-130 316,-130 316,-78 180,-78"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_SeatsModule_exports</title>
+<polygon fill="none" stroke="black" points="194,-208 194,-260 302,-260 302,-208 194,-208"/>
 </g>
 <!-- SeatsService  -->
 <g id="node1" class="node">

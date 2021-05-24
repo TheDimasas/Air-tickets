@@ -240,8 +240,8 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpException, HttpStatus, Injectable } from &#x27;@nestjs/common&#x27;;
 import { InjectModel } from &#x27;@nestjs/mongoose&#x27;;
 import { Model, ObjectId } from &#x27;mongoose&#x27;;
-import { UpdateSeatDto } from &#x27;./dto/update-seat.dto&#x27;;
 
+import { UpdateSeatDto } from &#x27;./dto/update-seat.dto&#x27;;
 import { Seat, SeatDocument } from &#x27;./entities/seat.entity&#x27;;
 
 @Injectable()
@@ -259,9 +259,11 @@ export class SeatsService {
         HttpStatus.NOT_FOUND,
       );
     }
+
     if (seatDto.status) {
       seat.status &#x3D; seatDto.status;
     }
+
     await seat.save();
     seat &#x3D; await this.seatModel.findById(seatId).select({ __v: false }).exec();
     return seat;

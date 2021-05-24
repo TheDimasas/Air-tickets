@@ -124,14 +124,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Update Seat data&#x27;})<br />@ApiResponse({status: 200, type: Seat})<br />@Patch(&#x27;:id/update&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Update Seat data&#x27;})<br />@ApiResponse({status: 200, type: Seat})<br />@ApiNotFoundResponse({description: &#x27;Seat NotFound&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@UseGuards(JwtAuthGuard)<br />@ApiBody({type: UpdateSeatDto})<br />@Patch(&#x27;:id/update&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">src/seats/seats.controller.ts:17</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/seats/seats.controller.ts:29</a></div>
                 </td>
             </tr>
 
@@ -194,12 +194,20 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Param, Patch } from &#x27;@nestjs/common&#x27;;
-import { ApiOperation, ApiResponse, ApiTags } from &#x27;@nestjs/swagger&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Param, Patch, UseGuards } from &#x27;@nestjs/common&#x27;;
+import {
+  ApiBody,
+  ApiNotFoundResponse,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from &#x27;@nestjs/swagger&#x27;;
 import { ObjectId } from &#x27;mongoose&#x27;;
+import { JwtAuthGuard } from &#x27;src/auth/guards/jwt-auth.guard&#x27;;
+
 import { UpdateSeatDto } from &#x27;./dto/update-seat.dto&#x27;;
 import { Seat } from &#x27;./entities/seat.entity&#x27;;
-
 import { SeatsService } from &#x27;./seats.service&#x27;;
 
 @ApiTags(&#x27;Seats&#x27;)
@@ -209,17 +217,14 @@ export class SeatsController {
 
   @ApiOperation({ summary: &#x27;Update Seat data&#x27; })
   @ApiResponse({ status: 200, type: Seat })
+  @ApiNotFoundResponse({ description: &#x27;Seat NotFound&#x27; })
+  @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @UseGuards(JwtAuthGuard)
+  @ApiBody({ type: UpdateSeatDto })
   @Patch(&#x27;:id/update&#x27;)
   update(@Param(&#x27;id&#x27;) id: ObjectId, @Body() seatDto: UpdateSeatDto) {
     return this.seatsService.updateSeatData(id, seatDto);
   }
-
-  // @ApiOperation({ summary: &#x27;Update Seat data&#x27; })
-  // @ApiResponse({ status: 200, type: Seat })
-  // @Patch(&#x27;:id/select&#x27;)
-  // select(@Param(&#x27;id&#x27;) id: ObjectId, @Body() seatDto: SelectSeatDto) {
-  //   return this.seatsService.selectSeat(id, seatDto);
-  // }
 }
 </code></pre>
     </div>

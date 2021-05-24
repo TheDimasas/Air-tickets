@@ -6,8 +6,17 @@ import {
   Param,
   Delete,
   UseGuards,
+  Request,
 } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiNotFoundResponse,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 import { ObjectId } from 'mongoose';
 
 import { UsersService } from './users.service';
@@ -15,6 +24,7 @@ import { UpdateUserDataDto } from './dto/update-user-data.dto';
 import { ChangeUserPasswordDto } from './dto/change-user-password.dto';
 import { User } from './entities/users.entity';
 import { Roles } from 'src/auth/decorators/roles-auth.decorator';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @ApiTags('Users')
 @Controller('users')
@@ -23,6 +33,8 @@ export class UsersController {
 
   @ApiOperation({ summary: 'Get data all Users' })
   @ApiResponse({ status: 200, type: [User] })
+  @ApiBadRequestResponse({ description: 'BadRequest' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @Get()
   @Roles('admin')
   findAll() {
@@ -31,6 +43,8 @@ export class UsersController {
 
   @ApiOperation({ summary: 'Get User data' })
   @ApiResponse({ status: 200, type: User })
+  @ApiNotFoundResponse({ description: 'User NotFound' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @Get(':id')
   @Roles('admin')
   findOne(@Param('id') id: ObjectId) {
@@ -39,25 +53,34 @@ export class UsersController {
 
   @ApiOperation({ summary: 'Update User data' })
   @ApiResponse({ status: 200, type: User })
-  @Patch(':id/update')
-  updateData(@Param('id') id: ObjectId, @Body() userDto: UpdateUserDataDto) {
-    return this.usersService.updateUserData(id, userDto);
+  @ApiNotFoundResponse({ description: 'User NotFound' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiBody({ type: UpdateUserDataDto })
+  @UseGuards(JwtAuthGuard)
+  @Patch('/update')
+  updateData(@Request() req, @Body() userDto: UpdateUserDataDto) {
+    return this.usersService.updateUserData(req.user._id, userDto);
   }
 
   @ApiOperation({ summary: 'Change User password' })
   @ApiResponse({ status: 200, type: User })
-  @Patch(':id/changePassword')
-  changePassword(
-    @Param('id') id: ObjectId,
-    @Body() userDto: ChangeUserPasswordDto,
-  ) {
-    return this.usersService.changeUserPassword(id, userDto);
+  @ApiNotFoundResponse({ description: 'User NotFound' })
+  @ApiBadRequestResponse({ description: 'Password mismatch' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiBody({ type: ChangeUserPasswordDto })
+  @UseGuards(JwtAuthGuard)
+  @Patch('/changepassword')
+  changePassword(@Request() req, @Body() userDto: ChangeUserPasswordDto) {
+    return this.usersService.changeUserPassword(req.user._id, userDto);
   }
 
   @ApiOperation({ summary: 'Delete User' })
   @ApiResponse({ status: 200, type: User })
-  @Delete(':id')
-  delete(@Param('id') id: ObjectId) {
-    return this.usersService.deleteUser(id);
+  @ApiNotFoundResponse({ description: 'User NotFound' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @UseGuards(JwtAuthGuard)
+  @Delete('')
+  delete(@Request() req) {
+    return this.usersService.deleteUser(req.user._id);
   }
 }

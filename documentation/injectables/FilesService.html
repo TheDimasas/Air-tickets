@@ -201,7 +201,7 @@ export class FilesService {
     try {
       const fileExtension &#x3D; file.originalname.split(&#x27;.&#x27;).pop();
       const fileName &#x3D; uuid.v4() + &#x27;.&#x27; + fileExtension;
-      const filePath &#x3D; path.resolve(__dirname, &#x27;..&#x27;, &#x27;static&#x27;, folder);
+      const filePath &#x3D; path.resolve(__dirname, &#x27;static&#x27;, folder);
       if (!fs.existsSync(filePath)) {
         fs.mkdirSync(filePath, { recursive: true });
       }
@@ -214,24 +214,6 @@ export class FilesService {
       );
     }
   }
-  //does not work
-  // async deleteFile(folder: Folder, file): Promise&lt;string&gt; {
-  //   try {
-  //     const fileExtension &#x3D; file.originalname.split(&#x27;.&#x27;).pop();
-  //     const fileName &#x3D; uuid.v4() + &#x27;.&#x27; + fileExtension;
-  //     const filePath &#x3D; path.resolve(__dirname, &#x27;..&#x27;, &#x27;static&#x27;, folder);
-  //     if (!fs.existsSync(filePath)) {
-  //       fs.mkdirSync(filePath, { recursive: true });
-  //     }
-  //     fs.writeFileSync(path.join(filePath, fileName), file.buffer);
-  //     return folder + &#x27;/&#x27; + fileName;
-  //   } catch (e) {
-  //     throw new HttpException(
-  //       &#x27;An error occurred while writing the file&#x27;,
-  //       HttpStatus.INTERNAL_SERVER_ERROR,
-  //     );
-  //   }
-  // }
 }
 </code></pre>
     </div>

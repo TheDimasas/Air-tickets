@@ -135,14 +135,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Log Out&#x27;})<br />@UseGuards(JwtAuthGuard)<br />@Post(&#x27;logOut&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Log Out&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiOkResponse({description: &#x27;Ok&#x27;})<br />@UseGuards(JwtAuthGuard)<br />@Post(&#x27;logout&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">src/auth/auth.controller.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">src/auth/auth.controller.ts:63</a></div>
                 </td>
             </tr>
 
@@ -214,14 +214,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Sign In&#x27;})<br />@UseGuards(LocalAuthGuard)<br />@Post(&#x27;signIn&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Sign In&#x27;})<br />@ApiBody({type: LoginUserDto})<br />@ApiBadRequestResponse({description: &#x27;BadRequest&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiResponse({status: 200, type: undefined})<br />@UseGuards(LocalAuthGuard)<br />@Post(&#x27;signin&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="25"
-                            class="link-to-prism">src/auth/auth.controller.ts:25</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/auth/auth.controller.ts:39</a></div>
                 </td>
             </tr>
 
@@ -304,14 +304,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Sign Up&#x27;})<br />@Post(&#x27;signUp&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Sign Up&#x27;})<br />@ApiBadRequestResponse({description: &#x27;BadRequest&#x27;})<br />@ApiResponse({status: 200, type: undefined})<br />@ApiBody({type: CreateUserDto})<br />@Post(&#x27;signup&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="34"
-                            class="link-to-prism">src/auth/auth.controller.ts:34</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="54"
+                            class="link-to-prism">src/auth/auth.controller.ts:54</a></div>
                 </td>
             </tr>
 
@@ -370,10 +370,20 @@
   Post,
   UseGuards,
 } from &#x27;@nestjs/common&#x27;;
-import { ApiOperation, ApiTags } from &#x27;@nestjs/swagger&#x27;;
+import {
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiOkResponse,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from &#x27;@nestjs/swagger&#x27;;
 import { Response } from &#x27;express&#x27;;
 
 import { CreateUserDto } from &#x27;src/users/dto/create-user.dto&#x27;;
+import { LoginUserDto } from &#x27;src/users/dto/login-user.dto&#x27;;
+import { User } from &#x27;src/users/entities/users.entity&#x27;;
 import { AuthService } from &#x27;./auth.service&#x27;;
 import { JwtAuthGuard } from &#x27;./guards/jwt-auth.guard&#x27;;
 import { LocalAuthGuard } from &#x27;./guards/local-auth.guard&#x27;;
@@ -384,27 +394,42 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @ApiOperation({ summary: &#x27;Sign In&#x27; })
+  @ApiBody({ type: LoginUserDto })
+  @ApiBadRequestResponse({ description: &#x27;BadRequest&#x27; })
+  @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @ApiResponse({ status: 200, type: [User] })
   @UseGuards(LocalAuthGuard)
-  @Post(&#x27;signIn&#x27;)
+  @Post(&#x27;signin&#x27;)
   async signIn(@Request() req, @Res({ passthrough: true }) res: Response) {
     const [resBody, jwt] &#x3D; await this.authService.signIn(req.user);
-    // Add secure flag
-    res.cookie(&#x27;access_token&#x27;, jwt, { httpOnly: true, sameSite: &#x27;lax&#x27; });
+    res.cookie(&#x27;access_token&#x27;, jwt, {
+      httpOnly: true,
+      sameSite: &#x27;lax&#x27;,
+      // secure: true,
+    });
     return resBody;
   }
 
   @ApiOperation({ summary: &#x27;Sign Up&#x27; })
-  @Post(&#x27;signUp&#x27;)
+  @ApiBadRequestResponse({ description: &#x27;BadRequest&#x27; })
+  @ApiResponse({ status: 200, type: [User] })
+  @ApiBody({ type: CreateUserDto })
+  @Post(&#x27;signup&#x27;)
   async signUp(@Body() userDto: CreateUserDto) {
     return await this.authService.signUp(userDto);
   }
 
   @ApiOperation({ summary: &#x27;Log Out&#x27; })
+  @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @ApiOkResponse({ description: &#x27;Ok&#x27; })
   @UseGuards(JwtAuthGuard)
-  @Post(&#x27;logOut&#x27;)
+  @Post(&#x27;logout&#x27;)
   async logOut(@Res({ passthrough: true }) res: Response) {
-    // Add secure flag
-    res.cookie(&#x27;access_token&#x27;, &#x27;&#x27;, { httpOnly: true, sameSite: &#x27;lax&#x27; });
+    res.cookie(&#x27;access_token&#x27;, &#x27;&#x27;, {
+      httpOnly: true,
+      sameSite: &#x27;lax&#x27;,
+      // secure: true,
+    });
     return;
   }
 }

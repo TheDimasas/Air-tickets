@@ -136,14 +136,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Create a Ticket&#x27;})<br />@ApiResponse({status: 200, type: Ticket})<br />@Post(&#x27;reserve&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Create a Ticket&#x27;})<br />@ApiResponse({status: 200, type: Ticket})<br />@ApiBody({type: CreateTicketDto})<br />@ApiNotFoundResponse({description: &#x27;Flight or User NotFound&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiBadRequestResponse({description: &#x27;BadRequest&#x27;})<br />@UseGuards(JwtAuthGuard)<br />@Post(&#x27;reserve&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/tickets/tickets.controller.ts:26</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="43"
+                            class="link-to-prism">src/tickets/tickets.controller.ts:43</a></div>
                 </td>
             </tr>
 
@@ -205,7 +205,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>find(id: ObjectId)</code>
+<code>find(req, id: ObjectId)</code>
                 </td>
             </tr>
 
@@ -213,14 +213,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Get Ticket data&#x27;})<br />@ApiResponse({status: 200, type: Ticket})<br />@Get(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get Ticket data&#x27;})<br />@ApiResponse({status: 200, type: Ticket})<br />@ApiNotFoundResponse({description: &#x27;Flight NotFound&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@UseGuards(JwtAuthGuard)<br />@Get(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/tickets/tickets.controller.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/tickets/tickets.controller.ts:62</a></div>
                 </td>
             </tr>
 
@@ -239,6 +239,17 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr>
+                                    <td>req</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
                                 <tr>
                                     <td>id</td>
                                     <td>
@@ -290,14 +301,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Get data all Tickets&#x27;})<br />@ApiResponse({status: 200, type: undefined})<br />@Get()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get data all Tickets&#x27;})<br />@ApiResponse({status: 200, type: undefined})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@Roles(&#x27;admin&#x27;)<br />@Get()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/tickets/tickets.controller.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/tickets/tickets.controller.ts:52</a></div>
                 </td>
             </tr>
 
@@ -328,7 +339,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>return(id: ObjectId)</code>
+<code>return(req, id: ObjectId)</code>
                 </td>
             </tr>
 
@@ -336,14 +347,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Return Ticket&#x27;})<br />@ApiResponse({status: 200, type: Ticket})<br />@Delete(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Return Ticket&#x27;})<br />@ApiResponse({status: 200, type: Ticket})<br />@ApiNotFoundResponse({description: &#x27;Flight or Airplane NotFound&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@UseGuards(JwtAuthGuard)<br />@Delete(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="54"
-                            class="link-to-prism">src/tickets/tickets.controller.ts:54</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="87"
+                            class="link-to-prism">src/tickets/tickets.controller.ts:87</a></div>
                 </td>
             </tr>
 
@@ -362,6 +373,17 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr>
+                                    <td>req</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
                                 <tr>
                                     <td>id</td>
                                     <td>
@@ -405,7 +427,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>update(id: ObjectId, ticketDto: <a href="../classes/UpdateTicketDto.html">UpdateTicketDto</a>)</code>
+<code>update(req, id: ObjectId, ticketDto: <a href="../classes/UpdateTicketDto.html">UpdateTicketDto</a>)</code>
                 </td>
             </tr>
 
@@ -413,14 +435,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Update Ticket data&#x27;})<br />@ApiResponse({status: 200, type: Ticket})<br />@Patch(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Update Ticket data&#x27;})<br />@ApiResponse({status: 200, type: Ticket})<br />@ApiNotFoundResponse({description: &#x27;Flight or User NotFound&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiBody({type: UpdateTicketDto})<br />@UseGuards(JwtAuthGuard)<br />@Patch(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/tickets/tickets.controller.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/tickets/tickets.controller.ts:73</a></div>
                 </td>
             </tr>
 
@@ -439,6 +461,17 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr>
+                                    <td>req</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
                                 <tr>
                                     <td>id</td>
                                     <td>
@@ -491,10 +524,22 @@
   Patch,
   Param,
   Delete,
+  UseGuards,
+  Request,
 } from &#x27;@nestjs/common&#x27;;
-import { ApiOperation, ApiResponse, ApiTags } from &#x27;@nestjs/swagger&#x27;;
+import {
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiNotFoundResponse,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from &#x27;@nestjs/swagger&#x27;;
 import { ObjectId } from &#x27;mongoose&#x27;;
 
+import { Roles } from &#x27;src/auth/decorators/roles-auth.decorator&#x27;;
+import { JwtAuthGuard } from &#x27;src/auth/guards/jwt-auth.guard&#x27;;
 import { CreateTicketDto } from &#x27;./dto/create-ticket.dto&#x27;;
 import { UpdateTicketDto } from &#x27;./dto/update-ticket.dto&#x27;;
 import { Ticket } from &#x27;./entities/ticket.entity&#x27;;
@@ -507,6 +552,11 @@ export class TicketsController {
 
   @ApiOperation({ summary: &#x27;Create a Ticket&#x27; })
   @ApiResponse({ status: 200, type: Ticket })
+  @ApiBody({ type: CreateTicketDto })
+  @ApiNotFoundResponse({ description: &#x27;Flight or User NotFound&#x27; })
+  @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @ApiBadRequestResponse({ description: &#x27;BadRequest&#x27; })
+  @UseGuards(JwtAuthGuard)
   @Post(&#x27;reserve&#x27;)
   create(@Body() ticketDto: CreateTicketDto) {
     return this.ticketsService.createTicket(ticketDto);
@@ -514,6 +564,8 @@ export class TicketsController {
 
   @ApiOperation({ summary: &#x27;Get data all Tickets&#x27; })
   @ApiResponse({ status: 200, type: [Ticket] })
+  @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @Roles(&#x27;admin&#x27;)
   @Get()
   findAll() {
     return this.ticketsService.getAllTickets();
@@ -521,23 +573,37 @@ export class TicketsController {
 
   @ApiOperation({ summary: &#x27;Get Ticket data&#x27; })
   @ApiResponse({ status: 200, type: Ticket })
+  @ApiNotFoundResponse({ description: &#x27;Flight NotFound&#x27; })
+  @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @UseGuards(JwtAuthGuard)
   @Get(&#x27;:id&#x27;)
-  find(@Param(&#x27;id&#x27;) id: ObjectId) {
-    return this.ticketsService.getTicketById(id);
+  find(@Request() req, @Param(&#x27;id&#x27;) id: ObjectId) {
+    return this.ticketsService.getTicketById(req.user._id, id);
   }
 
   @ApiOperation({ summary: &#x27;Update Ticket data&#x27; })
   @ApiResponse({ status: 200, type: Ticket })
+  @ApiNotFoundResponse({ description: &#x27;Flight or User NotFound&#x27; })
+  @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @ApiBody({ type: UpdateTicketDto })
+  @UseGuards(JwtAuthGuard)
   @Patch(&#x27;:id&#x27;)
-  update(@Param(&#x27;id&#x27;) id: ObjectId, @Body() ticketDto: UpdateTicketDto) {
-    return this.ticketsService.updateTicketData(id, ticketDto);
+  update(
+    @Request() req,
+    @Param(&#x27;id&#x27;) id: ObjectId,
+    @Body() ticketDto: UpdateTicketDto,
+  ) {
+    return this.ticketsService.updateTicketData(req.user._id, id, ticketDto);
   }
 
   @ApiOperation({ summary: &#x27;Return Ticket&#x27; })
   @ApiResponse({ status: 200, type: Ticket })
+  @ApiNotFoundResponse({ description: &#x27;Flight or Airplane NotFound&#x27; })
+  @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @UseGuards(JwtAuthGuard)
   @Delete(&#x27;:id&#x27;)
-  return(@Param(&#x27;id&#x27;) id: ObjectId) {
-    return this.ticketsService.returnTicket(id);
+  return(@Request() req, @Param(&#x27;id&#x27;) id: ObjectId) {
+    return this.ticketsService.returnTicket(req.user._id, id);
   }
 }
 </code></pre>

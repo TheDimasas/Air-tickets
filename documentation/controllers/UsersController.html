@@ -128,7 +128,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>changePassword(id: ObjectId, userDto: <a href="../classes/ChangeUserPasswordDto.html">ChangeUserPasswordDto</a>)</code>
+<code>changePassword(req, userDto: <a href="../classes/ChangeUserPasswordDto.html">ChangeUserPasswordDto</a>)</code>
                 </td>
             </tr>
 
@@ -136,14 +136,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Change User password&#x27;})<br />@ApiResponse({status: 200, type: User})<br />@Patch(&#x27;:id/changePassword&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Change User password&#x27;})<br />@ApiResponse({status: 200, type: User})<br />@ApiNotFoundResponse({description: &#x27;User NotFound&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Password mismatch&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiBody({type: ChangeUserPasswordDto})<br />@UseGuards(JwtAuthGuard)<br />@Patch(&#x27;/changepassword&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/users/users.controller.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/users/users.controller.ts:73</a></div>
                 </td>
             </tr>
 
@@ -163,9 +163,8 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>id</td>
+                                    <td>req</td>
                                     <td>
-                                            <code>ObjectId</code>
                                     </td>
 
                                     <td>
@@ -217,7 +216,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>delete(id: ObjectId)</code>
+<code>delete(req)</code>
                 </td>
             </tr>
 
@@ -225,14 +224,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Delete User&#x27;})<br />@ApiResponse({status: 200, type: User})<br />@Delete(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Delete User&#x27;})<br />@ApiResponse({status: 200, type: User})<br />@ApiNotFoundResponse({description: &#x27;User NotFound&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@UseGuards(JwtAuthGuard)<br />@Delete(&#x27;&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="60"
-                            class="link-to-prism">src/users/users.controller.ts:60</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="83"
+                            class="link-to-prism">src/users/users.controller.ts:83</a></div>
                 </td>
             </tr>
 
@@ -246,16 +245,12 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
-                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>id</td>
-                                    <td>
-                                            <code>ObjectId</code>
-                                    </td>
+                                    <td>req</td>
 
                                     <td>
                                         No
@@ -302,14 +297,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Get data all Users&#x27;})<br />@ApiResponse({status: 200, type: undefined})<br />@Get()<br />@Roles(&#x27;admin&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get data all Users&#x27;})<br />@ApiResponse({status: 200, type: undefined})<br />@ApiBadRequestResponse({description: &#x27;BadRequest&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@Get()<br />@Roles(&#x27;admin&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/users/users.controller.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="40"
+                            class="link-to-prism">src/users/users.controller.ts:40</a></div>
                 </td>
             </tr>
 
@@ -348,14 +343,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Get User data&#x27;})<br />@ApiResponse({status: 200, type: User})<br />@Get(&#x27;:id&#x27;)<br />@Roles(&#x27;admin&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get User data&#x27;})<br />@ApiResponse({status: 200, type: User})<br />@ApiNotFoundResponse({description: &#x27;User NotFound&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@Get(&#x27;:id&#x27;)<br />@Roles(&#x27;admin&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="36"
-                            class="link-to-prism">src/users/users.controller.ts:36</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/users/users.controller.ts:50</a></div>
                 </td>
             </tr>
 
@@ -417,7 +412,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateData(id: ObjectId, userDto: <a href="../classes/UpdateUserDataDto.html">UpdateUserDataDto</a>)</code>
+<code>updateData(req, userDto: <a href="../classes/UpdateUserDataDto.html">UpdateUserDataDto</a>)</code>
                 </td>
             </tr>
 
@@ -425,14 +420,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Update User data&#x27;})<br />@ApiResponse({status: 200, type: User})<br />@Patch(&#x27;:id/update&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Update User data&#x27;})<br />@ApiResponse({status: 200, type: User})<br />@ApiNotFoundResponse({description: &#x27;User NotFound&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiBody({type: UpdateUserDataDto})<br />@UseGuards(JwtAuthGuard)<br />@Patch(&#x27;/update&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/users/users.controller.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/users/users.controller.ts:61</a></div>
                 </td>
             </tr>
 
@@ -452,9 +447,8 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>id</td>
+                                    <td>req</td>
                                     <td>
-                                            <code>ObjectId</code>
                                     </td>
 
                                     <td>
@@ -503,8 +497,17 @@
   Param,
   Delete,
   UseGuards,
+  Request,
 } from &#x27;@nestjs/common&#x27;;
-import { ApiOperation, ApiResponse, ApiTags } from &#x27;@nestjs/swagger&#x27;;
+import {
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiNotFoundResponse,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from &#x27;@nestjs/swagger&#x27;;
 import { ObjectId } from &#x27;mongoose&#x27;;
 
 import { UsersService } from &#x27;./users.service&#x27;;
@@ -512,6 +515,7 @@ import { UpdateUserDataDto } from &#x27;./dto/update-user-data.dto&#x27;;
 import { ChangeUserPasswordDto } from &#x27;./dto/change-user-password.dto&#x27;;
 import { User } from &#x27;./entities/users.entity&#x27;;
 import { Roles } from &#x27;src/auth/decorators/roles-auth.decorator&#x27;;
+import { JwtAuthGuard } from &#x27;src/auth/guards/jwt-auth.guard&#x27;;
 
 @ApiTags(&#x27;Users&#x27;)
 @Controller(&#x27;users&#x27;)
@@ -520,6 +524,8 @@ export class UsersController {
 
   @ApiOperation({ summary: &#x27;Get data all Users&#x27; })
   @ApiResponse({ status: 200, type: [User] })
+  @ApiBadRequestResponse({ description: &#x27;BadRequest&#x27; })
+  @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
   @Get()
   @Roles(&#x27;admin&#x27;)
   findAll() {
@@ -528,6 +534,8 @@ export class UsersController {
 
   @ApiOperation({ summary: &#x27;Get User data&#x27; })
   @ApiResponse({ status: 200, type: User })
+  @ApiNotFoundResponse({ description: &#x27;User NotFound&#x27; })
+  @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
   @Get(&#x27;:id&#x27;)
   @Roles(&#x27;admin&#x27;)
   findOne(@Param(&#x27;id&#x27;) id: ObjectId) {
@@ -536,26 +544,35 @@ export class UsersController {
 
   @ApiOperation({ summary: &#x27;Update User data&#x27; })
   @ApiResponse({ status: 200, type: User })
-  @Patch(&#x27;:id/update&#x27;)
-  updateData(@Param(&#x27;id&#x27;) id: ObjectId, @Body() userDto: UpdateUserDataDto) {
-    return this.usersService.updateUserData(id, userDto);
+  @ApiNotFoundResponse({ description: &#x27;User NotFound&#x27; })
+  @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @ApiBody({ type: UpdateUserDataDto })
+  @UseGuards(JwtAuthGuard)
+  @Patch(&#x27;/update&#x27;)
+  updateData(@Request() req, @Body() userDto: UpdateUserDataDto) {
+    return this.usersService.updateUserData(req.user._id, userDto);
   }
 
   @ApiOperation({ summary: &#x27;Change User password&#x27; })
   @ApiResponse({ status: 200, type: User })
-  @Patch(&#x27;:id/changePassword&#x27;)
-  changePassword(
-    @Param(&#x27;id&#x27;) id: ObjectId,
-    @Body() userDto: ChangeUserPasswordDto,
-  ) {
-    return this.usersService.changeUserPassword(id, userDto);
+  @ApiNotFoundResponse({ description: &#x27;User NotFound&#x27; })
+  @ApiBadRequestResponse({ description: &#x27;Password mismatch&#x27; })
+  @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @ApiBody({ type: ChangeUserPasswordDto })
+  @UseGuards(JwtAuthGuard)
+  @Patch(&#x27;/changepassword&#x27;)
+  changePassword(@Request() req, @Body() userDto: ChangeUserPasswordDto) {
+    return this.usersService.changeUserPassword(req.user._id, userDto);
   }
 
   @ApiOperation({ summary: &#x27;Delete User&#x27; })
   @ApiResponse({ status: 200, type: User })
-  @Delete(&#x27;:id&#x27;)
-  delete(@Param(&#x27;id&#x27;) id: ObjectId) {
-    return this.usersService.deleteUser(id);
+  @ApiNotFoundResponse({ description: &#x27;User NotFound&#x27; })
+  @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @UseGuards(JwtAuthGuard)
+  @Delete(&#x27;&#x27;)
+  delete(@Request() req) {
+    return this.usersService.deleteUser(req.user._id);
   }
 }
 </code></pre>

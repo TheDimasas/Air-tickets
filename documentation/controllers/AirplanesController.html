@@ -136,14 +136,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Create a Airplane&#x27;})<br />@ApiResponse({status: 200, type: Airplane})<br />@Post()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Create a Airplane&#x27;})<br />@ApiResponse({status: 200, type: Airplane})<br />@ApiBadRequestResponse({description: &#x27;BadRequest&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiBody({type: CreateAirplaneDto})<br />@Roles(&#x27;admin&#x27;)<br />@Post()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="26"
-                            class="link-to-prism">src/airplanes/airplanes.controller.ts:26</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="39"
+                            class="link-to-prism">src/airplanes/airplanes.controller.ts:39</a></div>
                 </td>
             </tr>
 
@@ -213,14 +213,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Delete Airplane&#x27;})<br />@ApiResponse({status: 200, type: Airplane})<br />@Delete(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Delete Airplane&#x27;})<br />@ApiResponse({status: 200, type: Airplane})<br />@ApiNotFoundResponse({description: &#x27;Airplane NotFound&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@Roles(&#x27;admin&#x27;)<br />@Delete(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="54"
-                            class="link-to-prism">src/airplanes/airplanes.controller.ts:54</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/airplanes/airplanes.controller.ts:75</a></div>
                 </td>
             </tr>
 
@@ -296,8 +296,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/airplanes/airplanes.controller.ts:33</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/airplanes/airplanes.controller.ts:46</a></div>
                 </td>
             </tr>
 
@@ -336,14 +336,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Get Airplane data&#x27;})<br />@ApiResponse({status: 200, type: Airplane})<br />@Get(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get Airplane data&#x27;})<br />@ApiResponse({status: 200, type: Airplane})<br />@ApiNotFoundResponse({description: &#x27;Airplane NotFound&#x27;})<br />@Get(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/airplanes/airplanes.controller.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="54"
+                            class="link-to-prism">src/airplanes/airplanes.controller.ts:54</a></div>
                 </td>
             </tr>
 
@@ -413,14 +413,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Update Airplane data&#x27;})<br />@ApiResponse({status: 200, type: Airplane})<br />@Patch(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Update Airplane data&#x27;})<br />@ApiResponse({status: 200, type: Airplane})<br />@ApiNotFoundResponse({description: &#x27;Airplane NotFound&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiBody({type: UpdateAirplaneDto})<br />@Roles(&#x27;admin&#x27;)<br />@Patch(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/airplanes/airplanes.controller.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="65"
+                            class="link-to-prism">src/airplanes/airplanes.controller.ts:65</a></div>
                 </td>
             </tr>
 
@@ -492,8 +492,17 @@
   Param,
   Delete,
 } from &#x27;@nestjs/common&#x27;;
-import { ApiOperation, ApiResponse, ApiTags } from &#x27;@nestjs/swagger&#x27;;
+import {
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiNotFoundResponse,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from &#x27;@nestjs/swagger&#x27;;
 import { ObjectId } from &#x27;mongoose&#x27;;
+import { Roles } from &#x27;src/auth/decorators/roles-auth.decorator&#x27;;
 
 import { AirplanesService } from &#x27;./airplanes.service&#x27;;
 import { CreateAirplaneDto } from &#x27;./dto/create-airplane.dto&#x27;;
@@ -507,6 +516,10 @@ export class AirplanesController {
 
   @ApiOperation({ summary: &#x27;Create a Airplane&#x27; })
   @ApiResponse({ status: 200, type: Airplane })
+  @ApiBadRequestResponse({ description: &#x27;BadRequest&#x27; })
+  @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @ApiBody({ type: CreateAirplaneDto })
+  @Roles(&#x27;admin&#x27;)
   @Post()
   create(@Body() airplaneDto: CreateAirplaneDto) {
     return this.airplanesService.createAirplane(airplaneDto);
@@ -521,6 +534,7 @@ export class AirplanesController {
 
   @ApiOperation({ summary: &#x27;Get Airplane data&#x27; })
   @ApiResponse({ status: 200, type: Airplane })
+  @ApiNotFoundResponse({ description: &#x27;Airplane NotFound&#x27; })
   @Get(&#x27;:id&#x27;)
   findOne(@Param(&#x27;id&#x27;) id: ObjectId) {
     return this.airplanesService.getAirplaneById(id);
@@ -528,6 +542,10 @@ export class AirplanesController {
 
   @ApiOperation({ summary: &#x27;Update Airplane data&#x27; })
   @ApiResponse({ status: 200, type: Airplane })
+  @ApiNotFoundResponse({ description: &#x27;Airplane NotFound&#x27; })
+  @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @ApiBody({ type: UpdateAirplaneDto })
+  @Roles(&#x27;admin&#x27;)
   @Patch(&#x27;:id&#x27;)
   update(@Param(&#x27;id&#x27;) id: ObjectId, @Body() airplaneDto: UpdateAirplaneDto) {
     return this.airplanesService.updateAirplaneData(id, airplaneDto);
@@ -535,6 +553,9 @@ export class AirplanesController {
 
   @ApiOperation({ summary: &#x27;Delete Airplane&#x27; })
   @ApiResponse({ status: 200, type: Airplane })
+  @ApiNotFoundResponse({ description: &#x27;Airplane NotFound&#x27; })
+  @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @Roles(&#x27;admin&#x27;)
   @Delete(&#x27;:id&#x27;)
   delete(@Param(&#x27;id&#x27;) id: ObjectId) {
     return this.airplanesService.deleteAirplane(id);
