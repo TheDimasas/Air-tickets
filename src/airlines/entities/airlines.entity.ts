@@ -52,7 +52,7 @@ export class Airline {
   descriptionRu?: string;
 
   @ApiProperty({
-    example: 'Лого',
+    example: 'logo',
     description: 'Airline logo',
   })
   @Prop({ required: true, trim: true })

@@ -5,12 +5,15 @@ import {
   IsNotEmpty,
   IsNumber,
   IsString,
+  MaxLength,
 } from 'class-validator';
-import { ObjectId } from 'mongoose';
+
+import { Section } from 'src/sections/entities/section.entity';
 
 export class CreateAirplaneDto {
   @IsString()
   @IsNotEmpty()
+  @MaxLength(50)
   @ApiProperty({
     example: 'Aerospatiale/Alenia ATR 72',
     description: 'Airplane name',
@@ -26,8 +29,8 @@ export class CreateAirplaneDto {
   @ArrayUnique()
   @IsNotEmpty()
   @ApiProperty({
-    example: 'Sections',
+    example: 'sections',
     description: 'Sections',
   })
-  readonly sections: ObjectId[];
+  readonly sections: Section[];
 }

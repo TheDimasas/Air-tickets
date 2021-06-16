@@ -3,9 +3,9 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model, ObjectId } from 'mongoose';
 
 import { FilesService, Folder } from '../files/files.service';
+import { Airline, AirlineDocument } from './entities/airlines.entity';
 import { CreateAirlineDto } from './dto/create-airline.dto';
 import { UpdateAirlineDto } from './dto/update-airline.dto';
-import { Airline, AirlineDocument } from './entities/airlines.entity';
 
 @Injectable()
 export class AirlinesService {
@@ -16,7 +16,7 @@ export class AirlinesService {
 
   public async createAirline(
     airlineDto: CreateAirlineDto,
-    logo,
+    logo: any,
   ): Promise<Airline> {
     let airline = await this.airlineModel
       .findOne({

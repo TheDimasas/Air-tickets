@@ -18,7 +18,12 @@ export class Section {
   @Prop({ required: true, trim: true })
   price: number;
 
-  @ApiProperty({ example: 'economy', description: 'Class' })
+  @ApiProperty({
+    example: 'economy',
+    description: 'Class',
+    enum: Class,
+    enumName: 'Class',
+  })
   @Prop({ required: true, trim: true, enum: Class })
   class: Class;
 

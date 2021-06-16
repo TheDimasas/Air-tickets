@@ -1,14 +1,7 @@
-import {
-  BadRequestException,
-  HttpException,
-  HttpStatus,
-  Injectable,
-} from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, ObjectId } from 'mongoose';
 
-import { CreateTicketDto } from './dto/create-ticket.dto';
-import { UpdateTicketDto } from './dto/update-ticket.dto';
 import { Status, Ticket, TicketDocument } from './entities/ticket.entity';
 import { Flight, FlightDocument } from 'src/flights/entities/flights.entity';
 import { User, UserDocument } from 'src/users/entities/users.entity';
@@ -16,6 +9,8 @@ import {
   Airplane,
   AirplaneDocument,
 } from 'src/airplanes/entities/airplane.entity';
+import { CreateTicketDto } from './dto/create-ticket.dto';
+import { UpdateTicketDto } from './dto/update-ticket.dto';
 
 @Injectable()
 export class TicketsService {
@@ -42,7 +37,10 @@ export class TicketsService {
       .exec();
 
     if (!flight) {
-      throw new BadRequestException('Flight with this name not found');
+      throw new HttpException(
+        'Flight with this id not found',
+        HttpStatus.NOT_FOUND,
+      );
     }
 
     const user = await this.userModel
@@ -50,7 +48,10 @@ export class TicketsService {
       .select({ password: false, __v: false })
       .exec();
     if (!user) {
-      throw new BadRequestException('User with this name not found');
+      throw new HttpException(
+        'User with this id not found',
+        HttpStatus.NOT_FOUND,
+      );
     }
 
     const ticket = await this.ticketModel.create({ ...ticketDto });
@@ -88,13 +89,16 @@ export class TicketsService {
   ): Promise<Ticket> {
     const ticket = await this.ticketModel
       .findById(ticketId)
-      .findOne({ user: userId.toString() })
+      // .findOne({ user: userId })
       .select({ __v: false })
       .populate({ path: 'flight', select: '-__v' })
       .populate({ path: 'user', select: '-__v' })
       .exec();
     if (!ticket) {
-      throw new BadRequestException('Ticket with this id not found');
+      throw new HttpException(
+        'Ticket with this id not found',
+        HttpStatus.NOT_FOUND,
+      );
     }
     return ticket;
   }
@@ -109,7 +113,10 @@ export class TicketsService {
       .select({ __v: false })
       .exec();
     if (!flight) {
-      throw new BadRequestException('Flight with this name not found');
+      throw new HttpException(
+        'Flight with this id not found',
+        HttpStatus.NOT_FOUND,
+      );
     }
 
     const user = await this.userModel
@@ -117,8 +124,12 @@ export class TicketsService {
       .select({ password: false, __v: false })
       .exec();
     if (!user) {
-      throw new BadRequestException('User with this name not found');
+      throw new HttpException(
+        'User with this id not found',
+        HttpStatus.NOT_FOUND,
+      );
     }
+
     const ticket = await this.ticketModel.findById(ticketId).exec();
     return ticket;
   }
@@ -130,13 +141,15 @@ export class TicketsService {
     let ticket = await this.ticketModel.findById(ticketId).exec();
     const flight = await this.flightModel.findById(ticket.flight).exec();
     if (!flight) {
-      throw new BadRequestException('Flight with this name not found');
+      throw new HttpException(
+        'Flight with this id not found',
+        HttpStatus.NOT_FOUND,
+      );
     }
 
     ticket = await this.ticketModel.findByIdAndDelete(ticketId).exec();
     const airplane = await this.airplaneModel
       .findById(flight.airplane)
-      .findOne({ user: userId.toString() })
       .populate({ path: 'sections', select: '-__v' })
       .select({ __v: false })
       .exec();

@@ -9,7 +9,7 @@ export enum Folder {
 
 @Injectable()
 export class FilesService {
-  async createFile(folder: Folder, file): Promise<string> {
+  async createFile(folder: Folder, file: any): Promise<string> {
     try {
       const fileExtension = file.originalname.split('.').pop();
       const fileName = uuid.v4() + '.' + fileExtension;

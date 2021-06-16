@@ -5,16 +5,19 @@ import {
   IsString,
   IsUppercase,
   Length,
+  MaxLength,
 } from 'class-validator';
 
 export class CreateAirportDto {
   @IsNotEmpty()
   @IsString()
+  @MaxLength(50)
   @ApiProperty({ example: 'Жуляни', description: 'Ukranian airport name' })
   readonly airportNameUa: string;
 
   @IsOptional()
   @IsString()
+  @MaxLength(50)
   @ApiProperty({
     example: 'Zhulyani',
     description: 'English airport name',
@@ -23,6 +26,7 @@ export class CreateAirportDto {
 
   @IsOptional()
   @IsString()
+  @MaxLength(50)
   @ApiProperty({
     example: 'Жуляны',
     description: 'Russian airport name',
@@ -38,6 +42,7 @@ export class CreateAirportDto {
 
   @IsNotEmpty()
   @IsString()
+  @MaxLength(50)
   @ApiProperty({
     example: 'Україна',
     description: 'The Ukranian name of the country of the airport',
@@ -46,6 +51,7 @@ export class CreateAirportDto {
 
   @IsOptional()
   @IsString()
+  @MaxLength(50)
   @ApiProperty({
     example: 'Ukraine',
     description: 'The English name of the country of the airport',
@@ -54,6 +60,7 @@ export class CreateAirportDto {
 
   @IsOptional()
   @IsString()
+  @MaxLength(50)
   @ApiProperty({
     example: 'Украина',
     description: 'The Russian name of the country of the airport',
@@ -62,6 +69,7 @@ export class CreateAirportDto {
 
   @IsNotEmpty()
   @IsString()
+  @MaxLength(50)
   @ApiProperty({
     example: 'Київ',
     description: 'The Ukranian name of the airport town',
@@ -70,6 +78,7 @@ export class CreateAirportDto {
 
   @IsOptional()
   @IsString()
+  @MaxLength(50)
   @ApiProperty({
     example: 'Kiev',
     description: 'The English name of the airport town',
@@ -78,6 +87,7 @@ export class CreateAirportDto {
 
   @IsOptional()
   @IsString()
+  @MaxLength(50)
   @ApiProperty({
     example: 'Киев',
     description: 'The Russian name of the airport town',

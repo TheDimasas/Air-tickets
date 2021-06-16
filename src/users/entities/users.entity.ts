@@ -30,16 +30,24 @@ export class User {
   @Prop({ required: true })
   password: string;
 
-  @ApiProperty({ example: 'test@gmail.com', description: 'E-mail' })
+  @ApiProperty({
+    example: 'test@gmail.com',
+    description: 'E-mail',
+  })
   @Prop({ required: true, unique: true })
   email: string;
 
-  @ApiProperty({ example: 'user', description: 'Role' })
+  @ApiProperty({
+    example: 'user',
+    description: 'Role',
+    enum: Role,
+    enumName: 'Role',
+  })
   @Prop({ required: true, trim: true, enum: Role, default: Role.User })
   role: Role;
 
   @ApiProperty({
-    example: 'ticket',
+    example: 'tickets',
     description: 'Tickets',
   })
   @Prop({

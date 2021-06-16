@@ -20,7 +20,7 @@ export class Airplane {
   @Prop({ required: true })
   amountOfSeat: number;
 
-  @ApiProperty({ example: 'Sections', description: 'Sections' })
+  @ApiProperty({ example: 'sections', description: 'Sections' })
   @Prop({
     trim: true,
     type: [{ type: mongoose.Schema.Types.ObjectId }],

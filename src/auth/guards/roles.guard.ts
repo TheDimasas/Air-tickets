@@ -8,6 +8,7 @@ import {
 import { Observable } from 'rxjs';
 import { JwtService } from '@nestjs/jwt';
 import { Reflector } from '@nestjs/core';
+
 import { ROLES_KEY } from '../decorators/roles-auth.decorator';
 
 @Injectable()
@@ -36,7 +37,7 @@ export class RolesGuard implements CanActivate {
       req.user = user;
       return requiredRoles.some((role) => user.role?.includes(role));
     } catch (e) {
-      throw new HttpException('No access', HttpStatus.FORBIDDEN);
+      throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
     }
   }
 }

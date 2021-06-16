@@ -13,19 +13,23 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import {
   ApiBadRequestResponse,
   ApiBody,
+  ApiCookieAuth,
+  ApiCreatedResponse,
+  ApiForbiddenResponse,
   ApiNotFoundResponse,
+  ApiOkResponse,
   ApiOperation,
-  ApiResponse,
+  ApiParam,
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { ObjectId } from 'mongoose';
-import { Roles } from 'src/auth/decorators/roles-auth.decorator';
 
 import { AirlinesService } from './airlines.service';
+import { Airline } from './entities/airlines.entity';
 import { CreateAirlineDto } from './dto/create-airline.dto';
 import { UpdateAirlineDto } from './dto/update-airline.dto';
-import { Airline } from './entities/airlines.entity';
+import { Roles } from 'src/auth/decorators/roles-auth.decorator';
 
 @ApiTags('Airlines')
 @Controller('airlines')
@@ -33,14 +37,15 @@ export class AirlinesController {
   constructor(private readonly airlinesService: AirlinesService) {}
 
   @ApiOperation({ summary: 'Create a Airline' })
-  @ApiResponse({ status: 200, type: Airline })
-  @ApiBadRequestResponse({ description: 'BadRequest' })
-  @ApiNotFoundResponse({ description: 'Airline NotFound' })
+  @ApiCreatedResponse({ description: 'Created', type: Airline })
+  @ApiBadRequestResponse({ description: 'Bad Request' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiBody({ type: CreateAirlineDto })
-  @Post()
+  @ApiCookieAuth()
   @Roles('admin')
   @UseInterceptors(FileInterceptor('logo'))
+  @Post()
   create(
     @Body() airlineDto: CreateAirlineDto,
     @UploadedFile() logo: Express.Multer.File,
@@ -49,25 +54,30 @@ export class AirlinesController {
   }
 
   @ApiOperation({ summary: 'Get data all Airlines' })
-  @ApiResponse({ status: 200, type: [Airline] })
+  @ApiOkResponse({ description: 'Success', type: [Airline] })
   @Get()
   findAll() {
     return this.airlinesService.getAllAirlines();
   }
 
   @ApiOperation({ summary: 'Get Airline data' })
-  @ApiNotFoundResponse({ description: 'Airline NotFound' })
-  @ApiResponse({ status: 200, type: Airline })
+  @ApiNotFoundResponse({ description: 'Not Found' })
+  @ApiOkResponse({ description: 'Success', type: Airline })
+  @ApiParam({ name: 'id', type: 'string' })
   @Get(':id')
   findOne(@Param('id') id: ObjectId) {
     return this.airlinesService.getAirlineById(id);
   }
 
   @ApiOperation({ summary: 'Update Airline data' })
-  @ApiResponse({ status: 200, type: Airline })
-  @ApiNotFoundResponse({ description: 'Airline NotFound' })
+  @ApiOkResponse({ description: 'Success', type: Airline })
+  @ApiParam({ name: 'id', type: 'string' })
+  @ApiNotFoundResponse({ description: 'Not Found' })
+  @ApiBadRequestResponse({ description: 'Bad Request' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiBody({ type: UpdateAirlineDto })
+  @ApiCookieAuth()
   @Roles('admin')
   @Patch(':id')
   update(@Param('id') id: ObjectId, @Body() airlineDto: UpdateAirlineDto) {
@@ -75,9 +85,12 @@ export class AirlinesController {
   }
 
   @ApiOperation({ summary: 'Delete Airline' })
-  @ApiResponse({ status: 200, type: Airline })
-  @ApiNotFoundResponse({ description: 'Airline NotFound' })
+  @ApiOkResponse({ description: 'Success', type: Airline })
+  @ApiParam({ name: 'id', type: 'string' })
+  @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiCookieAuth()
   @Roles('admin')
   @Delete(':id')
   delete(@Param('id') id: ObjectId) {

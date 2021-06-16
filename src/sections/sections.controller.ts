@@ -10,8 +10,13 @@ import {
 import {
   ApiBadRequestResponse,
   ApiBody,
+  ApiCookieAuth,
+  ApiCreatedResponse,
+  ApiForbiddenResponse,
   ApiNotFoundResponse,
+  ApiOkResponse,
   ApiOperation,
+  ApiParam,
   ApiResponse,
   ApiTags,
   ApiUnauthorizedResponse,
@@ -30,10 +35,12 @@ export class SectionsController {
   constructor(private readonly sectionsService: SectionsService) {}
 
   @ApiOperation({ summary: 'Create a Section' })
-  @ApiResponse({ status: 200, type: Section })
+  @ApiCreatedResponse({ description: 'Created', type: Section })
   @ApiBadRequestResponse({ description: 'BadRequest' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiBody({ type: CreateSectionDto })
+  @ApiCookieAuth()
   @Roles('admin')
   @Post()
   create(@Body() sectionDto: CreateSectionDto) {
@@ -41,25 +48,30 @@ export class SectionsController {
   }
 
   @ApiOperation({ summary: 'Get data all Sections' })
-  @ApiResponse({ status: 200, type: [Section] })
+  @ApiOkResponse({ description: 'Success', type: [Section] })
   @Get()
   findAll() {
     return this.sectionsService.getAllSections();
   }
 
   @ApiOperation({ summary: 'Get Section data' })
-  @ApiResponse({ status: 200, type: Section })
-  @ApiNotFoundResponse({ description: 'Section NotFound' })
+  @ApiOkResponse({ description: 'Success', type: Section })
+  @ApiNotFoundResponse({ description: 'Not Found' })
+  @ApiParam({ name: 'id', type: 'string' })
   @Get(':id')
   findOne(@Param('id') id: ObjectId) {
     return this.sectionsService.getSectionById(id);
   }
 
   @ApiOperation({ summary: 'Update Section data' })
-  @ApiResponse({ status: 200, type: Section })
-  @ApiNotFoundResponse({ description: 'Section NotFound' })
+  @ApiOkResponse({ description: 'Success', type: Section })
+  @ApiBadRequestResponse({ description: 'Bad Request' })
+  @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiParam({ name: 'id', type: 'string' })
   @ApiBody({ type: UpdateSectionDto })
+  @ApiCookieAuth()
   @Roles('admin')
   @Patch(':id')
   update(@Param('id') id: ObjectId, @Body() sectionDto: UpdateSectionDto) {
@@ -67,9 +79,12 @@ export class SectionsController {
   }
 
   @ApiOperation({ summary: 'Delete Section' })
-  @ApiResponse({ status: 200, type: Section })
-  @ApiNotFoundResponse({ description: 'Section NotFound' })
+  @ApiOkResponse({ description: 'Success', type: Section })
+  @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiParam({ name: 'id', type: 'string' })
+  @ApiCookieAuth()
   @Roles('admin')
   @Delete(':id')
   delete(@Param('id') id: ObjectId) {

@@ -1,6 +1,9 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
+import { TicketsService } from './tickets.service';
+import { TicketsController } from './tickets.controller';
+import { AirplanesModule } from 'src/airplanes/airplanes.module';
 import { AirportsModule } from 'src/airports/airports.module';
 import { FlightsModule } from 'src/flights/flights.module';
 import { UsersModule } from 'src/users/users.module';
@@ -11,9 +14,6 @@ import {
   Airplane,
   AirplaneSchema,
 } from 'src/airplanes/entities/airplane.entity';
-import { TicketsController } from './tickets.controller';
-import { TicketsService } from './tickets.service';
-import { AirplanesModule } from 'src/airplanes/airplanes.module';
 
 @Module({
   imports: [
@@ -23,8 +23,8 @@ import { AirplanesModule } from 'src/airplanes/airplanes.module';
       { name: Airplane.name, schema: AirplaneSchema },
       { name: User.name, schema: UserSchema },
     ]),
-    AirportsModule,
     UsersModule,
+    AirportsModule,
     FlightsModule,
     AirplanesModule,
   ],

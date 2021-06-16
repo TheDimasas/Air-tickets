@@ -3,8 +3,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { AirlinesService } from './airlines.service';
 import { AirlinesController } from './airlines.controller';
-import { Airline, AirlineSchema } from './entities/airlines.entity';
 import { FilesModule } from 'src/files/files.module';
+import { Airline, AirlineSchema } from './entities/airlines.entity';
 
 @Module({
   imports: [

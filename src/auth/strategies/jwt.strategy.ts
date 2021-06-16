@@ -5,7 +5,7 @@ import { ConfigService } from '@nestjs/config';
 
 import { UsersService } from 'src/users/users.service';
 
-const cookieExtractor = function (req) {
+const cookieExtractor = function (req: any) {
   let token = null;
   if (req && req.cookies) {
     token = req.cookies['access_token'];

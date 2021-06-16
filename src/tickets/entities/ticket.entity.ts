@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Document } from 'mongoose';
 import mongoose from 'mongoose';
 
@@ -36,7 +36,7 @@ export class Ticket {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Flight',
   })
-  flight: Flight | mongoose.Types.ObjectId;
+  flight: Flight;
 
   @ApiProperty({ example: 'test@gmail.com', description: 'User' })
   @Prop({
@@ -44,13 +44,23 @@ export class Ticket {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   })
-  user: User | mongoose.Types.ObjectId;
+  user: User;
 
-  @ApiProperty({ example: 'male', description: 'Sex' })
+  @ApiProperty({
+    example: 'male',
+    description: 'Sex',
+    enum: Sex,
+    enumName: 'Sex',
+  })
   @Prop({ required: true, trim: true, enum: Sex })
   sex: Sex;
 
-  @ApiProperty({ example: 'adult', description: 'Type' })
+  @ApiProperty({
+    example: 'adult',
+    description: 'Type',
+    enum: Type,
+    enumName: 'Type',
+  })
   @Prop({ required: true, trim: true, enum: Type })
   type: Type;
 
@@ -71,16 +81,16 @@ export class Ticket {
     description: 'The Ukranian name of the citizenship',
   })
   @Prop({ required: true, trim: true })
-  citizenshipUa?: string;
+  citizenshipUa: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     example: 'Ukraine',
     description: 'The English name of the citizenship',
   })
   @Prop({ trim: true })
   citizenshipEng?: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     example: 'Украина',
     description: 'The Russian name of the citizenship',
   })
@@ -95,7 +105,12 @@ export class Ticket {
   @Prop({ required: true })
   validity: string;
 
-  @ApiProperty({ example: 'booked', description: 'Status' })
+  @ApiProperty({
+    example: 'booked',
+    description: 'Status',
+    enum: Status,
+    enumName: 'Status',
+  })
   @Prop({ required: true, trim: true, enum: Status, default: Status.Booked })
   status: Status;
 

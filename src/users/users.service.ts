@@ -52,7 +52,6 @@ export class UsersService {
     userDto: UpdateUserDataDto,
   ): Promise<User> {
     let user = await this.userModel.findById(userId).exec();
-
     if (!user) {
       throw new HttpException(
         'User with this id not found',
@@ -63,26 +62,21 @@ export class UsersService {
     if (userDto.email) {
       user.email = userDto.email;
     }
-
     if (userDto.firstName) {
       user.firstName = userDto.firstName;
     }
-
     if (userDto.lastName) {
       user.lastName = userDto.lastName;
     }
-
     if (userDto.phoneNumber) {
       user.phoneNumber = userDto.phoneNumber;
     }
-
     await user.save();
 
     user = await this.userModel
       .findById(userId)
       .select({ password: false, __v: false })
       .exec();
-
     return user;
   }
 

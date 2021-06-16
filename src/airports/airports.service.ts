@@ -1,15 +1,10 @@
-import {
-  BadRequestException,
-  HttpException,
-  HttpStatus,
-  Injectable,
-} from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, ObjectId } from 'mongoose';
 
+import { Airport, AirportDocument } from './entities/airport.entity';
 import { CreateAirportDto } from './dto/create-airport.dto';
 import { UpdateAirportDto } from './dto/update-airport.dto';
-import { Airport, AirportDocument } from './entities/airport.entity';
 
 @Injectable()
 export class AirportsService {
@@ -72,7 +67,10 @@ export class AirportsService {
   ): Promise<Airport> {
     let airport = await this.airportModel.findById(airportId).exec();
     if (!airport) {
-      throw new BadRequestException('Airport with this Id not found');
+      throw new HttpException(
+        'Airport with this id not found',
+        HttpStatus.NOT_FOUND,
+      );
     }
 
     if (airportDto.IATA) {

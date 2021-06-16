@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { Document } from 'mongoose';
 import * as mongoose from 'mongoose';
 
@@ -24,7 +24,7 @@ export class Flight {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Airline',
   })
-  airline: Airline | mongoose.Types.ObjectId;
+  airline: Airline;
 
   @ApiProperty({
     example: 'Aerospatiale/Alenia ATR 72',
@@ -35,7 +35,7 @@ export class Flight {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Airplane',
   })
-  airplane: Airplane | mongoose.Types.ObjectId;
+  airplane: Airplane;
 
   @ApiProperty({
     example: 'Zhulyani/Жуляни/IEV',
@@ -47,7 +47,7 @@ export class Flight {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Airport',
   })
-  departureAirport: Airport | mongoose.Types.ObjectId;
+  departureAirport: Airport;
 
   @ApiProperty({
     example: '2021-05-16T15:35:00.000Z',
@@ -66,7 +66,7 @@ export class Flight {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Airport',
   })
-  arrivalAirport: Airport | mongoose.Types.ObjectId;
+  arrivalAirport: Airport;
 
   @ApiProperty({
     example: '2021-05-21T09:15:00.000Z',
@@ -90,11 +90,11 @@ export class Flight {
   @Prop({ required: true })
   carryOnBaggage: boolean;
 
-  @ApiProperty({ example: '0.7', description: 'Ticket exchange' })
+  @ApiPropertyOptional({ example: '0.7', description: 'Ticket exchange' })
   @Prop({})
   exchange?: number | null;
 
-  @ApiProperty({ example: '0.5', description: 'Ticket return' })
+  @ApiPropertyOptional({ example: '0.5', description: 'Ticket return' })
   @Prop({})
   refund?: number | null;
 }

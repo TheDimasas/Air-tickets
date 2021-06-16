@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsIn, IsNotEmpty, IsNumber } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsNumber } from 'class-validator';
 
 import { Class } from '../entities/section.entity';
 
@@ -10,8 +10,13 @@ export class CreateSectionDto {
   readonly price: number;
 
   @IsNotEmpty()
-  @IsIn([Class.Business, Class.Economy])
-  @ApiProperty({ example: 'economy', description: 'Class' })
+  @IsEnum(Class)
+  @ApiProperty({
+    example: 'economy',
+    description: 'Class',
+    enum: Class,
+    enumName: 'Class',
+  })
   readonly class: Class;
 
   @IsNumber()

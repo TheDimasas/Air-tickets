@@ -1,6 +1,7 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
 import compression from 'compression';
@@ -8,13 +9,13 @@ import helmet from 'helmet';
 import { join } from 'path';
 
 import { AppModule } from './app.module';
-import { NestExpressApplication } from '@nestjs/platform-express';
 
 declare const module: any;
 
 async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('AirTicketsApi')
+    .addCookieAuth('optional-session-id')
     .setDescription('The API for searching and booking air tickets')
     .setVersion('1.0.0')
     .addTag('AirTickets')

@@ -27,13 +27,18 @@ export class Seat {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Section',
   })
-  section: Section | mongoose.Types.ObjectId;
+  section: Section;
 
   @ApiProperty({ example: '1', description: 'Number of Seat' })
   @Prop({ required: true, trim: true })
   number: number;
 
-  @ApiProperty({ example: 'free', description: 'Status' })
+  @ApiProperty({
+    example: 'free',
+    description: 'Status',
+    enum: Status,
+    enumName: 'Status',
+  })
   @Prop({ required: true, trim: true, enum: Status, default: Status.Free })
   status: Status;
 }

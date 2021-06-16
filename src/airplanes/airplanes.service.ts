@@ -7,9 +7,9 @@ import {
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, ObjectId } from 'mongoose';
 
+import { Airplane, AirplaneDocument } from './entities/airplane.entity';
 import { CreateAirplaneDto } from './dto/create-airplane.dto';
 import { UpdateAirplaneDto } from './dto/update-airplane.dto';
-import { Airplane, AirplaneDocument } from './entities/airplane.entity';
 
 @Injectable()
 export class AirplanesService {

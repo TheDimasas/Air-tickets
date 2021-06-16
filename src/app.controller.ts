@@ -1,7 +1,15 @@
 import { Controller, Get, Request, UseGuards } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  ApiCookieAuth,
+  ApiForbiddenResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 
 import { AuthService } from './auth/auth.service';
+import { User } from './users/entities/users.entity';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 
 @ApiTags('App')
@@ -9,10 +17,14 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 export class AppController {
   constructor(private authService: AuthService) {}
 
-  @ApiOperation({ summary: 'Profile' })
+  @ApiOperation({ summary: 'Get Profile' })
+  @ApiOkResponse({ description: 'Success', type: User })
+  @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiCookieAuth()
   @UseGuards(JwtAuthGuard)
   @Get('profile')
-  async getProfile(@Request() req) {
+  async getProfile(@Request() req: any) {
     return this.authService.getProfile(req.user._id);
   }
 }

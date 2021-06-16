@@ -1,4 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {
   IsEnum,
   IsMongoId,
@@ -7,29 +7,41 @@ import {
   IsString,
   Length,
 } from 'class-validator';
-import { ObjectId } from 'mongoose';
+
+import { Flight } from 'src/flights/entities/flights.entity';
 import { Seat } from 'src/seats/entities/seat.entity';
+import { User } from 'src/users/entities/users.entity';
 import { Sex, Status, Type } from '../entities/ticket.entity';
 
 export class CreateTicketDto {
   @IsNotEmpty()
   @IsMongoId()
   @ApiProperty({ example: 'PS-9065', description: 'Flight' })
-  readonly flight: ObjectId;
+  readonly flight: Flight;
 
   @IsNotEmpty()
   @IsMongoId()
   @ApiProperty({ example: 'test@gmail.com', description: 'User' })
-  readonly user: ObjectId;
+  readonly user: User;
 
   @IsNotEmpty()
   @IsEnum(Sex)
-  @ApiProperty({ example: 'male', description: 'Sex' })
+  @ApiProperty({
+    example: 'male',
+    description: 'Sex',
+    enum: Sex,
+    enumName: 'Sex',
+  })
   readonly sex: Sex;
 
   @IsNotEmpty()
   @IsEnum(Type)
-  @ApiProperty({ example: 'adult', description: 'Type' })
+  @ApiProperty({
+    example: 'adult',
+    description: 'Type',
+    enum: Type,
+    enumName: 'Type',
+  })
   readonly type: Type;
 
   @IsNotEmpty()
@@ -57,7 +69,7 @@ export class CreateTicketDto {
 
   @IsOptional()
   @IsString()
-  @ApiProperty({
+  @ApiPropertyOptional({
     example: 'Ukraine',
     description: 'The English name of the citizenship',
   })
@@ -65,7 +77,7 @@ export class CreateTicketDto {
 
   @IsOptional()
   @IsString()
-  @ApiProperty({
+  @ApiPropertyOptional({
     example: 'Украина',
     description: 'The Russian name of the citizenship',
   })
@@ -84,11 +96,16 @@ export class CreateTicketDto {
 
   @IsNotEmpty()
   @IsEnum(Status)
-  @ApiProperty({ example: 'booked', description: 'Status' })
+  @ApiProperty({
+    example: 'booked',
+    description: 'Status',
+    enum: Status,
+    enumName: 'Status',
+  })
   readonly status: Status;
 
   @IsOptional()
-  @ApiProperty({
+  @ApiPropertyOptional({
     example: '23',
     description: 'Number Of Seat',
   })

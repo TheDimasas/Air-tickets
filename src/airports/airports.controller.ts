@@ -10,19 +10,23 @@ import {
 import {
   ApiBadRequestResponse,
   ApiBody,
+  ApiCookieAuth,
+  ApiCreatedResponse,
+  ApiForbiddenResponse,
   ApiNotFoundResponse,
+  ApiOkResponse,
   ApiOperation,
-  ApiResponse,
+  ApiParam,
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { ObjectId } from 'mongoose';
-import { Roles } from 'src/auth/decorators/roles-auth.decorator';
 
 import { AirportsService } from './airports.service';
+import { Airport } from './entities/airport.entity';
 import { CreateAirportDto } from './dto/create-airport.dto';
 import { UpdateAirportDto } from './dto/update-airport.dto';
-import { Airport } from './entities/airport.entity';
+import { Roles } from 'src/auth/decorators/roles-auth.decorator';
 
 @ApiTags('Airports')
 @Controller('airports')
@@ -30,10 +34,12 @@ export class AirportsController {
   constructor(private readonly airportsService: AirportsService) {}
 
   @ApiOperation({ summary: 'Create a Airport' })
-  @ApiResponse({ status: 200, type: Airport })
+  @ApiCreatedResponse({ description: 'Created', type: Airport })
+  @ApiBadRequestResponse({ description: 'Bad Request' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  @ApiBadRequestResponse({ description: 'BadRequest' })
+  @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiBody({ type: CreateAirportDto })
+  @ApiCookieAuth()
   @Roles('admin')
   @Post()
   create(@Body() airportDto: CreateAirportDto) {
@@ -41,25 +47,30 @@ export class AirportsController {
   }
 
   @ApiOperation({ summary: 'Get data all Airports' })
-  @ApiResponse({ status: 200, type: [Airport] })
+  @ApiOkResponse({ description: 'Success', type: [Airport] })
   @Get()
   findAll() {
     return this.airportsService.getAllAirports();
   }
 
   @ApiOperation({ summary: 'Get Airport data' })
-  @ApiResponse({ status: 200, type: Airport })
-  @ApiBadRequestResponse({ description: 'BadRequest' })
+  @ApiOkResponse({ description: 'Success', type: Airport })
+  @ApiParam({ name: 'id', type: 'string' })
+  @ApiNotFoundResponse({ description: 'Not Found' })
   @Get(':id')
   findOne(@Param('id') id: ObjectId) {
     return this.airportsService.getAirportById(id);
   }
 
   @ApiOperation({ summary: 'Update Airport data' })
-  @ApiResponse({ status: 200, type: Airport })
-  @ApiNotFoundResponse({ description: 'Airport NotFound' })
+  @ApiOkResponse({ description: 'Success', type: Airport })
+  @ApiParam({ name: 'id', type: 'string' })
+  @ApiBadRequestResponse({ description: 'Bad Request' })
+  @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiBody({ type: UpdateAirportDto })
+  @ApiCookieAuth()
   @Roles('admin')
   @Patch(':id')
   update(@Param('id') id: ObjectId, @Body() airportDto: UpdateAirportDto) {
@@ -67,9 +78,12 @@ export class AirportsController {
   }
 
   @ApiOperation({ summary: 'Delete Airport' })
-  @ApiResponse({ status: 200, type: Airport })
-  @ApiNotFoundResponse({ description: 'Airport NotFound' })
+  @ApiOkResponse({ description: 'Success', type: Airport })
+  @ApiParam({ name: 'id', type: 'string' })
+  @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiCookieAuth()
   @Roles('admin')
   @Delete(':id')
   delete(@Param('id') id: ObjectId) {

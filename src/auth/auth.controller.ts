@@ -9,18 +9,19 @@ import {
 import {
   ApiBadRequestResponse,
   ApiBody,
-  ApiOkResponse,
+  ApiCookieAuth,
+  ApiCreatedResponse,
+  ApiForbiddenResponse,
   ApiOperation,
-  ApiResponse,
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { Response } from 'express';
 
+import { AuthService } from './auth.service';
+import { User } from 'src/users/entities/users.entity';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { LoginUserDto } from 'src/users/dto/login-user.dto';
-import { User } from 'src/users/entities/users.entity';
-import { AuthService } from './auth.service';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 
@@ -30,13 +31,12 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @ApiOperation({ summary: 'Sign In' })
+  @ApiBadRequestResponse({ description: 'Bad Request' })
+  @ApiCreatedResponse({ description: 'Created', type: [User] })
   @ApiBody({ type: LoginUserDto })
-  @ApiBadRequestResponse({ description: 'BadRequest' })
-  @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  @ApiResponse({ status: 200, type: [User] })
   @UseGuards(LocalAuthGuard)
   @Post('signin')
-  async signIn(@Request() req, @Res({ passthrough: true }) res: Response) {
+  async signIn(@Request() req: any, @Res({ passthrough: true }) res: Response) {
     const [resBody, jwt] = await this.authService.signIn(req.user);
     res.cookie('access_token', jwt, {
       httpOnly: true,
@@ -47,8 +47,8 @@ export class AuthController {
   }
 
   @ApiOperation({ summary: 'Sign Up' })
-  @ApiBadRequestResponse({ description: 'BadRequest' })
-  @ApiResponse({ status: 200, type: [User] })
+  @ApiBadRequestResponse({ description: 'Bad Request' })
+  @ApiCreatedResponse({ description: 'Created', type: [User] })
   @ApiBody({ type: CreateUserDto })
   @Post('signup')
   async signUp(@Body() userDto: CreateUserDto) {
@@ -57,8 +57,9 @@ export class AuthController {
 
   @ApiOperation({ summary: 'Log Out' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
-  @ApiOkResponse({ description: 'Ok' })
+  @ApiCreatedResponse({ description: 'Created' })
   @UseGuards(JwtAuthGuard)
+  @ApiCookieAuth()
   @Post('logout')
   async logOut(@Res({ passthrough: true }) res: Response) {
     res.cookie('access_token', '', {

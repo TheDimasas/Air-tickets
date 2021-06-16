@@ -5,15 +5,18 @@ import {
   IsPhoneNumber,
   IsString,
   Matches,
+  MaxLength,
 } from 'class-validator';
 
 export class CreateUserDto {
   @IsNotEmpty()
+  @MaxLength(20)
   @IsString()
   @ApiProperty({ example: 'Dmitry', description: 'First name' })
   readonly firstName: string;
 
   @IsNotEmpty()
+  @MaxLength(20)
   @IsString()
   @ApiProperty({ example: 'Yefremov', description: 'Last name' })
   readonly lastName: string;
