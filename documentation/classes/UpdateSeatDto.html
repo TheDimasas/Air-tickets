@@ -126,13 +126,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @IsNotEmpty()<br />@IsIn(undefined)<br />@ApiProperty({example: &#x27;Booked&#x27;, description: &#x27;Class&#x27;})<br />
+                                @IsNotEmpty()<br />@IsEnum(Status)<br />@ApiProperty({example: &#x27;Booked&#x27;, description: &#x27;Class&#x27;, enum: Status, enumName: &#x27;Status&#x27;})<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/seats/dto/update-seat.dto.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/seats/dto/update-seat.dto.ts:16</a></div>
                             </td>
                         </tr>
 
@@ -152,21 +152,20 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty, PartialType } from &#x27;@nestjs/swagger&#x27;;
-import { IsIn, IsNotEmpty } from &#x27;class-validator&#x27;;
+import { IsEnum, IsNotEmpty } from &#x27;class-validator&#x27;;
 
 import { Status } from &#x27;../entities/seat.entity&#x27;;
 import { CreateSeatDto } from &#x27;./create-seat.dto&#x27;;
 
 export class UpdateSeatDto extends PartialType(CreateSeatDto) {
   @IsNotEmpty()
-  @IsIn([
-    Status.Booked,
-    Status.Free,
-    Status.NotAvailable,
-    Status.Paid,
-    Status.Returned,
-  ])
-  @ApiProperty({ example: &#x27;Booked&#x27;, description: &#x27;Class&#x27; })
+  @IsEnum(Status)
+  @ApiProperty({
+    example: &#x27;Booked&#x27;,
+    description: &#x27;Class&#x27;,
+    enum: Status,
+    enumName: &#x27;Status&#x27;,
+  })
   readonly status: Status;
 }
 </code></pre>

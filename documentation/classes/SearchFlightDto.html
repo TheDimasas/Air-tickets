@@ -85,11 +85,24 @@
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
+                                <a href="#class">class</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#count">count</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#departure">departure</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#depTime">depTime</a>
+                                <a href="#firstDepTime">firstDepTime</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                    <span class="modifier">Optional</span>
+                                <a href="#secondDepTime">secondDepTime</a>
                             </li>
                         </ul>
                     </td>
@@ -134,13 +147,87 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @IsNotEmpty()<br />@IsString()<br />@ApiProperty({example: &#x27;Sheremetyevo/Шереметьево/SVO&#x27;, description: &#x27;Arrival&#x27;})<br />
+                                @IsNotEmpty()<br />@IsString()<br />@MaxLength(50)<br />@ApiProperty({example: &#x27;Sheremetyevo/Шереметьево/SVO&#x27;, description: &#x27;Arrival&#x27;})<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/flights/dto/search-flight.dto.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/flights/dto/search-flight.dto.ts:54</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="class"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Readonly</span>
+                            class</b>
+                            <a href="#class"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../miscellaneous/enumerations.html#Class" target="_self" >Class[]</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @IsNotEmpty()<br />@IsArray()<br />@IsEnum(Class, {each: true})<br />@ArrayNotEmpty()<br />@ApiProperty({example: &#x27;[&quot;business&quot;]&#x27;, description: &#x27;Class of section&#x27;})<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/flights/dto/search-flight.dto.ts:64</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="count"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Readonly</span>
+                            count</b>
+                            <a href="#count"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @IsNotEmpty()<br />@IsNumber()<br />@Min(1)<br />@Max(9)<br />@ApiProperty({example: &#x27;3&#x27;, description: &#x27;Count of seats&#x27;})<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/flights/dto/search-flight.dto.ts:74</a></div>
                             </td>
                         </tr>
 
@@ -171,13 +258,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @IsNotEmpty()<br />@IsString()<br />@ApiProperty({example: &#x27;Zhulyani/Жуляни/IEV&#x27;, description: &#x27;Departure&#x27;})<br />
+                                @IsNotEmpty()<br />@IsString()<br />@MaxLength(50)<br />@ApiProperty({example: &#x27;Zhulyani/Жуляни/IEV&#x27;, description: &#x27;Departure&#x27;})<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/flights/dto/search-flight.dto.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/flights/dto/search-flight.dto.ts:26</a></div>
                             </td>
                         </tr>
 
@@ -188,12 +275,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="depTime"></a>
+                        <a name="firstDepTime"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Readonly</span>
-                            depTime</b>
-                            <a href="#depTime"><span class="icon ion-ios-link"></span></a>
+                            firstDepTime</b>
+                            <a href="#firstDepTime"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -208,13 +295,51 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @IsNotEmpty()<br />@ApiProperty({example: &#x27;2021-05-16T15:35:00.000Z&#x27;, description: &#x27;Departure time&#x27;})<br />
+                                @IsNotEmpty()<br />@IsString()<br />@IsDateString()<br />@ApiProperty({example: &#x27;2021-05-15T15:35:00.000Z&#x27;, description: &#x27;First range departure time&#x27;})<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/flights/dto/search-flight.dto.ts:20</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/flights/dto/search-flight.dto.ts:35</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="secondDepTime"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Readonly</span>
+                                <span class="modifier">Optional</span>
+                            secondDepTime</b>
+                            <a href="#secondDepTime"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @IsOptional()<br />@IsNotEmpty()<br />@IsString()<br />@IsDateString()<br />@ApiPropertyOptional({example: &#x27;2021-05-18T15:35:00.000Z&#x27;, description: &#x27;Second range departure time&#x27;})<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/flights/dto/search-flight.dto.ts:45</a></div>
                             </td>
                         </tr>
 
@@ -233,14 +358,27 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty, PartialType } from &#x27;@nestjs/swagger&#x27;;
-import { IsNotEmpty, IsString } from &#x27;class-validator&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty, ApiPropertyOptional } from &#x27;@nestjs/swagger&#x27;;
+import {
+  ArrayNotEmpty,
+  IsArray,
+  IsDateString,
+  IsEnum,
+  IsIn,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+  Max,
+  MaxLength,
+  Min,
+} from &#x27;class-validator&#x27;;
+import { Class } from &#x27;src/sections/entities/section.entity&#x27;;
 
-import { CreateFlightDto } from &#x27;./create-flight.dto&#x27;;
-
-export class SearchFlightDto extends PartialType(CreateFlightDto) {
+export class SearchFlightDto {
   @IsNotEmpty()
   @IsString()
+  @MaxLength(50)
   @ApiProperty({
     example: &#x27;Zhulyani/Жуляни/IEV&#x27;,
     description: &#x27;Departure&#x27;,
@@ -248,19 +386,52 @@ export class SearchFlightDto extends PartialType(CreateFlightDto) {
   readonly departure: string;
 
   @IsNotEmpty()
+  @IsString()
+  @IsDateString()
   @ApiProperty({
-    example: &#x27;2021-05-16T15:35:00.000Z&#x27;,
-    description: &#x27;Departure time&#x27;,
+    example: &#x27;2021-05-15T15:35:00.000Z&#x27;,
+    description: &#x27;First range departure time&#x27;,
   })
-  readonly depTime: string;
+  readonly firstDepTime: string;
+
+  @IsOptional()
+  @IsNotEmpty()
+  @IsString()
+  @IsDateString()
+  @ApiPropertyOptional({
+    example: &#x27;2021-05-18T15:35:00.000Z&#x27;,
+    description: &#x27;Second range departure time&#x27;,
+  })
+  readonly secondDepTime?: string;
 
   @IsNotEmpty()
   @IsString()
+  @MaxLength(50)
   @ApiProperty({
     example: &#x27;Sheremetyevo/Шереметьево/SVO&#x27;,
     description: &#x27;Arrival&#x27;,
   })
   readonly arrival: string;
+
+  @IsNotEmpty()
+  @IsArray()
+  @IsEnum(Class, { each: true })
+  @ArrayNotEmpty()
+  @ApiProperty({
+    example: &#x27;[&quot;business&quot;]&#x27;,
+    description: &#x27;Class of section&#x27;,
+  })
+  readonly class: Class[];
+
+  @IsNotEmpty()
+  @IsNumber()
+  @Min(1)
+  @Max(9)
+  @ApiProperty({
+    example: &#x27;3&#x27;,
+    description: &#x27;Count of seats&#x27;,
+  })
+  readonly count: number;
 }
 </code></pre>
     </div>

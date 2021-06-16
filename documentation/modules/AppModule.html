@@ -316,11 +316,9 @@ import { ConfigModule, ConfigService } from &#x27;@nestjs/config&#x27;;
 import { MongooseModule } from &#x27;@nestjs/mongoose&#x27;;
 import { ThrottlerGuard, ThrottlerModule } from &#x27;@nestjs/throttler&#x27;;
 import { APP_GUARD, APP_INTERCEPTOR } from &#x27;@nestjs/core&#x27;;
-import { ServeStaticModule } from &#x27;@nestjs/serve-static&#x27;;
-import { join } from &#x27;path&#x27;;
 
-import { AppController } from &#x27;./app.controller&#x27;;
 import { AppService } from &#x27;./app.service&#x27;;
+import { AppController } from &#x27;./app.controller&#x27;;
 import { UsersModule } from &#x27;./users/users.module&#x27;;
 import { AuthModule } from &#x27;./auth/auth.module&#x27;;
 import { AirportsModule } from &#x27;./airports/airports.module&#x27;;
@@ -354,9 +352,6 @@ import { RolesGuard } from &#x27;./auth/guards/roles.guard&#x27;;
         limit: config.get&lt;number&gt;(&#x27;THROTTLE_LIMIT&#x27;),
       }),
     }),
-    // ServeStaticModule.forRoot({
-    //   rootPath: join(__dirname, &#x27;static&#x27;),
-    // }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) &#x3D;&gt; ({

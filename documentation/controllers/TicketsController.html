@@ -136,14 +136,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Create a Ticket&#x27;})<br />@ApiResponse({status: 200, type: Ticket})<br />@ApiBody({type: CreateTicketDto})<br />@ApiNotFoundResponse({description: &#x27;Flight or User NotFound&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiBadRequestResponse({description: &#x27;BadRequest&#x27;})<br />@UseGuards(JwtAuthGuard)<br />@Post(&#x27;reserve&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Create a Ticket&#x27;})<br />@ApiCreatedResponse({description: &#x27;Created&#x27;, type: Ticket})<br />@ApiBody({type: CreateTicketDto})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiCookieAuth()<br />@UseGuards(JwtAuthGuard)<br />@Post(&#x27;reserve&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/tickets/tickets.controller.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/tickets/tickets.controller.ts:48</a></div>
                 </td>
             </tr>
 
@@ -205,7 +205,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>find(req, id: ObjectId)</code>
+<code>find(req: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, id: ObjectId)</code>
                 </td>
             </tr>
 
@@ -213,14 +213,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Get Ticket data&#x27;})<br />@ApiResponse({status: 200, type: Ticket})<br />@ApiNotFoundResponse({description: &#x27;Flight NotFound&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@UseGuards(JwtAuthGuard)<br />@Get(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get Ticket data&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Ticket})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiCookieAuth()<br />@UseGuards(JwtAuthGuard)<br />@Get(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="62"
-                            class="link-to-prism">src/tickets/tickets.controller.ts:62</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="72"
+                            class="link-to-prism">src/tickets/tickets.controller.ts:72</a></div>
                 </td>
             </tr>
 
@@ -242,6 +242,7 @@
                                 <tr>
                                     <td>req</td>
                                     <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                     </td>
 
                                     <td>
@@ -301,14 +302,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Get data all Tickets&#x27;})<br />@ApiResponse({status: 200, type: undefined})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@Roles(&#x27;admin&#x27;)<br />@Get()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get data all Tickets&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: undefined})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiCookieAuth()<br />@Roles(&#x27;admin&#x27;)<br />@Get()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="52"
-                            class="link-to-prism">src/tickets/tickets.controller.ts:52</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="59"
+                            class="link-to-prism">src/tickets/tickets.controller.ts:59</a></div>
                 </td>
             </tr>
 
@@ -339,7 +340,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>return(req, id: ObjectId)</code>
+<code>return(req: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, id: ObjectId)</code>
                 </td>
             </tr>
 
@@ -347,14 +348,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Return Ticket&#x27;})<br />@ApiResponse({status: 200, type: Ticket})<br />@ApiNotFoundResponse({description: &#x27;Flight or Airplane NotFound&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@UseGuards(JwtAuthGuard)<br />@Delete(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Return Ticket&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Ticket})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiCookieAuth()<br />@UseGuards(JwtAuthGuard)<br />@Delete(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="87"
-                            class="link-to-prism">src/tickets/tickets.controller.ts:87</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="104"
+                            class="link-to-prism">src/tickets/tickets.controller.ts:104</a></div>
                 </td>
             </tr>
 
@@ -376,6 +377,7 @@
                                 <tr>
                                     <td>req</td>
                                     <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                     </td>
 
                                     <td>
@@ -427,7 +429,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>update(req, id: ObjectId, ticketDto: <a href="../classes/UpdateTicketDto.html">UpdateTicketDto</a>)</code>
+<code>update(req: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, id: ObjectId, ticketDto: <a href="../classes/UpdateTicketDto.html">UpdateTicketDto</a>)</code>
                 </td>
             </tr>
 
@@ -435,14 +437,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Update Ticket data&#x27;})<br />@ApiResponse({status: 200, type: Ticket})<br />@ApiNotFoundResponse({description: &#x27;Flight or User NotFound&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiBody({type: UpdateTicketDto})<br />@UseGuards(JwtAuthGuard)<br />@Patch(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Update Ticket data&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Ticket})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiBody({type: UpdateTicketDto})<br />@ApiCookieAuth()<br />@UseGuards(JwtAuthGuard)<br />@Patch(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/tickets/tickets.controller.ts:73</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="87"
+                            class="link-to-prism">src/tickets/tickets.controller.ts:87</a></div>
                 </td>
             </tr>
 
@@ -464,6 +466,7 @@
                                 <tr>
                                     <td>req</td>
                                     <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                     </td>
 
                                     <td>
@@ -530,20 +533,24 @@
 import {
   ApiBadRequestResponse,
   ApiBody,
+  ApiCookieAuth,
+  ApiCreatedResponse,
+  ApiForbiddenResponse,
   ApiNotFoundResponse,
+  ApiOkResponse,
   ApiOperation,
-  ApiResponse,
+  ApiParam,
   ApiTags,
   ApiUnauthorizedResponse,
 } from &#x27;@nestjs/swagger&#x27;;
 import { ObjectId } from &#x27;mongoose&#x27;;
 
-import { Roles } from &#x27;src/auth/decorators/roles-auth.decorator&#x27;;
-import { JwtAuthGuard } from &#x27;src/auth/guards/jwt-auth.guard&#x27;;
+import { TicketsService } from &#x27;./tickets.service&#x27;;
+import { Ticket } from &#x27;./entities/ticket.entity&#x27;;
 import { CreateTicketDto } from &#x27;./dto/create-ticket.dto&#x27;;
 import { UpdateTicketDto } from &#x27;./dto/update-ticket.dto&#x27;;
-import { Ticket } from &#x27;./entities/ticket.entity&#x27;;
-import { TicketsService } from &#x27;./tickets.service&#x27;;
+import { Roles } from &#x27;src/auth/decorators/roles-auth.decorator&#x27;;
+import { JwtAuthGuard } from &#x27;src/auth/guards/jwt-auth.guard&#x27;;
 
 @ApiTags(&#x27;Tickets&#x27;)
 @Controller(&#x27;tickets&#x27;)
@@ -551,11 +558,12 @@ export class TicketsController {
   constructor(private readonly ticketsService: TicketsService) {}
 
   @ApiOperation({ summary: &#x27;Create a Ticket&#x27; })
-  @ApiResponse({ status: 200, type: Ticket })
+  @ApiCreatedResponse({ description: &#x27;Created&#x27;, type: Ticket })
   @ApiBody({ type: CreateTicketDto })
-  @ApiNotFoundResponse({ description: &#x27;Flight or User NotFound&#x27; })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
-  @ApiBadRequestResponse({ description: &#x27;BadRequest&#x27; })
+  @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
+  @ApiBadRequestResponse({ description: &#x27;Bad Request&#x27; })
+  @ApiCookieAuth()
   @UseGuards(JwtAuthGuard)
   @Post(&#x27;reserve&#x27;)
   create(@Body() ticketDto: CreateTicketDto) {
@@ -563,8 +571,10 @@ export class TicketsController {
   }
 
   @ApiOperation({ summary: &#x27;Get data all Tickets&#x27; })
-  @ApiResponse({ status: 200, type: [Ticket] })
+  @ApiOkResponse({ description: &#x27;Success&#x27;, type: [Ticket] })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
+  @ApiCookieAuth()
   @Roles(&#x27;admin&#x27;)
   @Get()
   findAll() {
@@ -572,24 +582,31 @@ export class TicketsController {
   }
 
   @ApiOperation({ summary: &#x27;Get Ticket data&#x27; })
-  @ApiResponse({ status: 200, type: Ticket })
-  @ApiNotFoundResponse({ description: &#x27;Flight NotFound&#x27; })
+  @ApiOkResponse({ description: &#x27;Success&#x27;, type: Ticket })
+  @ApiParam({ name: &#x27;id&#x27;, type: &#x27;string&#x27; })
+  @ApiNotFoundResponse({ description: &#x27;Not Found&#x27; })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
+  @ApiCookieAuth()
   @UseGuards(JwtAuthGuard)
   @Get(&#x27;:id&#x27;)
-  find(@Request() req, @Param(&#x27;id&#x27;) id: ObjectId) {
+  find(@Request() req: any, @Param(&#x27;id&#x27;) id: ObjectId) {
     return this.ticketsService.getTicketById(req.user._id, id);
   }
 
   @ApiOperation({ summary: &#x27;Update Ticket data&#x27; })
-  @ApiResponse({ status: 200, type: Ticket })
-  @ApiNotFoundResponse({ description: &#x27;Flight or User NotFound&#x27; })
+  @ApiOkResponse({ description: &#x27;Success&#x27;, type: Ticket })
+  @ApiParam({ name: &#x27;id&#x27;, type: &#x27;string&#x27; })
+  @ApiBadRequestResponse({ description: &#x27;Bad Request&#x27; })
+  @ApiNotFoundResponse({ description: &#x27;Not Found&#x27; })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
   @ApiBody({ type: UpdateTicketDto })
+  @ApiCookieAuth()
   @UseGuards(JwtAuthGuard)
   @Patch(&#x27;:id&#x27;)
   update(
-    @Request() req,
+    @Request() req: any,
     @Param(&#x27;id&#x27;) id: ObjectId,
     @Body() ticketDto: UpdateTicketDto,
   ) {
@@ -597,12 +614,15 @@ export class TicketsController {
   }
 
   @ApiOperation({ summary: &#x27;Return Ticket&#x27; })
-  @ApiResponse({ status: 200, type: Ticket })
-  @ApiNotFoundResponse({ description: &#x27;Flight or Airplane NotFound&#x27; })
+  @ApiOkResponse({ description: &#x27;Success&#x27;, type: Ticket })
+  @ApiParam({ name: &#x27;id&#x27;, type: &#x27;string&#x27; })
+  @ApiNotFoundResponse({ description: &#x27;Not Found&#x27; })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
+  @ApiCookieAuth()
   @UseGuards(JwtAuthGuard)
   @Delete(&#x27;:id&#x27;)
-  return(@Request() req, @Param(&#x27;id&#x27;) id: ObjectId) {
+  return(@Request() req: any, @Param(&#x27;id&#x27;) id: ObjectId) {
     return this.ticketsService.returnTicket(req.user._id, id);
   }
 }

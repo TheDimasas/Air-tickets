@@ -241,8 +241,8 @@
 import { InjectModel } from &#x27;@nestjs/mongoose&#x27;;
 import { Model, ObjectId } from &#x27;mongoose&#x27;;
 
-import { UpdateSeatDto } from &#x27;./dto/update-seat.dto&#x27;;
 import { Seat, SeatDocument } from &#x27;./entities/seat.entity&#x27;;
+import { UpdateSeatDto } from &#x27;./dto/update-seat.dto&#x27;;
 
 @Injectable()
 export class SeatsService {
@@ -259,7 +259,6 @@ export class SeatsService {
         HttpStatus.NOT_FOUND,
       );
     }
-
     if (seatDto.status) {
       seat.status &#x3D; seatDto.status;
     }

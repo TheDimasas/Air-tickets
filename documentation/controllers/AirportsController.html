@@ -136,14 +136,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Create a Airport&#x27;})<br />@ApiResponse({status: 200, type: Airport})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiBadRequestResponse({description: &#x27;BadRequest&#x27;})<br />@ApiBody({type: CreateAirportDto})<br />@Roles(&#x27;admin&#x27;)<br />@Post()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Create a Airport&#x27;})<br />@ApiCreatedResponse({description: &#x27;Created&#x27;, type: Airport})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiBody({type: CreateAirportDto})<br />@ApiCookieAuth()<br />@Roles(&#x27;admin&#x27;)<br />@Post()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/airports/airports.controller.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">src/airports/airports.controller.ts:45</a></div>
                 </td>
             </tr>
 
@@ -213,14 +213,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Delete Airport&#x27;})<br />@ApiResponse({status: 200, type: Airport})<br />@ApiNotFoundResponse({description: &#x27;Airport NotFound&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@Roles(&#x27;admin&#x27;)<br />@Delete(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Delete Airport&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Airport})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiCookieAuth()<br />@Roles(&#x27;admin&#x27;)<br />@Delete(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="75"
-                            class="link-to-prism">src/airports/airports.controller.ts:75</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="89"
+                            class="link-to-prism">src/airports/airports.controller.ts:89</a></div>
                 </td>
             </tr>
 
@@ -290,14 +290,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Get data all Airports&#x27;})<br />@ApiResponse({status: 200, type: undefined})<br />@Get()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get data all Airports&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: undefined})<br />@Get()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/airports/airports.controller.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="52"
+                            class="link-to-prism">src/airports/airports.controller.ts:52</a></div>
                 </td>
             </tr>
 
@@ -336,14 +336,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Get Airport data&#x27;})<br />@ApiResponse({status: 200, type: Airport})<br />@ApiBadRequestResponse({description: &#x27;BadRequest&#x27;})<br />@Get(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get Airport data&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Airport})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@Get(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="54"
-                            class="link-to-prism">src/airports/airports.controller.ts:54</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/airports/airports.controller.ts:61</a></div>
                 </td>
             </tr>
 
@@ -413,14 +413,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Update Airport data&#x27;})<br />@ApiResponse({status: 200, type: Airport})<br />@ApiNotFoundResponse({description: &#x27;Airport NotFound&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiBody({type: UpdateAirportDto})<br />@Roles(&#x27;admin&#x27;)<br />@Patch(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Update Airport data&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Airport})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiBody({type: UpdateAirportDto})<br />@ApiCookieAuth()<br />@Roles(&#x27;admin&#x27;)<br />@Patch(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">src/airports/airports.controller.ts:65</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/airports/airports.controller.ts:76</a></div>
                 </td>
             </tr>
 
@@ -495,19 +495,23 @@
 import {
   ApiBadRequestResponse,
   ApiBody,
+  ApiCookieAuth,
+  ApiCreatedResponse,
+  ApiForbiddenResponse,
   ApiNotFoundResponse,
+  ApiOkResponse,
   ApiOperation,
-  ApiResponse,
+  ApiParam,
   ApiTags,
   ApiUnauthorizedResponse,
 } from &#x27;@nestjs/swagger&#x27;;
 import { ObjectId } from &#x27;mongoose&#x27;;
-import { Roles } from &#x27;src/auth/decorators/roles-auth.decorator&#x27;;
 
 import { AirportsService } from &#x27;./airports.service&#x27;;
+import { Airport } from &#x27;./entities/airport.entity&#x27;;
 import { CreateAirportDto } from &#x27;./dto/create-airport.dto&#x27;;
 import { UpdateAirportDto } from &#x27;./dto/update-airport.dto&#x27;;
-import { Airport } from &#x27;./entities/airport.entity&#x27;;
+import { Roles } from &#x27;src/auth/decorators/roles-auth.decorator&#x27;;
 
 @ApiTags(&#x27;Airports&#x27;)
 @Controller(&#x27;airports&#x27;)
@@ -515,10 +519,12 @@ export class AirportsController {
   constructor(private readonly airportsService: AirportsService) {}
 
   @ApiOperation({ summary: &#x27;Create a Airport&#x27; })
-  @ApiResponse({ status: 200, type: Airport })
+  @ApiCreatedResponse({ description: &#x27;Created&#x27;, type: Airport })
+  @ApiBadRequestResponse({ description: &#x27;Bad Request&#x27; })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
-  @ApiBadRequestResponse({ description: &#x27;BadRequest&#x27; })
+  @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
   @ApiBody({ type: CreateAirportDto })
+  @ApiCookieAuth()
   @Roles(&#x27;admin&#x27;)
   @Post()
   create(@Body() airportDto: CreateAirportDto) {
@@ -526,25 +532,30 @@ export class AirportsController {
   }
 
   @ApiOperation({ summary: &#x27;Get data all Airports&#x27; })
-  @ApiResponse({ status: 200, type: [Airport] })
+  @ApiOkResponse({ description: &#x27;Success&#x27;, type: [Airport] })
   @Get()
   findAll() {
     return this.airportsService.getAllAirports();
   }
 
   @ApiOperation({ summary: &#x27;Get Airport data&#x27; })
-  @ApiResponse({ status: 200, type: Airport })
-  @ApiBadRequestResponse({ description: &#x27;BadRequest&#x27; })
+  @ApiOkResponse({ description: &#x27;Success&#x27;, type: Airport })
+  @ApiParam({ name: &#x27;id&#x27;, type: &#x27;string&#x27; })
+  @ApiNotFoundResponse({ description: &#x27;Not Found&#x27; })
   @Get(&#x27;:id&#x27;)
   findOne(@Param(&#x27;id&#x27;) id: ObjectId) {
     return this.airportsService.getAirportById(id);
   }
 
   @ApiOperation({ summary: &#x27;Update Airport data&#x27; })
-  @ApiResponse({ status: 200, type: Airport })
-  @ApiNotFoundResponse({ description: &#x27;Airport NotFound&#x27; })
+  @ApiOkResponse({ description: &#x27;Success&#x27;, type: Airport })
+  @ApiParam({ name: &#x27;id&#x27;, type: &#x27;string&#x27; })
+  @ApiBadRequestResponse({ description: &#x27;Bad Request&#x27; })
+  @ApiNotFoundResponse({ description: &#x27;Not Found&#x27; })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
   @ApiBody({ type: UpdateAirportDto })
+  @ApiCookieAuth()
   @Roles(&#x27;admin&#x27;)
   @Patch(&#x27;:id&#x27;)
   update(@Param(&#x27;id&#x27;) id: ObjectId, @Body() airportDto: UpdateAirportDto) {
@@ -552,9 +563,12 @@ export class AirportsController {
   }
 
   @ApiOperation({ summary: &#x27;Delete Airport&#x27; })
-  @ApiResponse({ status: 200, type: Airport })
-  @ApiNotFoundResponse({ description: &#x27;Airport NotFound&#x27; })
+  @ApiOkResponse({ description: &#x27;Success&#x27;, type: Airport })
+  @ApiParam({ name: &#x27;id&#x27;, type: &#x27;string&#x27; })
+  @ApiNotFoundResponse({ description: &#x27;Not Found&#x27; })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
+  @ApiCookieAuth()
   @Roles(&#x27;admin&#x27;)
   @Delete(&#x27;:id&#x27;)
   delete(@Param(&#x27;id&#x27;) id: ObjectId) {

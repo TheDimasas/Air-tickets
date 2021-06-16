@@ -97,9 +97,6 @@
                                 <a href="#search">search</a>
                             </li>
                             <li>
-                                <a href="#searchByRange">searchByRange</a>
-                            </li>
-                            <li>
                                 <a href="#update">update</a>
                             </li>
                         </ul>
@@ -142,14 +139,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Create a Flight&#x27;})<br />@ApiResponse({status: 200, type: Flight})<br />@ApiBadRequestResponse({description: &#x27;BadRequest&#x27;})<br />@ApiBody({type: CreateFlightDto})<br />@Roles(&#x27;admin&#x27;)<br />@Post()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Create a Flight&#x27;})<br />@ApiCreatedResponse({description: &#x27;Created&#x27;, type: Flight})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiBody({type: CreateFlightDto})<br />@ApiCookieAuth()<br />@Roles(&#x27;admin&#x27;)<br />@Post()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/flights/flights.controller.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/flights/flights.controller.ts:46</a></div>
                 </td>
             </tr>
 
@@ -219,14 +216,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Delete Flight&#x27;})<br />@ApiResponse({status: 200, type: Flight})<br />@ApiNotFoundResponse({description: &#x27;Flight NotFound&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@Roles(&#x27;admin&#x27;)<br />@Delete(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Delete Flight&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Flight})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiCookieAuth()<br />@Roles(&#x27;admin&#x27;)<br />@Delete(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="96"
-                            class="link-to-prism">src/flights/flights.controller.ts:96</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">src/flights/flights.controller.ts:99</a></div>
                 </td>
             </tr>
 
@@ -296,14 +293,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Get data all Flights&#x27;})<br />@ApiResponse({status: 200, type: undefined})<br />@Get()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get data all Flights&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: undefined})<br />@Get()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="67"
-                            class="link-to-prism">src/flights/flights.controller.ts:67</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/flights/flights.controller.ts:62</a></div>
                 </td>
             </tr>
 
@@ -342,14 +339,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Get Flight data&#x27;})<br />@ApiResponse({status: 200, type: Flight})<br />@ApiNotFoundResponse({description: &#x27;Flight NotFound&#x27;})<br />@Get(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get Flight data&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Flight})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@Get(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="75"
-                            class="link-to-prism">src/flights/flights.controller.ts:75</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="71"
+                            class="link-to-prism">src/flights/flights.controller.ts:71</a></div>
                 </td>
             </tr>
 
@@ -419,14 +416,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Search Flights&#x27;})<br />@ApiResponse({status: 200, type: undefined})<br />@ApiNotFoundResponse({description: &#x27;Flight NotFound&#x27;})<br />@ApiBadRequestResponse({description: &#x27;BadRequest&#x27;})<br />@ApiBody({type: SearchFlightDto})<br />@Post(&#x27;search&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Search Flights&#x27;})<br />@ApiCreatedResponse({description: &#x27;Created&#x27;, type: undefined})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiBody({type: SearchFlightDto})<br />@Post(&#x27;search&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/flights/flights.controller.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/flights/flights.controller.ts:55</a></div>
                 </td>
             </tr>
 
@@ -477,83 +474,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="searchByRange"></a>
-                    <span class="name">
-                        <b>
-                            searchByRange
-                        </b>
-                        <a href="#searchByRange"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>searchByRange(flightDto: <a href="../classes/SearchFlightByRangeDto.html">SearchFlightByRangeDto</a>)</code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <b>Decorators : </b>
-                    <br />
-                    <code>@ApiOperation({summary: &#x27;Search Flights by range&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Flight NotFound&#x27;})<br />@ApiBadRequestResponse({description: &#x27;BadRequest&#x27;})<br />@ApiResponse({status: 200, type: undefined})<br />@ApiBody({type: SearchFlightByRangeDto})<br />@Post(&#x27;searchrange&#x27;)<br /></code>
-                </td>
-            </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="60"
-                            class="link-to-prism">src/flights/flights.controller.ts:60</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>flightDto</td>
-                                    <td>
-                                                <code><a href="../classes/SearchFlightByRangeDto.html" target="_self" >SearchFlightByRangeDto</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="update"></a>
                     <span class="name">
                         <b>
@@ -573,7 +493,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Update Flight data&#x27;})<br />@ApiResponse({status: 200, type: Flight})<br />@ApiNotFoundResponse({description: &#x27;Flight NotFound&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiBody({type: UpdateFlightDto})<br />@Roles(&#x27;admin&#x27;)<br />@Patch(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Update Flight data&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Flight})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiBody({type: UpdateFlightDto})<br />@ApiCookieAuth()<br />@Roles(&#x27;admin&#x27;)<br />@Patch(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
@@ -655,20 +575,23 @@
 import {
   ApiBadRequestResponse,
   ApiBody,
+  ApiCookieAuth,
+  ApiCreatedResponse,
+  ApiForbiddenResponse,
   ApiNotFoundResponse,
+  ApiOkResponse,
   ApiOperation,
-  ApiResponse,
+  ApiParam,
   ApiTags,
   ApiUnauthorizedResponse,
 } from &#x27;@nestjs/swagger&#x27;;
 import { ObjectId } from &#x27;mongoose&#x27;;
 
 import { FlightsService } from &#x27;./flights.service&#x27;;
+import { Flight } from &#x27;./entities/flights.entity&#x27;;
 import { CreateFlightDto } from &#x27;./dto/create-flight.dto&#x27;;
 import { UpdateFlightDto } from &#x27;./dto/update-flight.dto&#x27;;
 import { SearchFlightDto } from &#x27;./dto/search-flight.dto&#x27;;
-import { SearchFlightByRangeDto } from &#x27;./dto/search-flight-by-range.dto&#x27;;
-import { Flight } from &#x27;./entities/flights.entity&#x27;;
 import { Roles } from &#x27;src/auth/decorators/roles-auth.decorator&#x27;;
 
 @ApiTags(&#x27;Flights&#x27;)
@@ -677,9 +600,12 @@ export class FlightsController {
   constructor(private readonly flightsService: FlightsService) {}
 
   @ApiOperation({ summary: &#x27;Create a Flight&#x27; })
-  @ApiResponse({ status: 200, type: Flight })
-  @ApiBadRequestResponse({ description: &#x27;BadRequest&#x27; })
+  @ApiCreatedResponse({ description: &#x27;Created&#x27;, type: Flight })
+  @ApiBadRequestResponse({ description: &#x27;Bad Request&#x27; })
+  @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
   @ApiBody({ type: CreateFlightDto })
+  @ApiCookieAuth()
   @Roles(&#x27;admin&#x27;)
   @Post()
   create(@Body() flightDto: CreateFlightDto) {
@@ -687,45 +613,39 @@ export class FlightsController {
   }
 
   @ApiOperation({ summary: &#x27;Search Flights&#x27; })
-  @ApiResponse({ status: 200, type: [Flight] })
-  @ApiNotFoundResponse({ description: &#x27;Flight NotFound&#x27; })
-  @ApiBadRequestResponse({ description: &#x27;BadRequest&#x27; })
+  @ApiCreatedResponse({ description: &#x27;Created&#x27;, type: [Flight] })
+  @ApiBadRequestResponse({ description: &#x27;Bad Request&#x27; })
   @ApiBody({ type: SearchFlightDto })
   @Post(&#x27;search&#x27;)
   search(@Body() flightDto: SearchFlightDto) {
     return this.flightsService.searchFlights(flightDto);
   }
 
-  @ApiOperation({ summary: &#x27;Search Flights by range&#x27; })
-  @ApiNotFoundResponse({ description: &#x27;Flight NotFound&#x27; })
-  @ApiBadRequestResponse({ description: &#x27;BadRequest&#x27; })
-  @ApiResponse({ status: 200, type: [Flight] })
-  @ApiBody({ type: SearchFlightByRangeDto })
-  @Post(&#x27;searchrange&#x27;)
-  searchByRange(@Body() flightDto: SearchFlightByRangeDto) {
-    return this.flightsService.searchFlightsByRange(flightDto);
-  }
-
   @ApiOperation({ summary: &#x27;Get data all Flights&#x27; })
-  @ApiResponse({ status: 200, type: [Flight] })
+  @ApiOkResponse({ description: &#x27;Success&#x27;, type: [Flight] })
   @Get()
   findAll() {
     return this.flightsService.getAllFlights();
   }
 
   @ApiOperation({ summary: &#x27;Get Flight data&#x27; })
-  @ApiResponse({ status: 200, type: Flight })
-  @ApiNotFoundResponse({ description: &#x27;Flight NotFound&#x27; })
+  @ApiOkResponse({ description: &#x27;Success&#x27;, type: Flight })
+  @ApiParam({ name: &#x27;id&#x27;, type: &#x27;string&#x27; })
+  @ApiNotFoundResponse({ description: &#x27;Not Found&#x27; })
   @Get(&#x27;:id&#x27;)
   findOne(@Param(&#x27;id&#x27;) id: ObjectId) {
     return this.flightsService.getFlightById(id);
   }
 
   @ApiOperation({ summary: &#x27;Update Flight data&#x27; })
-  @ApiResponse({ status: 200, type: Flight })
-  @ApiNotFoundResponse({ description: &#x27;Flight NotFound&#x27; })
+  @ApiOkResponse({ description: &#x27;Success&#x27;, type: Flight })
+  @ApiParam({ name: &#x27;id&#x27;, type: &#x27;string&#x27; })
+  @ApiBadRequestResponse({ description: &#x27;Bad Request&#x27; })
+  @ApiNotFoundResponse({ description: &#x27;Not Found&#x27; })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
   @ApiBody({ type: UpdateFlightDto })
+  @ApiCookieAuth()
   @Roles(&#x27;admin&#x27;)
   @Patch(&#x27;:id&#x27;)
   update(@Param(&#x27;id&#x27;) id: ObjectId, @Body() flightDto: UpdateFlightDto) {
@@ -733,9 +653,12 @@ export class FlightsController {
   }
 
   @ApiOperation({ summary: &#x27;Delete Flight&#x27; })
-  @ApiResponse({ status: 200, type: Flight })
-  @ApiNotFoundResponse({ description: &#x27;Flight NotFound&#x27; })
+  @ApiOkResponse({ description: &#x27;Success&#x27;, type: Flight })
+  @ApiParam({ name: &#x27;id&#x27;, type: &#x27;string&#x27; })
+  @ApiNotFoundResponse({ description: &#x27;Not Found&#x27; })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
+  @ApiCookieAuth()
   @Roles(&#x27;admin&#x27;)
   @Delete(&#x27;:id&#x27;)
   delete(@Param(&#x27;id&#x27;) id: ObjectId) {

@@ -134,13 +134,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @IsNotEmpty()<br />@IsIn(undefined)<br />@ApiProperty({example: &#x27;economy&#x27;, description: &#x27;Class&#x27;})<br />
+                                @IsNotEmpty()<br />@IsEnum(Class)<br />@ApiProperty({example: &#x27;economy&#x27;, description: &#x27;Class&#x27;, enum: Class, enumName: &#x27;Class&#x27;})<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/sections/dto/create-section.dto.ts:15</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/sections/dto/create-section.dto.ts:20</a></div>
                             </td>
                         </tr>
 
@@ -214,7 +214,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/sections/dto/create-section.dto.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/sections/dto/create-section.dto.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -234,7 +234,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ApiProperty } from &#x27;@nestjs/swagger&#x27;;
-import { IsIn, IsNotEmpty, IsNumber } from &#x27;class-validator&#x27;;
+import { IsEnum, IsNotEmpty, IsNumber } from &#x27;class-validator&#x27;;
 
 import { Class } from &#x27;../entities/section.entity&#x27;;
 
@@ -245,8 +245,13 @@ export class CreateSectionDto {
   readonly price: number;
 
   @IsNotEmpty()
-  @IsIn([Class.Business, Class.Economy])
-  @ApiProperty({ example: &#x27;economy&#x27;, description: &#x27;Class&#x27; })
+  @IsEnum(Class)
+  @ApiProperty({
+    example: &#x27;economy&#x27;,
+    description: &#x27;Class&#x27;,
+    enum: Class,
+    enumName: &#x27;Class&#x27;,
+  })
   readonly class: Class;
 
   @IsNumber()

@@ -124,14 +124,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Update Seat data&#x27;})<br />@ApiResponse({status: 200, type: Seat})<br />@ApiNotFoundResponse({description: &#x27;Seat NotFound&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@UseGuards(JwtAuthGuard)<br />@ApiBody({type: UpdateSeatDto})<br />@Patch(&#x27;:id/update&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Update Seat data&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Seat})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiBody({type: UpdateSeatDto})<br />@UseGuards(JwtAuthGuard)<br />@ApiCookieAuth()<br />@Patch(&#x27;:id/update&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="29"
-                            class="link-to-prism">src/seats/seats.controller.ts:29</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/seats/seats.controller.ts:35</a></div>
                 </td>
             </tr>
 
@@ -196,19 +196,22 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Body, Controller, Param, Patch, UseGuards } from &#x27;@nestjs/common&#x27;;
 import {
+  ApiBadRequestResponse,
   ApiBody,
+  ApiCookieAuth,
+  ApiForbiddenResponse,
   ApiNotFoundResponse,
+  ApiOkResponse,
   ApiOperation,
-  ApiResponse,
   ApiTags,
   ApiUnauthorizedResponse,
 } from &#x27;@nestjs/swagger&#x27;;
 import { ObjectId } from &#x27;mongoose&#x27;;
-import { JwtAuthGuard } from &#x27;src/auth/guards/jwt-auth.guard&#x27;;
 
-import { UpdateSeatDto } from &#x27;./dto/update-seat.dto&#x27;;
-import { Seat } from &#x27;./entities/seat.entity&#x27;;
 import { SeatsService } from &#x27;./seats.service&#x27;;
+import { Seat } from &#x27;./entities/seat.entity&#x27;;
+import { UpdateSeatDto } from &#x27;./dto/update-seat.dto&#x27;;
+import { JwtAuthGuard } from &#x27;src/auth/guards/jwt-auth.guard&#x27;;
 
 @ApiTags(&#x27;Seats&#x27;)
 @Controller(&#x27;seats&#x27;)
@@ -216,11 +219,14 @@ export class SeatsController {
   constructor(private readonly seatsService: SeatsService) {}
 
   @ApiOperation({ summary: &#x27;Update Seat data&#x27; })
-  @ApiResponse({ status: 200, type: Seat })
-  @ApiNotFoundResponse({ description: &#x27;Seat NotFound&#x27; })
+  @ApiOkResponse({ description: &#x27;Success&#x27;, type: Seat })
+  @ApiBadRequestResponse({ description: &#x27;Bad Request&#x27; })
+  @ApiNotFoundResponse({ description: &#x27;Not Found&#x27; })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
-  @UseGuards(JwtAuthGuard)
+  @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
   @ApiBody({ type: UpdateSeatDto })
+  @UseGuards(JwtAuthGuard)
+  @ApiCookieAuth()
   @Patch(&#x27;:id/update&#x27;)
   update(@Param(&#x27;id&#x27;) id: ObjectId, @Body() seatDto: UpdateSeatDto) {
     return this.seatsService.updateSeatData(id, seatDto);

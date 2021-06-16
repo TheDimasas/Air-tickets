@@ -123,7 +123,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/airports/airports.service.ts:15</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/airports/airports.service.ts:10</a></div>
                             </td>
                         </tr>
 
@@ -191,8 +191,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="20"
-                            class="link-to-prism">src/airports/airports.service.ts:20</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="15"
+                            class="link-to-prism">src/airports/airports.service.ts:15</a></div>
                 </td>
             </tr>
 
@@ -264,8 +264,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="117"
-                            class="link-to-prism">src/airports/airports.service.ts:117</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="115"
+                            class="link-to-prism">src/airports/airports.service.ts:115</a></div>
                 </td>
             </tr>
 
@@ -337,8 +337,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="55"
-                            class="link-to-prism">src/airports/airports.service.ts:55</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/airports/airports.service.ts:50</a></div>
                 </td>
             </tr>
 
@@ -410,8 +410,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="47"
-                            class="link-to-prism">src/airports/airports.service.ts:47</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/airports/airports.service.ts:42</a></div>
                 </td>
             </tr>
 
@@ -452,8 +452,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="69"
-                            class="link-to-prism">src/airports/airports.service.ts:69</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/airports/airports.service.ts:64</a></div>
                 </td>
             </tr>
 
@@ -518,18 +518,13 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
-  BadRequestException,
-  HttpException,
-  HttpStatus,
-  Injectable,
-} from &#x27;@nestjs/common&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { HttpException, HttpStatus, Injectable } from &#x27;@nestjs/common&#x27;;
 import { InjectModel } from &#x27;@nestjs/mongoose&#x27;;
 import { Model, ObjectId } from &#x27;mongoose&#x27;;
 
+import { Airport, AirportDocument } from &#x27;./entities/airport.entity&#x27;;
 import { CreateAirportDto } from &#x27;./dto/create-airport.dto&#x27;;
 import { UpdateAirportDto } from &#x27;./dto/update-airport.dto&#x27;;
-import { Airport, AirportDocument } from &#x27;./entities/airport.entity&#x27;;
 
 @Injectable()
 export class AirportsService {
@@ -592,7 +587,10 @@ export class AirportsService {
   ): Promise&lt;Airport&gt; {
     let airport &#x3D; await this.airportModel.findById(airportId).exec();
     if (!airport) {
-      throw new BadRequestException(&#x27;Airport with this Id not found&#x27;);
+      throw new HttpException(
+        &#x27;Airport with this id not found&#x27;,
+        HttpStatus.NOT_FOUND,
+      );
     }
 
     if (airportDto.IATA) {

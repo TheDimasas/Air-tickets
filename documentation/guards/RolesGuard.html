@@ -104,7 +104,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/auth/guards/roles.guard.ts:14</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/auth/guards/roles.guard.ts:15</a></div>
                             </td>
                         </tr>
 
@@ -181,8 +181,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">src/auth/guards/roles.guard.ts:17</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="18"
+                            class="link-to-prism">src/auth/guards/roles.guard.ts:18</a></div>
                 </td>
             </tr>
 
@@ -244,6 +244,7 @@
 import { Observable } from &#x27;rxjs&#x27;;
 import { JwtService } from &#x27;@nestjs/jwt&#x27;;
 import { Reflector } from &#x27;@nestjs/core&#x27;;
+
 import { ROLES_KEY } from &#x27;../decorators/roles-auth.decorator&#x27;;
 
 @Injectable()
@@ -272,7 +273,7 @@ export class RolesGuard implements CanActivate {
       req.user &#x3D; user;
       return requiredRoles.some((role) &#x3D;&gt; user.role?.includes(role));
     } catch (e) {
-      throw new HttpException(&#x27;No access&#x27;, HttpStatus.FORBIDDEN);
+      throw new HttpException(&#x27;Forbidden&#x27;, HttpStatus.FORBIDDEN);
     }
   }
 }

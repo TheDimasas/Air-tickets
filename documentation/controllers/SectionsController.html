@@ -136,14 +136,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Create a Section&#x27;})<br />@ApiResponse({status: 200, type: Section})<br />@ApiBadRequestResponse({description: &#x27;BadRequest&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiBody({type: CreateSectionDto})<br />@Roles(&#x27;admin&#x27;)<br />@Post()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Create a Section&#x27;})<br />@ApiCreatedResponse({description: &#x27;Created&#x27;, type: Section})<br />@ApiBadRequestResponse({description: &#x27;BadRequest&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiBody({type: CreateSectionDto})<br />@ApiCookieAuth()<br />@Roles(&#x27;admin&#x27;)<br />@Post()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/sections/sections.controller.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/sections/sections.controller.ts:46</a></div>
                 </td>
             </tr>
 
@@ -213,14 +213,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Delete Section&#x27;})<br />@ApiResponse({status: 200, type: Section})<br />@ApiNotFoundResponse({description: &#x27;Section NotFound&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@Roles(&#x27;admin&#x27;)<br />@Delete(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Delete Section&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Section})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiCookieAuth()<br />@Roles(&#x27;admin&#x27;)<br />@Delete(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="75"
-                            class="link-to-prism">src/sections/sections.controller.ts:75</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="90"
+                            class="link-to-prism">src/sections/sections.controller.ts:90</a></div>
                 </td>
             </tr>
 
@@ -290,14 +290,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Get data all Sections&#x27;})<br />@ApiResponse({status: 200, type: undefined})<br />@Get()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get data all Sections&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: undefined})<br />@Get()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="46"
-                            class="link-to-prism">src/sections/sections.controller.ts:46</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/sections/sections.controller.ts:53</a></div>
                 </td>
             </tr>
 
@@ -336,14 +336,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Get Section data&#x27;})<br />@ApiResponse({status: 200, type: Section})<br />@ApiNotFoundResponse({description: &#x27;Section NotFound&#x27;})<br />@Get(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get Section data&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Section})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@Get(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="54"
-                            class="link-to-prism">src/sections/sections.controller.ts:54</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/sections/sections.controller.ts:62</a></div>
                 </td>
             </tr>
 
@@ -413,14 +413,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Update Section data&#x27;})<br />@ApiResponse({status: 200, type: Section})<br />@ApiNotFoundResponse({description: &#x27;Section NotFound&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiBody({type: UpdateSectionDto})<br />@Roles(&#x27;admin&#x27;)<br />@Patch(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Update Section data&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Section})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiBody({type: UpdateSectionDto})<br />@ApiCookieAuth()<br />@Roles(&#x27;admin&#x27;)<br />@Patch(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="65"
-                            class="link-to-prism">src/sections/sections.controller.ts:65</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="77"
+                            class="link-to-prism">src/sections/sections.controller.ts:77</a></div>
                 </td>
             </tr>
 
@@ -495,8 +495,13 @@
 import {
   ApiBadRequestResponse,
   ApiBody,
+  ApiCookieAuth,
+  ApiCreatedResponse,
+  ApiForbiddenResponse,
   ApiNotFoundResponse,
+  ApiOkResponse,
   ApiOperation,
+  ApiParam,
   ApiResponse,
   ApiTags,
   ApiUnauthorizedResponse,
@@ -515,10 +520,12 @@ export class SectionsController {
   constructor(private readonly sectionsService: SectionsService) {}
 
   @ApiOperation({ summary: &#x27;Create a Section&#x27; })
-  @ApiResponse({ status: 200, type: Section })
+  @ApiCreatedResponse({ description: &#x27;Created&#x27;, type: Section })
   @ApiBadRequestResponse({ description: &#x27;BadRequest&#x27; })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
   @ApiBody({ type: CreateSectionDto })
+  @ApiCookieAuth()
   @Roles(&#x27;admin&#x27;)
   @Post()
   create(@Body() sectionDto: CreateSectionDto) {
@@ -526,25 +533,30 @@ export class SectionsController {
   }
 
   @ApiOperation({ summary: &#x27;Get data all Sections&#x27; })
-  @ApiResponse({ status: 200, type: [Section] })
+  @ApiOkResponse({ description: &#x27;Success&#x27;, type: [Section] })
   @Get()
   findAll() {
     return this.sectionsService.getAllSections();
   }
 
   @ApiOperation({ summary: &#x27;Get Section data&#x27; })
-  @ApiResponse({ status: 200, type: Section })
-  @ApiNotFoundResponse({ description: &#x27;Section NotFound&#x27; })
+  @ApiOkResponse({ description: &#x27;Success&#x27;, type: Section })
+  @ApiNotFoundResponse({ description: &#x27;Not Found&#x27; })
+  @ApiParam({ name: &#x27;id&#x27;, type: &#x27;string&#x27; })
   @Get(&#x27;:id&#x27;)
   findOne(@Param(&#x27;id&#x27;) id: ObjectId) {
     return this.sectionsService.getSectionById(id);
   }
 
   @ApiOperation({ summary: &#x27;Update Section data&#x27; })
-  @ApiResponse({ status: 200, type: Section })
-  @ApiNotFoundResponse({ description: &#x27;Section NotFound&#x27; })
+  @ApiOkResponse({ description: &#x27;Success&#x27;, type: Section })
+  @ApiBadRequestResponse({ description: &#x27;Bad Request&#x27; })
+  @ApiNotFoundResponse({ description: &#x27;Not Found&#x27; })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
+  @ApiParam({ name: &#x27;id&#x27;, type: &#x27;string&#x27; })
   @ApiBody({ type: UpdateSectionDto })
+  @ApiCookieAuth()
   @Roles(&#x27;admin&#x27;)
   @Patch(&#x27;:id&#x27;)
   update(@Param(&#x27;id&#x27;) id: ObjectId, @Body() sectionDto: UpdateSectionDto) {
@@ -552,9 +564,12 @@ export class SectionsController {
   }
 
   @ApiOperation({ summary: &#x27;Delete Section&#x27; })
-  @ApiResponse({ status: 200, type: Section })
-  @ApiNotFoundResponse({ description: &#x27;Section NotFound&#x27; })
+  @ApiOkResponse({ description: &#x27;Success&#x27;, type: Section })
+  @ApiNotFoundResponse({ description: &#x27;Not Found&#x27; })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
+  @ApiParam({ name: &#x27;id&#x27;, type: &#x27;string&#x27; })
+  @ApiCookieAuth()
   @Roles(&#x27;admin&#x27;)
   @Delete(&#x27;:id&#x27;)
   delete(@Param(&#x27;id&#x27;) id: ObjectId) {

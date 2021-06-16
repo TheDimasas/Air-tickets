@@ -135,14 +135,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Log Out&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiOkResponse({description: &#x27;Ok&#x27;})<br />@UseGuards(JwtAuthGuard)<br />@Post(&#x27;logout&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Log Out&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiCreatedResponse({description: &#x27;Created&#x27;})<br />@UseGuards(JwtAuthGuard)<br />@ApiCookieAuth()<br />@Post(&#x27;logout&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="63"
-                            class="link-to-prism">src/auth/auth.controller.ts:63</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/auth/auth.controller.ts:64</a></div>
                 </td>
             </tr>
 
@@ -206,7 +206,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>signIn(req, res: Response)</code>
+                    <code>signIn(req: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, res: Response)</code>
                 </td>
             </tr>
 
@@ -214,7 +214,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Sign In&#x27;})<br />@ApiBody({type: LoginUserDto})<br />@ApiBadRequestResponse({description: &#x27;BadRequest&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiResponse({status: 200, type: undefined})<br />@UseGuards(LocalAuthGuard)<br />@Post(&#x27;signin&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Sign In&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiCreatedResponse({description: &#x27;Created&#x27;, type: undefined})<br />@ApiBody({type: LoginUserDto})<br />@UseGuards(LocalAuthGuard)<br />@Post(&#x27;signin&#x27;)<br /></code>
                 </td>
             </tr>
 
@@ -243,6 +243,7 @@
                                 <tr>
                                     <td>req</td>
                                     <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                     </td>
 
                                     <td>
@@ -304,7 +305,7 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Sign Up&#x27;})<br />@ApiBadRequestResponse({description: &#x27;BadRequest&#x27;})<br />@ApiResponse({status: 200, type: undefined})<br />@ApiBody({type: CreateUserDto})<br />@Post(&#x27;signup&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Sign Up&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiCreatedResponse({description: &#x27;Created&#x27;, type: undefined})<br />@ApiBody({type: CreateUserDto})<br />@Post(&#x27;signup&#x27;)<br /></code>
                 </td>
             </tr>
 
@@ -373,18 +374,19 @@
 import {
   ApiBadRequestResponse,
   ApiBody,
-  ApiOkResponse,
+  ApiCookieAuth,
+  ApiCreatedResponse,
+  ApiForbiddenResponse,
   ApiOperation,
-  ApiResponse,
   ApiTags,
   ApiUnauthorizedResponse,
 } from &#x27;@nestjs/swagger&#x27;;
 import { Response } from &#x27;express&#x27;;
 
+import { AuthService } from &#x27;./auth.service&#x27;;
+import { User } from &#x27;src/users/entities/users.entity&#x27;;
 import { CreateUserDto } from &#x27;src/users/dto/create-user.dto&#x27;;
 import { LoginUserDto } from &#x27;src/users/dto/login-user.dto&#x27;;
-import { User } from &#x27;src/users/entities/users.entity&#x27;;
-import { AuthService } from &#x27;./auth.service&#x27;;
 import { JwtAuthGuard } from &#x27;./guards/jwt-auth.guard&#x27;;
 import { LocalAuthGuard } from &#x27;./guards/local-auth.guard&#x27;;
 
@@ -394,13 +396,12 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   @ApiOperation({ summary: &#x27;Sign In&#x27; })
+  @ApiBadRequestResponse({ description: &#x27;Bad Request&#x27; })
+  @ApiCreatedResponse({ description: &#x27;Created&#x27;, type: [User] })
   @ApiBody({ type: LoginUserDto })
-  @ApiBadRequestResponse({ description: &#x27;BadRequest&#x27; })
-  @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
-  @ApiResponse({ status: 200, type: [User] })
   @UseGuards(LocalAuthGuard)
   @Post(&#x27;signin&#x27;)
-  async signIn(@Request() req, @Res({ passthrough: true }) res: Response) {
+  async signIn(@Request() req: any, @Res({ passthrough: true }) res: Response) {
     const [resBody, jwt] &#x3D; await this.authService.signIn(req.user);
     res.cookie(&#x27;access_token&#x27;, jwt, {
       httpOnly: true,
@@ -411,8 +412,8 @@ export class AuthController {
   }
 
   @ApiOperation({ summary: &#x27;Sign Up&#x27; })
-  @ApiBadRequestResponse({ description: &#x27;BadRequest&#x27; })
-  @ApiResponse({ status: 200, type: [User] })
+  @ApiBadRequestResponse({ description: &#x27;Bad Request&#x27; })
+  @ApiCreatedResponse({ description: &#x27;Created&#x27;, type: [User] })
   @ApiBody({ type: CreateUserDto })
   @Post(&#x27;signup&#x27;)
   async signUp(@Body() userDto: CreateUserDto) {
@@ -421,8 +422,9 @@ export class AuthController {
 
   @ApiOperation({ summary: &#x27;Log Out&#x27; })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
-  @ApiOkResponse({ description: &#x27;Ok&#x27; })
+  @ApiCreatedResponse({ description: &#x27;Created&#x27; })
   @UseGuards(JwtAuthGuard)
+  @ApiCookieAuth()
   @Post(&#x27;logout&#x27;)
   async logOut(@Res({ passthrough: true }) res: Response) {
     res.cookie(&#x27;access_token&#x27;, &#x27;&#x27;, {

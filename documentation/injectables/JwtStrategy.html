@@ -242,7 +242,7 @@ import { ConfigService } from &#x27;@nestjs/config&#x27;;
 
 import { UsersService } from &#x27;src/users/users.service&#x27;;
 
-const cookieExtractor &#x3D; function (req) {
+const cookieExtractor &#x3D; function (req: any) {
   let token &#x3D; null;
   if (req &amp;&amp; req.cookies) {
     token &#x3D; req.cookies[&#x27;access_token&#x27;];

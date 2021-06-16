@@ -148,7 +148,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/users/entities/users.entity.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/users/entities/users.entity.ts:38</a></div>
                             </td>
                         </tr>
 
@@ -322,13 +322,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @ApiProperty({example: &#x27;user&#x27;, description: &#x27;Role&#x27;})<br />@Prop({required: true, trim: true, enum: Role, default: undefined})<br />
+                                @ApiProperty({example: &#x27;user&#x27;, description: &#x27;Role&#x27;, enum: Role, enumName: &#x27;Role&#x27;})<br />@Prop({required: true, trim: true, enum: Role, default: undefined})<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/users/entities/users.entity.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/users/entities/users.entity.ts:47</a></div>
                             </td>
                         </tr>
 
@@ -358,13 +358,13 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @ApiProperty({example: &#x27;ticket&#x27;, description: &#x27;Tickets&#x27;})<br />@Prop({trim: true, type: undefined, ref: &#x27;Ticket&#x27;})<br />
+                                @ApiProperty({example: &#x27;tickets&#x27;, description: &#x27;Tickets&#x27;})<br />@Prop({trim: true, type: undefined, ref: &#x27;Ticket&#x27;})<br />
                             </code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/users/entities/users.entity.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/users/entities/users.entity.ts:58</a></div>
                             </td>
                         </tr>
 
@@ -415,16 +415,24 @@ export class User {
   @Prop({ required: true })
   password: string;
 
-  @ApiProperty({ example: &#x27;test@gmail.com&#x27;, description: &#x27;E-mail&#x27; })
+  @ApiProperty({
+    example: &#x27;test@gmail.com&#x27;,
+    description: &#x27;E-mail&#x27;,
+  })
   @Prop({ required: true, unique: true })
   email: string;
 
-  @ApiProperty({ example: &#x27;user&#x27;, description: &#x27;Role&#x27; })
+  @ApiProperty({
+    example: &#x27;user&#x27;,
+    description: &#x27;Role&#x27;,
+    enum: Role,
+    enumName: &#x27;Role&#x27;,
+  })
   @Prop({ required: true, trim: true, enum: Role, default: Role.User })
   role: Role;
 
   @ApiProperty({
-    example: &#x27;ticket&#x27;,
+    example: &#x27;tickets&#x27;,
     description: &#x27;Tickets&#x27;,
   })
   @Prop({

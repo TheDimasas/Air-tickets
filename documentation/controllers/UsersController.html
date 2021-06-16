@@ -128,7 +128,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>changePassword(req, userDto: <a href="../classes/ChangeUserPasswordDto.html">ChangeUserPasswordDto</a>)</code>
+<code>changePassword(req: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, userDto: <a href="../classes/ChangeUserPasswordDto.html">ChangeUserPasswordDto</a>)</code>
                 </td>
             </tr>
 
@@ -136,14 +136,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Change User password&#x27;})<br />@ApiResponse({status: 200, type: User})<br />@ApiNotFoundResponse({description: &#x27;User NotFound&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Password mismatch&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiBody({type: ChangeUserPasswordDto})<br />@UseGuards(JwtAuthGuard)<br />@Patch(&#x27;/changepassword&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Change User password&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: User})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiBody({type: ChangeUserPasswordDto})<br />@ApiCookieAuth()<br />@UseGuards(JwtAuthGuard)<br />@Patch(&#x27;/changepassword&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="73"
-                            class="link-to-prism">src/users/users.controller.ts:73</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="83"
+                            class="link-to-prism">src/users/users.controller.ts:83</a></div>
                 </td>
             </tr>
 
@@ -165,6 +165,7 @@
                                 <tr>
                                     <td>req</td>
                                     <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                     </td>
 
                                     <td>
@@ -216,7 +217,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>delete(req)</code>
+<code>delete(req: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                 </td>
             </tr>
 
@@ -224,14 +225,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Delete User&#x27;})<br />@ApiResponse({status: 200, type: User})<br />@ApiNotFoundResponse({description: &#x27;User NotFound&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@UseGuards(JwtAuthGuard)<br />@Delete(&#x27;&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Delete User&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: User})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiCookieAuth()<br />@UseGuards(JwtAuthGuard)<br />@Delete(&#x27;&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="83"
-                            class="link-to-prism">src/users/users.controller.ts:83</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="93"
+                            class="link-to-prism">src/users/users.controller.ts:93</a></div>
                 </td>
             </tr>
 
@@ -245,12 +246,16 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
+                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>req</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
 
                                     <td>
                                         No
@@ -297,14 +302,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Get data all Users&#x27;})<br />@ApiResponse({status: 200, type: undefined})<br />@ApiBadRequestResponse({description: &#x27;BadRequest&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@Get()<br />@Roles(&#x27;admin&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get data all Users&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: undefined})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiCookieAuth()<br />@Roles(&#x27;admin&#x27;)<br />@Get()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/users/users.controller.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="44"
+                            class="link-to-prism">src/users/users.controller.ts:44</a></div>
                 </td>
             </tr>
 
@@ -343,14 +348,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Get User data&#x27;})<br />@ApiResponse({status: 200, type: User})<br />@ApiNotFoundResponse({description: &#x27;User NotFound&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@Get(&#x27;:id&#x27;)<br />@Roles(&#x27;admin&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get User data&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: User})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiCookieAuth()<br />@Roles(&#x27;admin&#x27;)<br />@Get(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="50"
-                            class="link-to-prism">src/users/users.controller.ts:50</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/users/users.controller.ts:57</a></div>
                 </td>
             </tr>
 
@@ -412,7 +417,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>updateData(req, userDto: <a href="../classes/UpdateUserDataDto.html">UpdateUserDataDto</a>)</code>
+<code>updateData(req: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, userDto: <a href="../classes/UpdateUserDataDto.html">UpdateUserDataDto</a>)</code>
                 </td>
             </tr>
 
@@ -420,14 +425,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Update User data&#x27;})<br />@ApiResponse({status: 200, type: User})<br />@ApiNotFoundResponse({description: &#x27;User NotFound&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiBody({type: UpdateUserDataDto})<br />@UseGuards(JwtAuthGuard)<br />@Patch(&#x27;/update&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Update User data&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: User})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiBody({type: UpdateUserDataDto})<br />@ApiCookieAuth()<br />@UseGuards(JwtAuthGuard)<br />@Patch(&#x27;/update&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="61"
-                            class="link-to-prism">src/users/users.controller.ts:61</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/users/users.controller.ts:70</a></div>
                 </td>
             </tr>
 
@@ -449,6 +454,7 @@
                                 <tr>
                                     <td>req</td>
                                     <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                     </td>
 
                                     <td>
@@ -502,18 +508,21 @@
 import {
   ApiBadRequestResponse,
   ApiBody,
+  ApiCookieAuth,
+  ApiForbiddenResponse,
   ApiNotFoundResponse,
+  ApiOkResponse,
   ApiOperation,
-  ApiResponse,
+  ApiParam,
   ApiTags,
   ApiUnauthorizedResponse,
 } from &#x27;@nestjs/swagger&#x27;;
 import { ObjectId } from &#x27;mongoose&#x27;;
 
 import { UsersService } from &#x27;./users.service&#x27;;
+import { User } from &#x27;./entities/users.entity&#x27;;
 import { UpdateUserDataDto } from &#x27;./dto/update-user-data.dto&#x27;;
 import { ChangeUserPasswordDto } from &#x27;./dto/change-user-password.dto&#x27;;
-import { User } from &#x27;./entities/users.entity&#x27;;
 import { Roles } from &#x27;src/auth/decorators/roles-auth.decorator&#x27;;
 import { JwtAuthGuard } from &#x27;src/auth/guards/jwt-auth.guard&#x27;;
 
@@ -523,55 +532,62 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @ApiOperation({ summary: &#x27;Get data all Users&#x27; })
-  @ApiResponse({ status: 200, type: [User] })
-  @ApiBadRequestResponse({ description: &#x27;BadRequest&#x27; })
+  @ApiOkResponse({ description: &#x27;Success&#x27;, type: [User] })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
-  @Get()
+  @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
+  @ApiCookieAuth()
   @Roles(&#x27;admin&#x27;)
+  @Get()
   findAll() {
     return this.usersService.getAllUsers();
   }
 
   @ApiOperation({ summary: &#x27;Get User data&#x27; })
-  @ApiResponse({ status: 200, type: User })
-  @ApiNotFoundResponse({ description: &#x27;User NotFound&#x27; })
+  @ApiOkResponse({ description: &#x27;Success&#x27;, type: User })
+  @ApiNotFoundResponse({ description: &#x27;Not Found&#x27; })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
-  @Get(&#x27;:id&#x27;)
+  @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
+  @ApiParam({ name: &#x27;id&#x27;, type: &#x27;string&#x27; })
+  @ApiCookieAuth()
   @Roles(&#x27;admin&#x27;)
+  @Get(&#x27;:id&#x27;)
   findOne(@Param(&#x27;id&#x27;) id: ObjectId) {
     return this.usersService.getUserById(id);
   }
 
   @ApiOperation({ summary: &#x27;Update User data&#x27; })
-  @ApiResponse({ status: 200, type: User })
-  @ApiNotFoundResponse({ description: &#x27;User NotFound&#x27; })
+  @ApiOkResponse({ description: &#x27;Success&#x27;, type: User })
+  @ApiBadRequestResponse({ description: &#x27;Bad Request&#x27; })
+  @ApiNotFoundResponse({ description: &#x27;Not Found&#x27; })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
   @ApiBody({ type: UpdateUserDataDto })
+  @ApiCookieAuth()
   @UseGuards(JwtAuthGuard)
   @Patch(&#x27;/update&#x27;)
-  updateData(@Request() req, @Body() userDto: UpdateUserDataDto) {
+  updateData(@Request() req: any, @Body() userDto: UpdateUserDataDto) {
     return this.usersService.updateUserData(req.user._id, userDto);
   }
 
   @ApiOperation({ summary: &#x27;Change User password&#x27; })
-  @ApiResponse({ status: 200, type: User })
-  @ApiNotFoundResponse({ description: &#x27;User NotFound&#x27; })
-  @ApiBadRequestResponse({ description: &#x27;Password mismatch&#x27; })
+  @ApiOkResponse({ description: &#x27;Success&#x27;, type: User })
+  @ApiNotFoundResponse({ description: &#x27;Not Found&#x27; })
+  @ApiBadRequestResponse({ description: &#x27;Bad Request&#x27; })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
   @ApiBody({ type: ChangeUserPasswordDto })
+  @ApiCookieAuth()
   @UseGuards(JwtAuthGuard)
   @Patch(&#x27;/changepassword&#x27;)
-  changePassword(@Request() req, @Body() userDto: ChangeUserPasswordDto) {
+  changePassword(@Request() req: any, @Body() userDto: ChangeUserPasswordDto) {
     return this.usersService.changeUserPassword(req.user._id, userDto);
   }
 
   @ApiOperation({ summary: &#x27;Delete User&#x27; })
-  @ApiResponse({ status: 200, type: User })
-  @ApiNotFoundResponse({ description: &#x27;User NotFound&#x27; })
+  @ApiOkResponse({ description: &#x27;Success&#x27;, type: User })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @ApiCookieAuth()
   @UseGuards(JwtAuthGuard)
   @Delete(&#x27;&#x27;)
-  delete(@Request() req) {
+  delete(@Request() req: any) {
     return this.usersService.deleteUser(req.user._id);
   }
 }

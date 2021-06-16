@@ -211,11 +211,11 @@ import { PassportModule } from &#x27;@nestjs/passport&#x27;;
 import { JwtModule } from &#x27;@nestjs/jwt&#x27;;
 import { ConfigModule, ConfigService } from &#x27;@nestjs/config&#x27;;
 
-import { LocalStrategy } from &#x27;./strategies/local.strategy&#x27;;
-import { JwtStrategy } from &#x27;./strategies/jwt.strategy&#x27;;
-import { UsersModule } from &#x27;../users/users.module&#x27;;
 import { AuthService } from &#x27;./auth.service&#x27;;
 import { AuthController } from &#x27;./auth.controller&#x27;;
+import { UsersModule } from &#x27;../users/users.module&#x27;;
+import { LocalStrategy } from &#x27;./strategies/local.strategy&#x27;;
+import { JwtStrategy } from &#x27;./strategies/jwt.strategy&#x27;;
 
 @Module({
   imports: [

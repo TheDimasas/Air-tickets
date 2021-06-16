@@ -201,8 +201,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="89"
-                            class="link-to-prism">src/users/users.service.ts:89</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="83"
+                            class="link-to-prism">src/users/users.service.ts:83</a></div>
                 </td>
             </tr>
 
@@ -359,8 +359,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="131"
-                            class="link-to-prism">src/users/users.service.ts:131</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="125"
+                            class="link-to-prism">src/users/users.service.ts:125</a></div>
                 </td>
             </tr>
 
@@ -474,8 +474,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="145"
-                            class="link-to-prism">src/users/users.service.ts:145</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="139"
+                            class="link-to-prism">src/users/users.service.ts:139</a></div>
                 </td>
             </tr>
 
@@ -740,7 +740,6 @@ export class UsersService {
     userDto: UpdateUserDataDto,
   ): Promise&lt;User&gt; {
     let user &#x3D; await this.userModel.findById(userId).exec();
-
     if (!user) {
       throw new HttpException(
         &#x27;User with this id not found&#x27;,
@@ -751,26 +750,21 @@ export class UsersService {
     if (userDto.email) {
       user.email &#x3D; userDto.email;
     }
-
     if (userDto.firstName) {
       user.firstName &#x3D; userDto.firstName;
     }
-
     if (userDto.lastName) {
       user.lastName &#x3D; userDto.lastName;
     }
-
     if (userDto.phoneNumber) {
       user.phoneNumber &#x3D; userDto.phoneNumber;
     }
-
     await user.save();
 
     user &#x3D; await this.userModel
       .findById(userId)
       .select({ password: false, __v: false })
       .exec();
-
     return user;
   }
 

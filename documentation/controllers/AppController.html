@@ -113,7 +113,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getProfile(req)</code>
+                    <code>getProfile(req: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                 </td>
             </tr>
 
@@ -121,14 +121,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Profile&#x27;})<br />@UseGuards(JwtAuthGuard)<br />@Get(&#x27;profile&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get Profile&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: User})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiCookieAuth()<br />@UseGuards(JwtAuthGuard)<br />@Get(&#x27;profile&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="15"
-                            class="link-to-prism">src/app.controller.ts:15</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/app.controller.ts:27</a></div>
                 </td>
             </tr>
 
@@ -142,12 +142,16 @@
                             <thead>
                                 <tr>
                                     <td>Name</td>
+                                    <td>Type</td>
                                     <td>Optional</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>req</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
 
                                     <td>
                                         No
@@ -176,9 +180,17 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Controller, Get, Request, UseGuards } from &#x27;@nestjs/common&#x27;;
-import { ApiOperation, ApiTags } from &#x27;@nestjs/swagger&#x27;;
+import {
+  ApiCookieAuth,
+  ApiForbiddenResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from &#x27;@nestjs/swagger&#x27;;
 
 import { AuthService } from &#x27;./auth/auth.service&#x27;;
+import { User } from &#x27;./users/entities/users.entity&#x27;;
 import { JwtAuthGuard } from &#x27;./auth/guards/jwt-auth.guard&#x27;;
 
 @ApiTags(&#x27;App&#x27;)
@@ -186,10 +198,14 @@ import { JwtAuthGuard } from &#x27;./auth/guards/jwt-auth.guard&#x27;;
 export class AppController {
   constructor(private authService: AuthService) {}
 
-  @ApiOperation({ summary: &#x27;Profile&#x27; })
+  @ApiOperation({ summary: &#x27;Get Profile&#x27; })
+  @ApiOkResponse({ description: &#x27;Success&#x27;, type: User })
+  @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
+  @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @ApiCookieAuth()
   @UseGuards(JwtAuthGuard)
   @Get(&#x27;profile&#x27;)
-  async getProfile(@Request() req) {
+  async getProfile(@Request() req: any) {
     return this.authService.getProfile(req.user._id);
   }
 }

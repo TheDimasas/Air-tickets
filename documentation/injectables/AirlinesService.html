@@ -196,7 +196,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createAirline(airlineDto: <a href="../classes/CreateAirlineDto.html">CreateAirlineDto</a>, logo)</code>
+                    <code>createAirline(airlineDto: <a href="../classes/CreateAirlineDto.html">CreateAirlineDto</a>, logo: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                 </td>
             </tr>
 
@@ -238,6 +238,7 @@
                                 <tr>
                                     <td>logo</td>
                                     <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                     </td>
 
                                     <td>
@@ -546,9 +547,9 @@ import { InjectModel } from &#x27;@nestjs/mongoose&#x27;;
 import { Model, ObjectId } from &#x27;mongoose&#x27;;
 
 import { FilesService, Folder } from &#x27;../files/files.service&#x27;;
+import { Airline, AirlineDocument } from &#x27;./entities/airlines.entity&#x27;;
 import { CreateAirlineDto } from &#x27;./dto/create-airline.dto&#x27;;
 import { UpdateAirlineDto } from &#x27;./dto/update-airline.dto&#x27;;
-import { Airline, AirlineDocument } from &#x27;./entities/airlines.entity&#x27;;
 
 @Injectable()
 export class AirlinesService {
@@ -559,7 +560,7 @@ export class AirlinesService {
 
   public async createAirline(
     airlineDto: CreateAirlineDto,
-    logo,
+    logo: any,
   ): Promise&lt;Airline&gt; {
     let airline &#x3D; await this.airlineModel
       .findOne({

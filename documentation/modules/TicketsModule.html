@@ -249,6 +249,9 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Module } from &#x27;@nestjs/common&#x27;;
 import { MongooseModule } from &#x27;@nestjs/mongoose&#x27;;
 
+import { TicketsService } from &#x27;./tickets.service&#x27;;
+import { TicketsController } from &#x27;./tickets.controller&#x27;;
+import { AirplanesModule } from &#x27;src/airplanes/airplanes.module&#x27;;
 import { AirportsModule } from &#x27;src/airports/airports.module&#x27;;
 import { FlightsModule } from &#x27;src/flights/flights.module&#x27;;
 import { UsersModule } from &#x27;src/users/users.module&#x27;;
@@ -259,9 +262,6 @@ import {
   Airplane,
   AirplaneSchema,
 } from &#x27;src/airplanes/entities/airplane.entity&#x27;;
-import { TicketsController } from &#x27;./tickets.controller&#x27;;
-import { TicketsService } from &#x27;./tickets.service&#x27;;
-import { AirplanesModule } from &#x27;src/airplanes/airplanes.module&#x27;;
 
 @Module({
   imports: [
@@ -271,8 +271,8 @@ import { AirplanesModule } from &#x27;src/airplanes/airplanes.module&#x27;;
       { name: Airplane.name, schema: AirplaneSchema },
       { name: User.name, schema: UserSchema },
     ]),
-    AirportsModule,
     UsersModule,
+    AirportsModule,
     FlightsModule,
     AirplanesModule,
   ],

@@ -150,7 +150,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../classes/Airline.html" target="_self" >Airline | mongoose.Types.ObjectId</a></code>
+                            <i>Type : </i>        <code><a href="../classes/Airline.html" target="_self" >Airline</a></code>
 
                         </td>
                     </tr>
@@ -186,7 +186,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../classes/Airplane.html" target="_self" >Airplane | mongoose.Types.ObjectId</a></code>
+                            <i>Type : </i>        <code><a href="../classes/Airplane.html" target="_self" >Airplane</a></code>
 
                         </td>
                     </tr>
@@ -222,7 +222,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../classes/Airport.html" target="_self" >Airport | mongoose.Types.ObjectId</a></code>
+                            <i>Type : </i>        <code><a href="../classes/Airport.html" target="_self" >Airport</a></code>
 
                         </td>
                     </tr>
@@ -366,7 +366,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../classes/Airport.html" target="_self" >Airport | mongoose.Types.ObjectId</a></code>
+                            <i>Type : </i>        <code><a href="../classes/Airport.html" target="_self" >Airport</a></code>
 
                         </td>
                     </tr>
@@ -448,7 +448,7 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @ApiProperty({example: &#x27;0.7&#x27;, description: &#x27;Ticket exchange&#x27;})<br />@Prop({})<br />
+                                @ApiPropertyOptional({example: &#x27;0.7&#x27;, description: &#x27;Ticket exchange&#x27;})<br />@Prop({})<br />
                             </code>
                         </td>
                     </tr>
@@ -521,7 +521,7 @@
                             <b>Decorators : </b>
                             <br />
                             <code>
-                                @ApiProperty({example: &#x27;0.5&#x27;, description: &#x27;Ticket return&#x27;})<br />@Prop({})<br />
+                                @ApiPropertyOptional({example: &#x27;0.5&#x27;, description: &#x27;Ticket return&#x27;})<br />@Prop({})<br />
                             </code>
                         </td>
                     </tr>
@@ -583,7 +583,7 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Prop, Schema, SchemaFactory } from &#x27;@nestjs/mongoose&#x27;;
-import { ApiProperty } from &#x27;@nestjs/swagger&#x27;;
+import { ApiProperty, ApiPropertyOptional } from &#x27;@nestjs/swagger&#x27;;
 import { Document } from &#x27;mongoose&#x27;;
 import * as mongoose from &#x27;mongoose&#x27;;
 
@@ -608,7 +608,7 @@ export class Flight {
     type: mongoose.Schema.Types.ObjectId,
     ref: &#x27;Airline&#x27;,
   })
-  airline: Airline | mongoose.Types.ObjectId;
+  airline: Airline;
 
   @ApiProperty({
     example: &#x27;Aerospatiale/Alenia ATR 72&#x27;,
@@ -619,7 +619,7 @@ export class Flight {
     type: mongoose.Schema.Types.ObjectId,
     ref: &#x27;Airplane&#x27;,
   })
-  airplane: Airplane | mongoose.Types.ObjectId;
+  airplane: Airplane;
 
   @ApiProperty({
     example: &#x27;Zhulyani/Жуляни/IEV&#x27;,
@@ -631,7 +631,7 @@ export class Flight {
     type: mongoose.Schema.Types.ObjectId,
     ref: &#x27;Airport&#x27;,
   })
-  departureAirport: Airport | mongoose.Types.ObjectId;
+  departureAirport: Airport;
 
   @ApiProperty({
     example: &#x27;2021-05-16T15:35:00.000Z&#x27;,
@@ -650,7 +650,7 @@ export class Flight {
     type: mongoose.Schema.Types.ObjectId,
     ref: &#x27;Airport&#x27;,
   })
-  arrivalAirport: Airport | mongoose.Types.ObjectId;
+  arrivalAirport: Airport;
 
   @ApiProperty({
     example: &#x27;2021-05-21T09:15:00.000Z&#x27;,
@@ -674,11 +674,11 @@ export class Flight {
   @Prop({ required: true })
   carryOnBaggage: boolean;
 
-  @ApiProperty({ example: &#x27;0.7&#x27;, description: &#x27;Ticket exchange&#x27; })
+  @ApiPropertyOptional({ example: &#x27;0.7&#x27;, description: &#x27;Ticket exchange&#x27; })
   @Prop({})
   exchange?: number | null;
 
-  @ApiProperty({ example: &#x27;0.5&#x27;, description: &#x27;Ticket return&#x27; })
+  @ApiPropertyOptional({ example: &#x27;0.5&#x27;, description: &#x27;Ticket return&#x27; })
   @Prop({})
   refund?: number | null;
 }
