@@ -18,6 +18,7 @@ import {
   ApiOperation,
   ApiParam,
   ApiTags,
+  ApiTooManyRequestsResponse,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { ObjectId } from 'mongoose';
@@ -38,6 +39,7 @@ export class UsersController {
   @ApiOkResponse({ description: 'Success', type: [User] })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiCookieAuth()
   @Roles('admin')
   @Get()
@@ -51,6 +53,7 @@ export class UsersController {
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiParam({ name: 'id', type: 'string' })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiCookieAuth()
   @Roles('admin')
   @Get(':id')
@@ -64,6 +67,7 @@ export class UsersController {
   @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiBody({ type: UpdateUserDataDto })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiCookieAuth()
   @UseGuards(JwtAuthGuard)
   @Patch('/update')
@@ -77,6 +81,7 @@ export class UsersController {
   @ApiBadRequestResponse({ description: 'Bad Request' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiBody({ type: ChangeUserPasswordDto })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiCookieAuth()
   @UseGuards(JwtAuthGuard)
   @Patch('/changepassword')
@@ -87,6 +92,7 @@ export class UsersController {
   @ApiOperation({ summary: 'Delete User' })
   @ApiOkResponse({ description: 'Success', type: User })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiCookieAuth()
   @UseGuards(JwtAuthGuard)
   @Delete('')

@@ -8,6 +8,7 @@ import {
   ApiOkResponse,
   ApiOperation,
   ApiTags,
+  ApiTooManyRequestsResponse,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { ObjectId } from 'mongoose';
@@ -30,6 +31,7 @@ export class SeatsController {
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiBody({ type: UpdateSeatDto })
   @UseGuards(JwtAuthGuard)
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiCookieAuth()
   @Patch(':id/update')
   update(@Param('id') id: ObjectId, @Body() seatDto: UpdateSeatDto) {

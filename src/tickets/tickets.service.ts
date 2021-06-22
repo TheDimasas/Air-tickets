@@ -138,7 +138,7 @@ export class TicketsService {
     userId: ObjectId,
     ticketId: ObjectId,
   ): Promise<Ticket> {
-    let ticket = await this.ticketModel.findById(ticketId).exec();
+    const ticket = await this.ticketModel.findById(ticketId).exec();
     const flight = await this.flightModel.findById(ticket.flight).exec();
     if (!flight) {
       throw new HttpException(
@@ -147,7 +147,6 @@ export class TicketsService {
       );
     }
 
-    ticket = await this.ticketModel.findByIdAndDelete(ticketId).exec();
     const airplane = await this.airplaneModel
       .findById(flight.airplane)
       .populate({ path: 'sections', select: '-__v' })

@@ -18,6 +18,7 @@ import {
   ApiOperation,
   ApiParam,
   ApiTags,
+  ApiTooManyRequestsResponse,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { ObjectId } from 'mongoose';
@@ -40,6 +41,7 @@ export class FlightsController {
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiBody({ type: CreateFlightDto })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiCookieAuth()
   @Roles('admin')
   @Post()
@@ -51,6 +53,7 @@ export class FlightsController {
   @ApiCreatedResponse({ description: 'Created', type: [Flight] })
   @ApiBadRequestResponse({ description: 'Bad Request' })
   @ApiBody({ type: SearchFlightDto })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @Post('search')
   search(@Body() flightDto: SearchFlightDto) {
     return this.flightsService.searchFlights(flightDto);
@@ -58,6 +61,7 @@ export class FlightsController {
 
   @ApiOperation({ summary: 'Get data all Flights' })
   @ApiOkResponse({ description: 'Success', type: [Flight] })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @Get()
   findAll() {
     return this.flightsService.getAllFlights();
@@ -67,6 +71,7 @@ export class FlightsController {
   @ApiOkResponse({ description: 'Success', type: Flight })
   @ApiParam({ name: 'id', type: 'string' })
   @ApiNotFoundResponse({ description: 'Not Found' })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @Get(':id')
   findOne(@Param('id') id: ObjectId) {
     return this.flightsService.getFlightById(id);
@@ -80,6 +85,7 @@ export class FlightsController {
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiBody({ type: UpdateFlightDto })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiCookieAuth()
   @Roles('admin')
   @Patch(':id')
@@ -93,6 +99,7 @@ export class FlightsController {
   @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiCookieAuth()
   @Roles('admin')
   @Delete(':id')

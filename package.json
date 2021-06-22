@@ -1,6 +1,16 @@
 {
   "name": "air-tickets-api",
   "version": "1.0.0",
+  "bin": "dist/main.js",
+  "pkg": {
+    "assets": [
+      "node_modules/**/*",
+      "src/**/*"
+    ],
+    "targets": [
+      "node14-win-x64"
+    ]
+  },
   "description": "",
   "author": "Dmytro Yefremov",
   "private": true,
@@ -70,6 +80,7 @@
     "@types/csurf": "^1.11.1",
     "@types/express": "^4.17.11",
     "@types/jest": "^26.0.23",
+    "@types/lodash": "^4.14.170",
     "@types/mongoose": "^5.10.5",
     "@types/node": "^14.14.45",
     "@types/passport-jwt": "^3.0.5",

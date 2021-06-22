@@ -5,6 +5,7 @@ import {
   ApiOkResponse,
   ApiOperation,
   ApiTags,
+  ApiTooManyRequestsResponse,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 
@@ -21,6 +22,7 @@ export class AppController {
   @ApiOkResponse({ description: 'Success', type: User })
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiCookieAuth()
   @UseGuards(JwtAuthGuard)
   @Get('profile')

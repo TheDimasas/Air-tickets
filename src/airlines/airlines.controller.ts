@@ -13,6 +13,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import {
   ApiBadRequestResponse,
   ApiBody,
+  ApiConsumes,
   ApiCookieAuth,
   ApiCreatedResponse,
   ApiForbiddenResponse,
@@ -21,6 +22,7 @@ import {
   ApiOperation,
   ApiParam,
   ApiTags,
+  ApiTooManyRequestsResponse,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { ObjectId } from 'mongoose';
@@ -41,10 +43,12 @@ export class AirlinesController {
   @ApiBadRequestResponse({ description: 'Bad Request' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiBody({ type: CreateAirlineDto })
   @ApiCookieAuth()
   @Roles('admin')
   @UseInterceptors(FileInterceptor('logo'))
+  @ApiConsumes('multipart/form-data')
   @Post()
   create(
     @Body() airlineDto: CreateAirlineDto,
@@ -55,6 +59,7 @@ export class AirlinesController {
 
   @ApiOperation({ summary: 'Get data all Airlines' })
   @ApiOkResponse({ description: 'Success', type: [Airline] })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @Get()
   findAll() {
     return this.airlinesService.getAllAirlines();
@@ -63,6 +68,7 @@ export class AirlinesController {
   @ApiOperation({ summary: 'Get Airline data' })
   @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiOkResponse({ description: 'Success', type: Airline })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiParam({ name: 'id', type: 'string' })
   @Get(':id')
   findOne(@Param('id') id: ObjectId) {
@@ -76,12 +82,19 @@ export class AirlinesController {
   @ApiBadRequestResponse({ description: 'Bad Request' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiBody({ type: UpdateAirlineDto })
   @ApiCookieAuth()
   @Roles('admin')
+  @UseInterceptors(FileInterceptor('logo'))
+  @ApiConsumes('multipart/form-data')
   @Patch(':id')
-  update(@Param('id') id: ObjectId, @Body() airlineDto: UpdateAirlineDto) {
-    return this.airlinesService.updateAirlineData(id, airlineDto);
+  update(
+    @Param('id') id: ObjectId,
+    @Body() airlineDto: UpdateAirlineDto,
+    @UploadedFile() logo: Express.Multer.File,
+  ) {
+    return this.airlinesService.updateAirlineData(id, airlineDto, logo);
   }
 
   @ApiOperation({ summary: 'Delete Airline' })
@@ -90,6 +103,7 @@ export class AirlinesController {
   @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiCookieAuth()
   @Roles('admin')
   @Delete(':id')

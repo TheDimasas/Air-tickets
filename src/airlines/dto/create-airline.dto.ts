@@ -58,4 +58,15 @@ export class CreateAirlineDto {
     description: 'Russian description of the airline',
   })
   readonly descriptionRu?: string;
+
+  @ApiProperty({
+    type: 'file',
+    properties: {
+      logo: {
+        type: 'string',
+        format: 'binary',
+      },
+    },
+  })
+  readonly logo: any;
 }

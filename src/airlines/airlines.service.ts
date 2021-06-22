@@ -72,6 +72,7 @@ export class AirlinesService {
   public async updateAirlineData(
     airlineId: ObjectId,
     airlineDto: UpdateAirlineDto,
+    logo: any,
   ): Promise<Airline> {
     let airline = await this.airlineModel.findById(airlineId).exec();
     if (!airline) {
@@ -87,9 +88,6 @@ export class AirlinesService {
     if (airlineDto.airlineNameRu) {
       airline.airlineNameRu = airlineDto.airlineNameRu;
     }
-    if (airlineDto.airlineNameUa) {
-      airline.airlineNameUa = airlineDto.airlineNameUa;
-    }
     if (airlineDto.descriptionEng) {
       airline.descriptionEng = airlineDto.descriptionEng;
     }
@@ -99,13 +97,25 @@ export class AirlinesService {
     if (airlineDto.descriptionUa) {
       airline.descriptionUa = airlineDto.descriptionUa;
     }
-    await airline.save();
 
-    airline = await this.airlineModel
-      .findById(airlineId)
-      .select({ __v: false })
-      .exec();
-    return airline;
+    try {
+      if (logo) {
+        await this.filesService.deleteFile(airline.logo);
+        const fileName = await this.filesService.createFile(
+          Folder.Airline,
+          logo,
+        );
+        airline.logo = fileName;
+      }
+      await airline.save();
+      airline = await this.airlineModel
+        .findOne({ airlineNameUa: airlineDto.airlineNameUa })
+        .select({ __v: false })
+        .exec();
+      return airline;
+    } catch (err) {
+      throw new HttpException(err, HttpStatus.BAD_REQUEST);
+    }
   }
 
   public async deleteAirline(airlineId: ObjectId): Promise<Airline> {
@@ -113,6 +123,7 @@ export class AirlinesService {
       .findByIdAndDelete(airlineId)
       .select({ __v: false })
       .exec();
+    await this.filesService.deleteFile(airline.logo);
     if (!airline) {
       throw new HttpException(
         'Airline with this id not found',

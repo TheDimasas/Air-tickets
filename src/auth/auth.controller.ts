@@ -14,6 +14,7 @@ import {
   ApiForbiddenResponse,
   ApiOperation,
   ApiTags,
+  ApiTooManyRequestsResponse,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { Response } from 'express';
@@ -34,6 +35,7 @@ export class AuthController {
   @ApiBadRequestResponse({ description: 'Bad Request' })
   @ApiCreatedResponse({ description: 'Created', type: [User] })
   @ApiBody({ type: LoginUserDto })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @UseGuards(LocalAuthGuard)
   @Post('signin')
   async signIn(@Request() req: any, @Res({ passthrough: true }) res: Response) {
@@ -49,6 +51,7 @@ export class AuthController {
   @ApiOperation({ summary: 'Sign Up' })
   @ApiBadRequestResponse({ description: 'Bad Request' })
   @ApiCreatedResponse({ description: 'Created', type: [User] })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiBody({ type: CreateUserDto })
   @Post('signup')
   async signUp(@Body() userDto: CreateUserDto) {
@@ -58,6 +61,7 @@ export class AuthController {
   @ApiOperation({ summary: 'Log Out' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiCreatedResponse({ description: 'Created' })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @UseGuards(JwtAuthGuard)
   @ApiCookieAuth()
   @Post('logout')

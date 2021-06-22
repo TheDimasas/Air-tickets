@@ -18,6 +18,7 @@ import {
   ApiOperation,
   ApiParam,
   ApiTags,
+  ApiTooManyRequestsResponse,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { ObjectId } from 'mongoose';
@@ -38,6 +39,7 @@ export class AirplanesController {
   @ApiBadRequestResponse({ description: 'BadRequest' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiBody({ type: CreateAirplaneDto })
   @ApiCookieAuth()
   @Roles('admin')
@@ -48,6 +50,7 @@ export class AirplanesController {
 
   @ApiOperation({ summary: 'Get data all Airplanes' })
   @ApiOkResponse({ description: 'Success', type: [Airplane] })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @Get()
   findAll() {
     return this.airplanesService.getAllAirplanes();
@@ -57,6 +60,7 @@ export class AirplanesController {
   @ApiOkResponse({ description: 'Success', type: Airplane })
   @ApiParam({ name: 'id', type: 'string' })
   @ApiNotFoundResponse({ description: 'Not Found' })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @Get(':id')
   findOne(@Param('id') id: ObjectId) {
     return this.airplanesService.getAirplaneById(id);
@@ -69,6 +73,7 @@ export class AirplanesController {
   @ApiBadRequestResponse({ description: 'Bad Request' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiBody({ type: UpdateAirplaneDto })
   @ApiCookieAuth()
   @Roles('admin')
@@ -83,6 +88,7 @@ export class AirplanesController {
   @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiCookieAuth()
   @Roles('admin')
   @Delete(':id')

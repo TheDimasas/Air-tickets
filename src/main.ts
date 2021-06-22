@@ -31,7 +31,7 @@ async function bootstrap() {
     credentials: true,
   });
   app.setGlobalPrefix('api/v1');
-  app.useStaticAssets(join(__dirname, 'static'));
+  app.useStaticAssets(join(__dirname, 'files/static'));
   app.use(compression());
   app.use(cookieParser());
   app.useGlobalPipes(

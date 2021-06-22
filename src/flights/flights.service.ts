@@ -229,6 +229,7 @@ export class FlightsService {
         populate: {
           path: 'sections',
           select: '-__v',
+          match: { class: { $in: flightDto.class } },
           populate: { path: 'seats', select: '-__v' },
         },
       })

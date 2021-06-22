@@ -20,6 +20,7 @@ import {
   ApiOperation,
   ApiParam,
   ApiTags,
+  ApiTooManyRequestsResponse,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { ObjectId } from 'mongoose';
@@ -36,12 +37,13 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 export class TicketsController {
   constructor(private readonly ticketsService: TicketsService) {}
 
-  @ApiOperation({ summary: 'Create a Ticket' })
+  @ApiOperation({ summary: 'Reserve a Ticket' })
   @ApiCreatedResponse({ description: 'Created', type: Ticket })
   @ApiBody({ type: CreateTicketDto })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiBadRequestResponse({ description: 'Bad Request' })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiCookieAuth()
   @UseGuards(JwtAuthGuard)
   @Post('reserve')
@@ -53,6 +55,7 @@ export class TicketsController {
   @ApiOkResponse({ description: 'Success', type: [Ticket] })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiCookieAuth()
   @Roles('admin')
   @Get()
@@ -66,6 +69,7 @@ export class TicketsController {
   @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiCookieAuth()
   @UseGuards(JwtAuthGuard)
   @Get(':id')
@@ -81,6 +85,7 @@ export class TicketsController {
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiBody({ type: UpdateTicketDto })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiCookieAuth()
   @UseGuards(JwtAuthGuard)
   @Patch(':id')
@@ -98,6 +103,7 @@ export class TicketsController {
   @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiForbiddenResponse({ description: 'Forbidden' })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiCookieAuth()
   @UseGuards(JwtAuthGuard)
   @Delete(':id')

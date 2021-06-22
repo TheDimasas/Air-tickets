@@ -19,6 +19,7 @@ import {
   ApiParam,
   ApiResponse,
   ApiTags,
+  ApiTooManyRequestsResponse,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 import { ObjectId } from 'mongoose';
@@ -40,6 +41,7 @@ export class SectionsController {
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiBody({ type: CreateSectionDto })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiCookieAuth()
   @Roles('admin')
   @Post()
@@ -49,6 +51,7 @@ export class SectionsController {
 
   @ApiOperation({ summary: 'Get data all Sections' })
   @ApiOkResponse({ description: 'Success', type: [Section] })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @Get()
   findAll() {
     return this.sectionsService.getAllSections();
@@ -58,6 +61,7 @@ export class SectionsController {
   @ApiOkResponse({ description: 'Success', type: Section })
   @ApiNotFoundResponse({ description: 'Not Found' })
   @ApiParam({ name: 'id', type: 'string' })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @Get(':id')
   findOne(@Param('id') id: ObjectId) {
     return this.sectionsService.getSectionById(id);
@@ -71,6 +75,7 @@ export class SectionsController {
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiParam({ name: 'id', type: 'string' })
   @ApiBody({ type: UpdateSectionDto })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiCookieAuth()
   @Roles('admin')
   @Patch(':id')
@@ -84,6 +89,7 @@ export class SectionsController {
   @ApiUnauthorizedResponse({ description: 'Unauthorized' })
   @ApiForbiddenResponse({ description: 'Forbidden' })
   @ApiParam({ name: 'id', type: 'string' })
+  @ApiTooManyRequestsResponse({ description: 'Too Many Requests' })
   @ApiCookieAuth()
   @Roles('admin')
   @Delete(':id')
