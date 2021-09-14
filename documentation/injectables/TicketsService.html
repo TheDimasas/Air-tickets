@@ -730,7 +730,7 @@ export class TicketsService {
     userId: ObjectId,
     ticketId: ObjectId,
   ): Promise&lt;Ticket&gt; {
-    let ticket &#x3D; await this.ticketModel.findById(ticketId).exec();
+    const ticket &#x3D; await this.ticketModel.findById(ticketId).exec();
     const flight &#x3D; await this.flightModel.findById(ticket.flight).exec();
     if (!flight) {
       throw new HttpException(
@@ -739,7 +739,6 @@ export class TicketsService {
       );
     }
 
-    ticket &#x3D; await this.ticketModel.findByIdAndDelete(ticketId).exec();
     const airplane &#x3D; await this.airplaneModel
       .findById(flight.airplane)
       .populate({ path: &#x27;sections&#x27;, select: &#x27;-__v&#x27; })

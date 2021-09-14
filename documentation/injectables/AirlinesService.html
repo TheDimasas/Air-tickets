@@ -288,8 +288,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="111"
-                            class="link-to-prism">src/airlines/airlines.service.ts:111</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="121"
+                            class="link-to-prism">src/airlines/airlines.service.ts:121</a></div>
                 </td>
             </tr>
 
@@ -469,7 +469,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>updateAirlineData(airlineId: ObjectId, airlineDto: <a href="../classes/UpdateAirlineDto.html">UpdateAirlineDto</a>)</code>
+                    <code>updateAirlineData(airlineId: ObjectId, airlineDto: <a href="../classes/UpdateAirlineDto.html">UpdateAirlineDto</a>, logo: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                 </td>
             </tr>
 
@@ -512,6 +512,18 @@
                                     <td>airlineDto</td>
                                     <td>
                                                 <code><a href="../classes/UpdateAirlineDto.html" target="_self" >UpdateAirlineDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>logo</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                     </td>
 
                                     <td>
@@ -616,6 +628,7 @@ export class AirlinesService {
   public async updateAirlineData(
     airlineId: ObjectId,
     airlineDto: UpdateAirlineDto,
+    logo: any,
   ): Promise&lt;Airline&gt; {
     let airline &#x3D; await this.airlineModel.findById(airlineId).exec();
     if (!airline) {
@@ -631,9 +644,6 @@ export class AirlinesService {
     if (airlineDto.airlineNameRu) {
       airline.airlineNameRu &#x3D; airlineDto.airlineNameRu;
     }
-    if (airlineDto.airlineNameUa) {
-      airline.airlineNameUa &#x3D; airlineDto.airlineNameUa;
-    }
     if (airlineDto.descriptionEng) {
       airline.descriptionEng &#x3D; airlineDto.descriptionEng;
     }
@@ -643,13 +653,25 @@ export class AirlinesService {
     if (airlineDto.descriptionUa) {
       airline.descriptionUa &#x3D; airlineDto.descriptionUa;
     }
-    await airline.save();
 
-    airline &#x3D; await this.airlineModel
-      .findById(airlineId)
-      .select({ __v: false })
-      .exec();
-    return airline;
+    try {
+      if (logo) {
+        await this.filesService.deleteFile(airline.logo);
+        const fileName &#x3D; await this.filesService.createFile(
+          Folder.Airline,
+          logo,
+        );
+        airline.logo &#x3D; fileName;
+      }
+      await airline.save();
+      airline &#x3D; await this.airlineModel
+        .findOne({ airlineNameUa: airlineDto.airlineNameUa })
+        .select({ __v: false })
+        .exec();
+      return airline;
+    } catch (err) {
+      throw new HttpException(err, HttpStatus.BAD_REQUEST);
+    }
   }
 
   public async deleteAirline(airlineId: ObjectId): Promise&lt;Airline&gt; {
@@ -657,6 +679,7 @@ export class AirlinesService {
       .findByIdAndDelete(airlineId)
       .select({ __v: false })
       .exec();
+    await this.filesService.deleteFile(airline.logo);
     if (!airline) {
       throw new HttpException(
         &#x27;Airline with this id not found&#x27;,

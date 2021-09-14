@@ -124,14 +124,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Update Seat data&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Seat})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiBody({type: UpdateSeatDto})<br />@UseGuards(JwtAuthGuard)<br />@ApiCookieAuth()<br />@Patch(&#x27;:id/update&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Update Seat data&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Seat})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiBody({type: UpdateSeatDto})<br />@UseGuards(JwtAuthGuard)<br />@ApiTooManyRequestsResponse({description: &#x27;Too Many Requests&#x27;})<br />@ApiCookieAuth()<br />@Patch(&#x27;:id/update&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="35"
-                            class="link-to-prism">src/seats/seats.controller.ts:35</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="37"
+                            class="link-to-prism">src/seats/seats.controller.ts:37</a></div>
                 </td>
             </tr>
 
@@ -204,6 +204,7 @@ import {
   ApiOkResponse,
   ApiOperation,
   ApiTags,
+  ApiTooManyRequestsResponse,
   ApiUnauthorizedResponse,
 } from &#x27;@nestjs/swagger&#x27;;
 import { ObjectId } from &#x27;mongoose&#x27;;
@@ -226,6 +227,7 @@ export class SeatsController {
   @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
   @ApiBody({ type: UpdateSeatDto })
   @UseGuards(JwtAuthGuard)
+  @ApiTooManyRequestsResponse({ description: &#x27;Too Many Requests&#x27; })
   @ApiCookieAuth()
   @Patch(&#x27;:id/update&#x27;)
   update(@Param(&#x27;id&#x27;) id: ObjectId, @Body() seatDto: UpdateSeatDto) {

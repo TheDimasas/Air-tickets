@@ -107,6 +107,10 @@
                                     <span class="modifier">Readonly</span>
                                 <a href="#descriptionUa">descriptionUa</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#logo">logo</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -352,6 +356,43 @@
 
             </tbody>
         </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="logo"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Readonly</span>
+                            logo</b>
+                            <a href="#logo"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ApiProperty({type: &#x27;file&#x27;, properties: undefined})<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/airlines/dto/create-airline.dto.ts:71</a></div>
+                            </td>
+                        </tr>
+
+
+            </tbody>
+        </table>
 </section>
 
 
@@ -424,6 +465,17 @@ export class CreateAirlineDto {
     description: &#x27;Russian description of the airline&#x27;,
   })
   readonly descriptionRu?: string;
+
+  @ApiProperty({
+    type: &#x27;file&#x27;,
+    properties: {
+      logo: {
+        type: &#x27;string&#x27;,
+        format: &#x27;binary&#x27;,
+      },
+    },
+  })
+  readonly logo: any;
 }
 </code></pre>
     </div>

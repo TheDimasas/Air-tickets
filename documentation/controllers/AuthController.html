@@ -135,14 +135,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Log Out&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiCreatedResponse({description: &#x27;Created&#x27;})<br />@UseGuards(JwtAuthGuard)<br />@ApiCookieAuth()<br />@Post(&#x27;logout&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Log Out&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiCreatedResponse({description: &#x27;Created&#x27;})<br />@ApiTooManyRequestsResponse({description: &#x27;Too Many Requests&#x27;})<br />@UseGuards(JwtAuthGuard)<br />@ApiCookieAuth()<br />@Post(&#x27;logout&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="64"
-                            class="link-to-prism">src/auth/auth.controller.ts:64</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="68"
+                            class="link-to-prism">src/auth/auth.controller.ts:68</a></div>
                 </td>
             </tr>
 
@@ -214,14 +214,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Sign In&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiCreatedResponse({description: &#x27;Created&#x27;, type: undefined})<br />@ApiBody({type: LoginUserDto})<br />@UseGuards(LocalAuthGuard)<br />@Post(&#x27;signin&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Sign In&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiCreatedResponse({description: &#x27;Created&#x27;, type: undefined})<br />@ApiBody({type: LoginUserDto})<br />@ApiTooManyRequestsResponse({description: &#x27;Too Many Requests&#x27;})<br />@UseGuards(LocalAuthGuard)<br />@Post(&#x27;signin&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="39"
-                            class="link-to-prism">src/auth/auth.controller.ts:39</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="41"
+                            class="link-to-prism">src/auth/auth.controller.ts:41</a></div>
                 </td>
             </tr>
 
@@ -305,14 +305,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Sign Up&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiCreatedResponse({description: &#x27;Created&#x27;, type: undefined})<br />@ApiBody({type: CreateUserDto})<br />@Post(&#x27;signup&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Sign Up&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiCreatedResponse({description: &#x27;Created&#x27;, type: undefined})<br />@ApiTooManyRequestsResponse({description: &#x27;Too Many Requests&#x27;})<br />@ApiBody({type: CreateUserDto})<br />@Post(&#x27;signup&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="54"
-                            class="link-to-prism">src/auth/auth.controller.ts:54</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="57"
+                            class="link-to-prism">src/auth/auth.controller.ts:57</a></div>
                 </td>
             </tr>
 
@@ -379,6 +379,7 @@ import {
   ApiForbiddenResponse,
   ApiOperation,
   ApiTags,
+  ApiTooManyRequestsResponse,
   ApiUnauthorizedResponse,
 } from &#x27;@nestjs/swagger&#x27;;
 import { Response } from &#x27;express&#x27;;
@@ -399,6 +400,7 @@ export class AuthController {
   @ApiBadRequestResponse({ description: &#x27;Bad Request&#x27; })
   @ApiCreatedResponse({ description: &#x27;Created&#x27;, type: [User] })
   @ApiBody({ type: LoginUserDto })
+  @ApiTooManyRequestsResponse({ description: &#x27;Too Many Requests&#x27; })
   @UseGuards(LocalAuthGuard)
   @Post(&#x27;signin&#x27;)
   async signIn(@Request() req: any, @Res({ passthrough: true }) res: Response) {
@@ -414,6 +416,7 @@ export class AuthController {
   @ApiOperation({ summary: &#x27;Sign Up&#x27; })
   @ApiBadRequestResponse({ description: &#x27;Bad Request&#x27; })
   @ApiCreatedResponse({ description: &#x27;Created&#x27;, type: [User] })
+  @ApiTooManyRequestsResponse({ description: &#x27;Too Many Requests&#x27; })
   @ApiBody({ type: CreateUserDto })
   @Post(&#x27;signup&#x27;)
   async signUp(@Body() userDto: CreateUserDto) {
@@ -423,6 +426,7 @@ export class AuthController {
   @ApiOperation({ summary: &#x27;Log Out&#x27; })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
   @ApiCreatedResponse({ description: &#x27;Created&#x27; })
+  @ApiTooManyRequestsResponse({ description: &#x27;Too Many Requests&#x27; })
   @UseGuards(JwtAuthGuard)
   @ApiCookieAuth()
   @Post(&#x27;logout&#x27;)

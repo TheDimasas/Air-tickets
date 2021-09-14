@@ -827,6 +827,7 @@ export class FlightsService {
         populate: {
           path: &#x27;sections&#x27;,
           select: &#x27;-__v&#x27;,
+          match: { class: { $in: flightDto.class } },
           populate: { path: &#x27;seats&#x27;, select: &#x27;-__v&#x27; },
         },
       })

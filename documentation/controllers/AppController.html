@@ -121,14 +121,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Get Profile&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: User})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiCookieAuth()<br />@UseGuards(JwtAuthGuard)<br />@Get(&#x27;profile&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get Profile&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: User})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiTooManyRequestsResponse({description: &#x27;Too Many Requests&#x27;})<br />@ApiCookieAuth()<br />@UseGuards(JwtAuthGuard)<br />@Get(&#x27;profile&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/app.controller.ts:27</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="29"
+                            class="link-to-prism">src/app.controller.ts:29</a></div>
                 </td>
             </tr>
 
@@ -186,6 +186,7 @@ import {
   ApiOkResponse,
   ApiOperation,
   ApiTags,
+  ApiTooManyRequestsResponse,
   ApiUnauthorizedResponse,
 } from &#x27;@nestjs/swagger&#x27;;
 
@@ -202,6 +203,7 @@ export class AppController {
   @ApiOkResponse({ description: &#x27;Success&#x27;, type: User })
   @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
+  @ApiTooManyRequestsResponse({ description: &#x27;Too Many Requests&#x27; })
   @ApiCookieAuth()
   @UseGuards(JwtAuthGuard)
   @Get(&#x27;profile&#x27;)

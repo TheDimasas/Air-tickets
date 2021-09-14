@@ -136,14 +136,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Create a Airline&#x27;})<br />@ApiCreatedResponse({description: &#x27;Created&#x27;, type: Airline})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiBody({type: CreateAirlineDto})<br />@ApiCookieAuth()<br />@Roles(&#x27;admin&#x27;)<br />@UseInterceptors(undefined)<br />@Post()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Create a Airline&#x27;})<br />@ApiCreatedResponse({description: &#x27;Created&#x27;, type: Airline})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiTooManyRequestsResponse({description: &#x27;Too Many Requests&#x27;})<br />@ApiBody({type: CreateAirlineDto})<br />@ApiCookieAuth()<br />@Roles(&#x27;admin&#x27;)<br />@UseInterceptors(undefined)<br />@ApiConsumes(&#x27;multipart/form-data&#x27;)<br />@Post()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="49"
-                            class="link-to-prism">src/airlines/airlines.controller.ts:49</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/airlines/airlines.controller.ts:53</a></div>
                 </td>
             </tr>
 
@@ -225,14 +225,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Delete Airline&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Airline})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiCookieAuth()<br />@Roles(&#x27;admin&#x27;)<br />@Delete(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Delete Airline&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Airline})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiTooManyRequestsResponse({description: &#x27;Too Many Requests&#x27;})<br />@ApiCookieAuth()<br />@Roles(&#x27;admin&#x27;)<br />@Delete(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="96"
-                            class="link-to-prism">src/airlines/airlines.controller.ts:96</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="110"
+                            class="link-to-prism">src/airlines/airlines.controller.ts:110</a></div>
                 </td>
             </tr>
 
@@ -302,14 +302,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Get data all Airlines&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: undefined})<br />@Get()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get data all Airlines&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: undefined})<br />@ApiTooManyRequestsResponse({description: &#x27;Too Many Requests&#x27;})<br />@Get()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/airlines/airlines.controller.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="64"
+                            class="link-to-prism">src/airlines/airlines.controller.ts:64</a></div>
                 </td>
             </tr>
 
@@ -348,14 +348,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Get Airline data&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Airline})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@Get(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get Airline data&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Airline})<br />@ApiTooManyRequestsResponse({description: &#x27;Too Many Requests&#x27;})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@Get(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="68"
-                            class="link-to-prism">src/airlines/airlines.controller.ts:68</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/airlines/airlines.controller.ts:74</a></div>
                 </td>
             </tr>
 
@@ -417,7 +417,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>update(id: ObjectId, airlineDto: <a href="../classes/UpdateAirlineDto.html">UpdateAirlineDto</a>)</code>
+<code>update(id: ObjectId, airlineDto: <a href="../classes/UpdateAirlineDto.html">UpdateAirlineDto</a>, logo: Express.Multer.File)</code>
                 </td>
             </tr>
 
@@ -425,14 +425,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Update Airline data&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Airline})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiBody({type: UpdateAirlineDto})<br />@ApiCookieAuth()<br />@Roles(&#x27;admin&#x27;)<br />@Patch(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Update Airline data&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Airline})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiTooManyRequestsResponse({description: &#x27;Too Many Requests&#x27;})<br />@ApiBody({type: UpdateAirlineDto})<br />@ApiCookieAuth()<br />@Roles(&#x27;admin&#x27;)<br />@UseInterceptors(undefined)<br />@ApiConsumes(&#x27;multipart/form-data&#x27;)<br />@Patch(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="83"
-                            class="link-to-prism">src/airlines/airlines.controller.ts:83</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="92"
+                            class="link-to-prism">src/airlines/airlines.controller.ts:92</a></div>
                 </td>
             </tr>
 
@@ -467,6 +467,18 @@
                                     <td>airlineDto</td>
                                     <td>
                                                 <code><a href="../classes/UpdateAirlineDto.html" target="_self" >UpdateAirlineDto</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>logo</td>
+                                    <td>
+                                            <code>Express.Multer.File</code>
                                     </td>
 
                                     <td>
@@ -510,6 +522,7 @@ import { FileInterceptor } from &#x27;@nestjs/platform-express&#x27;;
 import {
   ApiBadRequestResponse,
   ApiBody,
+  ApiConsumes,
   ApiCookieAuth,
   ApiCreatedResponse,
   ApiForbiddenResponse,
@@ -518,6 +531,7 @@ import {
   ApiOperation,
   ApiParam,
   ApiTags,
+  ApiTooManyRequestsResponse,
   ApiUnauthorizedResponse,
 } from &#x27;@nestjs/swagger&#x27;;
 import { ObjectId } from &#x27;mongoose&#x27;;
@@ -538,10 +552,12 @@ export class AirlinesController {
   @ApiBadRequestResponse({ description: &#x27;Bad Request&#x27; })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
   @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
+  @ApiTooManyRequestsResponse({ description: &#x27;Too Many Requests&#x27; })
   @ApiBody({ type: CreateAirlineDto })
   @ApiCookieAuth()
   @Roles(&#x27;admin&#x27;)
   @UseInterceptors(FileInterceptor(&#x27;logo&#x27;))
+  @ApiConsumes(&#x27;multipart/form-data&#x27;)
   @Post()
   create(
     @Body() airlineDto: CreateAirlineDto,
@@ -552,6 +568,7 @@ export class AirlinesController {
 
   @ApiOperation({ summary: &#x27;Get data all Airlines&#x27; })
   @ApiOkResponse({ description: &#x27;Success&#x27;, type: [Airline] })
+  @ApiTooManyRequestsResponse({ description: &#x27;Too Many Requests&#x27; })
   @Get()
   findAll() {
     return this.airlinesService.getAllAirlines();
@@ -560,6 +577,7 @@ export class AirlinesController {
   @ApiOperation({ summary: &#x27;Get Airline data&#x27; })
   @ApiNotFoundResponse({ description: &#x27;Not Found&#x27; })
   @ApiOkResponse({ description: &#x27;Success&#x27;, type: Airline })
+  @ApiTooManyRequestsResponse({ description: &#x27;Too Many Requests&#x27; })
   @ApiParam({ name: &#x27;id&#x27;, type: &#x27;string&#x27; })
   @Get(&#x27;:id&#x27;)
   findOne(@Param(&#x27;id&#x27;) id: ObjectId) {
@@ -573,12 +591,19 @@ export class AirlinesController {
   @ApiBadRequestResponse({ description: &#x27;Bad Request&#x27; })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
   @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
+  @ApiTooManyRequestsResponse({ description: &#x27;Too Many Requests&#x27; })
   @ApiBody({ type: UpdateAirlineDto })
   @ApiCookieAuth()
   @Roles(&#x27;admin&#x27;)
+  @UseInterceptors(FileInterceptor(&#x27;logo&#x27;))
+  @ApiConsumes(&#x27;multipart/form-data&#x27;)
   @Patch(&#x27;:id&#x27;)
-  update(@Param(&#x27;id&#x27;) id: ObjectId, @Body() airlineDto: UpdateAirlineDto) {
-    return this.airlinesService.updateAirlineData(id, airlineDto);
+  update(
+    @Param(&#x27;id&#x27;) id: ObjectId,
+    @Body() airlineDto: UpdateAirlineDto,
+    @UploadedFile() logo: Express.Multer.File,
+  ) {
+    return this.airlinesService.updateAirlineData(id, airlineDto, logo);
   }
 
   @ApiOperation({ summary: &#x27;Delete Airline&#x27; })
@@ -587,6 +612,7 @@ export class AirlinesController {
   @ApiNotFoundResponse({ description: &#x27;Not Found&#x27; })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
   @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
+  @ApiTooManyRequestsResponse({ description: &#x27;Too Many Requests&#x27; })
   @ApiCookieAuth()
   @Roles(&#x27;admin&#x27;)
   @Delete(&#x27;:id&#x27;)

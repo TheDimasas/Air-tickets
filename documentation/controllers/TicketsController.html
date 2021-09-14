@@ -136,14 +136,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Create a Ticket&#x27;})<br />@ApiCreatedResponse({description: &#x27;Created&#x27;, type: Ticket})<br />@ApiBody({type: CreateTicketDto})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiCookieAuth()<br />@UseGuards(JwtAuthGuard)<br />@Post(&#x27;reserve&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Reserve a Ticket&#x27;})<br />@ApiCreatedResponse({description: &#x27;Created&#x27;, type: Ticket})<br />@ApiBody({type: CreateTicketDto})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiTooManyRequestsResponse({description: &#x27;Too Many Requests&#x27;})<br />@ApiCookieAuth()<br />@UseGuards(JwtAuthGuard)<br />@Post(&#x27;reserve&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/tickets/tickets.controller.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/tickets/tickets.controller.ts:50</a></div>
                 </td>
             </tr>
 
@@ -213,14 +213,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Get Ticket data&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Ticket})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiCookieAuth()<br />@UseGuards(JwtAuthGuard)<br />@Get(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get Ticket data&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Ticket})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiTooManyRequestsResponse({description: &#x27;Too Many Requests&#x27;})<br />@ApiCookieAuth()<br />@UseGuards(JwtAuthGuard)<br />@Get(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="72"
-                            class="link-to-prism">src/tickets/tickets.controller.ts:72</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/tickets/tickets.controller.ts:76</a></div>
                 </td>
             </tr>
 
@@ -302,14 +302,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Get data all Tickets&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: undefined})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiCookieAuth()<br />@Roles(&#x27;admin&#x27;)<br />@Get()<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Get data all Tickets&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: undefined})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiTooManyRequestsResponse({description: &#x27;Too Many Requests&#x27;})<br />@ApiCookieAuth()<br />@Roles(&#x27;admin&#x27;)<br />@Get()<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="59"
-                            class="link-to-prism">src/tickets/tickets.controller.ts:59</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/tickets/tickets.controller.ts:62</a></div>
                 </td>
             </tr>
 
@@ -348,14 +348,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Return Ticket&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Ticket})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiCookieAuth()<br />@UseGuards(JwtAuthGuard)<br />@Delete(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Return Ticket&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Ticket})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiTooManyRequestsResponse({description: &#x27;Too Many Requests&#x27;})<br />@ApiCookieAuth()<br />@UseGuards(JwtAuthGuard)<br />@Delete(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="104"
-                            class="link-to-prism">src/tickets/tickets.controller.ts:104</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="110"
+                            class="link-to-prism">src/tickets/tickets.controller.ts:110</a></div>
                 </td>
             </tr>
 
@@ -437,14 +437,14 @@
                 <td class="col-md-4">
                     <b>Decorators : </b>
                     <br />
-                    <code>@ApiOperation({summary: &#x27;Update Ticket data&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Ticket})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiBody({type: UpdateTicketDto})<br />@ApiCookieAuth()<br />@UseGuards(JwtAuthGuard)<br />@Patch(&#x27;:id&#x27;)<br /></code>
+                    <code>@ApiOperation({summary: &#x27;Update Ticket data&#x27;})<br />@ApiOkResponse({description: &#x27;Success&#x27;, type: Ticket})<br />@ApiParam({name: &#x27;id&#x27;, type: &#x27;string&#x27;})<br />@ApiBadRequestResponse({description: &#x27;Bad Request&#x27;})<br />@ApiNotFoundResponse({description: &#x27;Not Found&#x27;})<br />@ApiUnauthorizedResponse({description: &#x27;Unauthorized&#x27;})<br />@ApiForbiddenResponse({description: &#x27;Forbidden&#x27;})<br />@ApiBody({type: UpdateTicketDto})<br />@ApiTooManyRequestsResponse({description: &#x27;Too Many Requests&#x27;})<br />@ApiCookieAuth()<br />@UseGuards(JwtAuthGuard)<br />@Patch(&#x27;:id&#x27;)<br /></code>
                 </td>
             </tr>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="87"
-                            class="link-to-prism">src/tickets/tickets.controller.ts:87</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="92"
+                            class="link-to-prism">src/tickets/tickets.controller.ts:92</a></div>
                 </td>
             </tr>
 
@@ -541,6 +541,7 @@ import {
   ApiOperation,
   ApiParam,
   ApiTags,
+  ApiTooManyRequestsResponse,
   ApiUnauthorizedResponse,
 } from &#x27;@nestjs/swagger&#x27;;
 import { ObjectId } from &#x27;mongoose&#x27;;
@@ -557,12 +558,13 @@ import { JwtAuthGuard } from &#x27;src/auth/guards/jwt-auth.guard&#x27;;
 export class TicketsController {
   constructor(private readonly ticketsService: TicketsService) {}
 
-  @ApiOperation({ summary: &#x27;Create a Ticket&#x27; })
+  @ApiOperation({ summary: &#x27;Reserve a Ticket&#x27; })
   @ApiCreatedResponse({ description: &#x27;Created&#x27;, type: Ticket })
   @ApiBody({ type: CreateTicketDto })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
   @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
   @ApiBadRequestResponse({ description: &#x27;Bad Request&#x27; })
+  @ApiTooManyRequestsResponse({ description: &#x27;Too Many Requests&#x27; })
   @ApiCookieAuth()
   @UseGuards(JwtAuthGuard)
   @Post(&#x27;reserve&#x27;)
@@ -574,6 +576,7 @@ export class TicketsController {
   @ApiOkResponse({ description: &#x27;Success&#x27;, type: [Ticket] })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
   @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
+  @ApiTooManyRequestsResponse({ description: &#x27;Too Many Requests&#x27; })
   @ApiCookieAuth()
   @Roles(&#x27;admin&#x27;)
   @Get()
@@ -587,6 +590,7 @@ export class TicketsController {
   @ApiNotFoundResponse({ description: &#x27;Not Found&#x27; })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
   @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
+  @ApiTooManyRequestsResponse({ description: &#x27;Too Many Requests&#x27; })
   @ApiCookieAuth()
   @UseGuards(JwtAuthGuard)
   @Get(&#x27;:id&#x27;)
@@ -602,6 +606,7 @@ export class TicketsController {
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
   @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
   @ApiBody({ type: UpdateTicketDto })
+  @ApiTooManyRequestsResponse({ description: &#x27;Too Many Requests&#x27; })
   @ApiCookieAuth()
   @UseGuards(JwtAuthGuard)
   @Patch(&#x27;:id&#x27;)
@@ -619,6 +624,7 @@ export class TicketsController {
   @ApiNotFoundResponse({ description: &#x27;Not Found&#x27; })
   @ApiUnauthorizedResponse({ description: &#x27;Unauthorized&#x27; })
   @ApiForbiddenResponse({ description: &#x27;Forbidden&#x27; })
+  @ApiTooManyRequestsResponse({ description: &#x27;Too Many Requests&#x27; })
   @ApiCookieAuth()
   @UseGuards(JwtAuthGuard)
   @Delete(&#x27;:id&#x27;)

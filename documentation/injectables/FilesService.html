@@ -79,6 +79,10 @@
                                     <span class="modifier">Async</span>
                                 <a href="#createFile">createFile</a>
                             </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#deleteFile">deleteFile</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -181,6 +185,78 @@
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="deleteFile"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Async</span>
+                            deleteFile
+                        </b>
+                        <a href="#deleteFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>deleteFile(filePath: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="30"
+                            class="link-to-prism">src/files/files.service.ts:30</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>filePath</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -211,6 +287,18 @@ export class FilesService {
     } catch (e) {
       throw new HttpException(
         &#x27;An error occurred while writing the file&#x27;,
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
+
+  async deleteFile(filePath: any): Promise&lt;void&gt; {
+    try {
+      const pathToFile &#x3D; path.resolve(__dirname, &#x27;static&#x27;, filePath);
+      fs.unlinkSync(pathToFile);
+    } catch (e) {
+      throw new HttpException(
+        &#x27;An error occurred while deleting the file&#x27;,
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
