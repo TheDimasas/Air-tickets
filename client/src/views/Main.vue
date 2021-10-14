@@ -7,7 +7,7 @@
         <el-carousel-item v-for="item in 4" :key="item">
           <el-image
             style="width: 100%"
-            :src="'/static/img/' + item + '.jpg'"
+            :src="'/Air-tickets/static/img/' + item + '.jpg'"
             :fit="'cover'"
           ></el-image>
         </el-carousel-item>
@@ -39,10 +39,6 @@ export default {
   width: 65%;
   margin: 20px auto 0;
 }
-
-// .el-form--label-top .el-form-item__label {
-//   padding: 0 !important;
-// }
 
 .el-carousel__item {
   background-color: #f0f0f0;

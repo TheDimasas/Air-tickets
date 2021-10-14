@@ -71,22 +71,6 @@ export default createStore({
           console.log(error);
         });
     },
-
-    searchFligts(context, data) {
-      // axios
-      //   .post('auth/signIn', data, { withCredentials: true })
-      //   .then((response) => {
-      //     const access_token = JSON.stringify(response.data);
-      //     localStorage.setItem('access_token', access_token);
-      //     context.commit('signIn', access_token);
-      //     router.push('/');
-      //     console.log(response);
-      //   })
-      //   .catch((error) => {
-      //     localStorage.removeItem('access_token');
-      //     console.log(error);
-      //   });
-    },
   },
 
   modules: {},

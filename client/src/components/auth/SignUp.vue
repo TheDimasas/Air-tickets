@@ -177,10 +177,6 @@ h1 {
   }
 }
 
-// label.el-form-item__label {
-//   padding: 0 !important;
-// }
-
 .el-form-item {
   margin-bottom: 10px;
 }
