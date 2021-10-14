@@ -4,6 +4,8 @@ set -e
 
 npm run build
 
+xcopy ..'\'server'\'documentation dist'\'docs /E /H /C /I
+
 cd dist
 
 git init
