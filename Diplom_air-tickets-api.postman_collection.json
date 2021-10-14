@@ -1,0 +1,1182 @@
+{
+	"info": {
+		"_postman_id": "1b5a1ab3-7936-46f9-b143-0b69ff9d8bc9",
+		"name": "Diplom_air-tickets-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "Get all Users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "Id User"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Денис\",\r\n    \"lastName\": \"Руденко\",\r\n    \"email\": \"golubrudik@gmail.com\",\r\n    \"phoneNumber\": \"+380955002674\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change User Password",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\": \"A1b2@c3d*\",\r\n    \"newPassword\": \"!Q2w#E4r\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/changepassword",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"changepassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "app",
+			"item": [
+				{
+					"name": "Get Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdvbHVicnVkaWtAZ21haWwuY29tIiwic3ViIjoiNjA5ODM3M2ZiYWRhZGMyMjM0YTg3NzVhIiwiaWF0IjoxNjIwNTg4NDEwLCJleHAiOjE2MjA1OTIwMTB9.OkpsyMoq_gbGYO3a-4uuhAWl-9nzjZl6ltGGC8mNVHM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/profile",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Signin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"!Q2w#E4r\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/signin",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImdvbHVicnVkaWtAZ21haWwuY29tIiwic3ViIjoiNjA5ODM3M2ZiYWRhZGMyMjM0YTg3NzVhIiwiaWF0IjoxNjIwNTg4NDEwLCJleHAiOjE2MjA1OTIwMTB9.OkpsyMoq_gbGYO3a-4uuhAWl-9nzjZl6ltGGC8mNVHM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/auth/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Дмитро\",\r\n    \"lastName\": \"Єфремов\",\r\n    \"email\": \"dima@gmail.com\",\r\n    \"phoneNumber\": \"+380988888888\",\r\n    \"password\": \"!Q2w#E4r\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/signup",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "airlines",
+			"item": [
+				{
+					"name": "Create Airline",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "airlineNameUa",
+									"value": "Дніпроавіа",
+									"type": "text"
+								},
+								{
+									"key": "descriptionUa",
+									"value": "Українська авіакомпанія Дніпроавіа була заснована в 1996 році.",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/Andrey/Desktop/uia.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/airlines",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"airlines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Airlines",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/airlines",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"airlines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Airline",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/airlines/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"airlines",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "Airline Id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Airline",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"airlineNameUa\": \"МАУ (Міжнародні Авіалінії України)\",\r\n    \"descriptionUa\": \"Міжнародні Авіалінії України працюють з 1 жовтня 1992 року і є флагманської авіакомпанією України\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/airlines/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"airlines",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "Airline Id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Airline",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/airlines/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"airlines",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "Airline Id"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "airports",
+			"item": [
+				{
+					"name": "Create  Airport",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"airportNameUa\": \"Одеса\",\r\n    \"IATA\": \"ODS\",\r\n    \"airportCountryUa\": \"Україна\",\r\n    \"airportTownUa\": \"Одеса\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/airports",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"airports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Airports",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/airports",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"airports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Airport",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/airports/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"airports",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "Airport Id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Airport",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"IATA\": \"LWO\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/airports/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"airports",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "60aaa152293bff2074b04c87",
+									"description": "Airport Id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Airport",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/airports/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"airports",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "Airport Id"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "flights",
+			"item": [
+				{
+					"name": "Create Flight",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"flightName\": \"ZX-9582\",\r\n    \"airline\": \"60aa9f67e247d541881b5b86\",\r\n    \"airplane\": \"60ab4a523e590e27d08ccb2c\",\r\n    \"departureAirport\": \"60aaa14e293bff2074b04c86\",\r\n    \"departureTime\": \"2021-05-29T18:45:00.000Z\",\r\n    \"arrivalAirport\": \"60aaa152293bff2074b04c87\",\r\n    \"arrivalTime\": \"2021-05-29T19:55:00.000Z\",\r\n    \"taxa\": 350,\r\n    \"baggage\": 23,\r\n    \"carryOnBaggage\": false,\r\n    \"exchange\": \"\",\r\n    \"refund\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/flights",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"flights"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Flights",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"departure\": \"Жуляни\",\r\n  \"firstDepTime\": \"2021-06-27T15:35:00.000Z\",\r\n  \"secondDepTime\": \"2021-06-29T15:35:00.000Z\",\r\n  \"arrival\": \"Львів\",\r\n  \"class\": [\r\n    \"business\",\r\n    \"economy\"\r\n  ],\r\n  \"count\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/flights/search",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"flights",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Flights",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/flights",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"flights"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Flight",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/flights/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"flights",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "Flight Id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Flight",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"flightName\": \"PS-9065\",\r\n    \"airline\": \"6096a99d2137391b8458f22b\",\r\n    \"departureAirport\": \"609693e5b85c7c0f44cd9042\",\r\n    \"departureTime\": \"????????\",\r\n    \"arrivalAirport\": \"6097a74b00989e4274beb6ee\",\r\n    \"arrivalTime\": \"????????\",\r\n    \"amountOfSeat\": 90,\r\n    \"price\": 1700,\r\n    \"property\": \"Without baggage\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/flights/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"flights",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "Flight Id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Flight",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/flights/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"flights",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "Flight Id"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tickets",
+			"item": [
+				{
+					"name": "Reserve Ticket",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"flight\": \"60ab49cd3e590e27d08ccaf8\",\r\n  \"user\": \"60d0c1f3e8493700573a7be5\",\r\n  \"sex\": \"male\",\r\n  \"type\": \"adult\",\r\n  \"firstName\": \"Dmitry\",\r\n  \"lastName\": \"Efremov\",\r\n  \"birthday\": \"2000-08-31T00:00:00.000Z\",\r\n  \"citizenshipUa\": \"Україна\",\r\n  \"citizenshipEng\": \"Ukraine\",\r\n  \"citizenshipRu\": \"Украина\",\r\n  \"document\": \"RS123456\",\r\n  \"validity\": \"2016-08-31T00:00:00.000Z\",\r\n  \"status\": \"paid\",\r\n  \"numberOfSeat\": 15\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/tickets/reserve",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tickets",
+								"reserve"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Tickets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/tickets",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tickets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Ticket",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/tickets/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tickets",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "Ticket Id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Ticket",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"flight\": \"6097aa5bf153d5119c2da363\",\r\n    \"user\": \"609663fcaee2f21bb4bdde7d\",\r\n    \"sex\": \"Male\",\r\n    \"birthday\": \"31/08/2000\",\r\n    \"citizenshipLocal\": \"Україна\",\r\n    \"citizenshipEng\": \"Ukraine\",\r\n    \"passport\": \"RS123321\",\r\n    \"validity\": \"16/07/2026\",\r\n    \"status\": \"Booked\"\r\n} \r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/tickets/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tickets",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "Ticket Id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Return Ticket",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/tickets/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"tickets",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "60a386452e6336257c7892f4",
+									"description": "Ticket Id"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "sections",
+			"item": [
+				{
+					"name": "Create Section",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"price\": 1750,\r\n    \"class\": \"business\",\r\n    \"seats\": 30\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/sections",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"sections"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Sections",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/sections",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"sections"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Section",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/sections/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"sections",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "Section Id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Section",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"class\": \"economy\",\r\n    \"price\": 1750\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/sections/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"sections",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "Section Id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Section",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/sections/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"sections",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "Section Id"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "seats",
+			"item": [
+				{
+					"name": "Update Seat Status",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"booked\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/seats/:id/update",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"seats",
+								":id",
+								"update"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "Seat Id"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "airplanes",
+			"item": [
+				{
+					"name": "Create Airplane",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"airplaneName\": \"Aerospatiale/Alenia ATR 72\",\r\n    \"sections\": [\"60a276f21bb58b4b0c2efeff\", \"60a2a49f83e738304c65c9a8\"],\r\n    \"amountOfSeat\": 58\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/airplanes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"airplanes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Airplanes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/airplanes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"airplanes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Airplane",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/airplanes/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"airplanes",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "Airplane Id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Airplane",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/airplanes/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"airplanes",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "Airplane Id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Airplane",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/airplanes/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"airplanes",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "Airplane Id"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:7000/api/v1"
+		},
+		{
+			"key": "herokuUrl",
+			"value": "https://airtickets-api.herokuapp.com/api/v1"
+		}
+	]
+}
