@@ -170,19 +170,6 @@ export default {
   width: 225px;
 }
 
-// .el-form-item--label-top .el-form-item__label {
-//   text-align: center;
-//   padding: 0;
-// }
-
-// label.el-form-item__label {
-//   padding: 0 !important;
-// }
-
-// input.el-input__inner {
-//   width: 300px;
-// }
-
 .el-form-item {
   margin-bottom: 10px;
 }

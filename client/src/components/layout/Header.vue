@@ -7,7 +7,7 @@
     style="height: 80px"
     ><el-image
       style="height: 80px"
-      :src="'/static/img/logo.png'"
+      :src="'/Air-tickets/static/img/logo.png'"
       :fit="'contain'"
       index="/signIn"
       :router="true"

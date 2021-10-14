@@ -1,10 +1,10 @@
-#!/usr/bin/env sh
+# !/usr/bin/env sh
 
 set -e
 
 npm run build
 
-xcopy ..'\'server'\'documentation dist'\'docs /E /H /C /I
+xcopy ..'\'server'\'documentation dist'\'documentation'\'/E/H/C/I
 
 cd dist
 
