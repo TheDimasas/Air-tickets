@@ -81,7 +81,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"Денис\",\r\n    \"lastName\": \"Руденко\",\r\n    \"email\": \"golubrudik@gmail.com\",\r\n    \"phoneNumber\": \"+380955002674\"\r\n}",
+							"raw": "{\r\n    \"firstName\": \"Abrham\",\r\n    \"lastName\": \"Kekovich\",\r\n    \"email\": \"golubrudik@gmail.com\",\r\n    \"phoneNumber\": \"+380987654321\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -209,7 +209,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"!Q2w#E4r\"\r\n}",
+							"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n    \"password\": \"!Q2w#E4r%\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -264,7 +264,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"firstName\": \"Дмитро\",\r\n    \"lastName\": \"Єфремов\",\r\n    \"email\": \"dima@gmail.com\",\r\n    \"phoneNumber\": \"+380988888888\",\r\n    \"password\": \"!Q2w#E4r\"\r\n}",
+							"raw": "{\r\n    \"firstName\": \"Ismail\",\r\n    \"lastName\": \"Abdulah\",\r\n    \"email\": \"dima@gmail.com\",\r\n    \"phoneNumber\": \"+380988888888\",\r\n    \"password\": \"!Q2w#E4r\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
